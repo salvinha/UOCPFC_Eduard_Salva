@@ -10,3 +10,5 @@ Eines
 2	Repositori
 	Com havíem comentat, podem fer servir GitHub. No l'he fet servir mai, ara estic començant a entrar-hi (el meu userID és eduardcapell).
 	Jo també estic descarregant l'executable. El meu userID és salvinha
+	
+	Ja he creat un repositori amb l'estructura de branches que demana el Roman. T'he afegit com a col·laborador del repositori "UOCPFC_Eduard_Salva".

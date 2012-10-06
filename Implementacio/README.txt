@@ -1,0 +1,1 @@
+Aquí va el codi de les parts client i servidor que anem desenvolupant
