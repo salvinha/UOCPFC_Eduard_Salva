@@ -3,6 +3,7 @@ Eines
 1	Desenvolupament
 	- Servidor:
 		- No tinc experiència en node.js, i no sé quin és el millor entorn de desenvolupament. Pensava fer algunes proves aquest cap de setmana (6/10). Veig que hi ha gent que utilitza Eclipse i li funciona, i és el meu entorn de treball habitual, o sigui que segurament serà el que utilitzaré.
+		- He fet proves amb nodejs, i veig que serà millor si utilitzo un editor de text pelat, per tant no faré servir cap IDE. Amb JavaScript estic més acostumat a utilitzar editors simples.
 
 	- Client:
 
