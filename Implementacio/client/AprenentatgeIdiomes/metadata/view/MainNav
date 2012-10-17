@@ -1,0 +1,33 @@
+{
+    "type": "navigationview",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|animation": "pop",
+        "designer|userClassName": "MainNav",
+        "designer|userAlias": "mainnav",
+        "designer|initialView": true,
+        "ui": "light",
+        "defaultBackButtonText": "'Enrere'"
+    },
+    "id": "ExtBox1-ext-gen2135",
+    "designerId": "807bfad4-3e31-42ca-a3b3-0471598b7396",
+    "cn": [
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Llistes d'estudi",
+                "designer|userClassName": "MyContainer"
+            },
+            "designerId": "8c7cb534-564a-464f-a53f-436604dbe1f8"
+        }
+    ]
+}

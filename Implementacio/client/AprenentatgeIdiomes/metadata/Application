@@ -6,7 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "name": "MyApp"
+        "views": [
+            "MainNav"
+        ],
+        "name": "AprenentatgeIdiomes"
     },
     "id": "ExtBox1-ext-gen1733",
     "designerId": "application"
