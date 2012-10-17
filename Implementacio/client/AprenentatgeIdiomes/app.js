@@ -18,14 +18,69 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-    views: [
-        'MainNav'
-    ],
     name: 'AprenentatgeIdiomes',
 
     launch: function() {
+        //L'aplicació sencera resideix en aquest Tab Panel
+        Ext.Viewport.add({
+            xtype: 'tabpanel',
+            fullscreen: true,
+            tabBarPosition: 'bottom',
 
-        Ext.create('AprenentatgeIdiomes.view.MainNav', {fullscreen: true});
+            items: [
+            //Aquesta és la pàgina inicial
+            {
+                title: 'Llistes d\'estudi',
+                iconCls: 'home',
+                cls: 'home',
+                html: [
+                '<h1>Benvingut</h1>'
+                ].join("")
+            },
+            // Aquesta és una altra pàgina. Utilitza un tree store per a carregar les seves dades des del blog.json
+            {
+                xtype: 'nestedlist',
+                title: 'Blog',
+                iconCls: 'star',
+                cls: 'blog',
+                displayField: 'title',
+
+                store: {
+                    type: 'tree',
+
+                    fields: ['title', 'link', 'author', 'contentSnippet', 'content', {
+                        name: 'leaf',
+                        defaultValue: true
+                    }],
+
+                    root: {
+                        leaf: false
+                    },
+
+                    proxy: {
+                        type: 'jsonp',
+                        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://feeds.feedburner.com/SenchaBlog',
+                        reader: {
+                            type: 'json',
+                            rootProperty: 'responseData.feed.entries'
+                        }
+                    }
+                },
+
+                detailCard: {
+                    xtype: 'panel',
+                    scrollable: true,
+                    styleHtmlContent: true
+                },
+
+                listeners: {
+                    itemtap: function(nestedList, list, index, element, post) {
+                        this.getDetailCard().setHtml(post.get('content'));
+                    }
+                }
+            }
+            ]
+        });
     }
 
 });

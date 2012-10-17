@@ -1,9 +1,9 @@
 {
     "name": "AprenentatgeIdiomes",
     "settings": {
-        "urlPrefix": "http://salvinha.github.com/UOCPFC_Eduard_Salva/",
+        "urlPrefix": "http://localhost",
         "spacesToIndent": 4,
-        "exportPath": "",
+        "exportPath": "C:/xampp/htdocs/AprenentatgeIdiomes",
         "lineEnding": "CRLF",
         "genTimestamps": false,
         "cacheBust": false
@@ -19,20 +19,10 @@
                 "metadata/resource/Library"
             ],
             "className": "Library"
-        },
-        "807bfad4-3e31-42ca-a3b3-0471598b7396": {
-            "paths": [
-                "metadata/view/MainNav",
-                "app/view/override/MainNav.js",
-                "app/view/MainNav.js"
-            ],
-            "className": "MainNav"
         }
     },
     "viewOrderMap": {
-        "view": [
-            "807bfad4-3e31-42ca-a3b3-0471598b7396"
-        ],
+        "view": [],
         "store": [],
         "controller": [],
         "model": [],
