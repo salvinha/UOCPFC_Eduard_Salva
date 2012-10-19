@@ -1,0 +1,39 @@
+* El fluxe de pantalles correspon a l 'ultim enviat.  Personalment ho
+veig clar i funcional.
+
+* NO guardem les llistes de paraules en el servidor.
+* NO guardem usuaris en el servidor.
+
+Què guardem en el servidor:
+1. TOT el diccionari.  Tots els conceptes (flashcards) que hi ha en
+l'aplicació s'haurien de tenir en el servidor.  Un flashcard si no
+m'equivoco és: {paraula_català, imatge_català, descripció_català,
+altres_catala (opcional, per exemple, casos d'us de la paraula) ,
+so_catala, tot l'anterior en japones).  Amb això li diré Koncepte
+
+Operacions del diccionari en el costat del servidor:
+* crear_Koncepte(camps obligatoris)
+* editar_camp_Koncepte(nom_camp, info)
+* get_koncepte(idKoncepte)
+* search_for_konceptes(camp_cerca, valor)
+* get_sound(idKoncepte)
+....
+Haurieu d'escollir si la edició de paraules i la incorporació de
+paraules les pot fer el dispositiu mòvil o s'han de fer desde un
+programa d'administració (ja veuriem si l'implementem o escrivim
+directament scripts en el servidor, això ara no importa).
+
+El diccionari hauria d'estar en el servidor per que hi han moltes
+paraules i molts SONS i no ho podem guardar en local (segurament). El
+que si podem guardar en local (fent us de html5 i cache) és tenir les
+TOTES les paraules de les llistes locals, però no totes les del
+diccionari.
+
+Jo crec que aquesta part es podria ocupar en Eduard.  Tant des la API
+en servidor com del Model i controlador de carrega del sencha.
+....
+
+2. Llistes BÀSIQUES: llistes bàsiques de diferents nivells de
+coneixement de la llengua: COLORS_Level1, COLORS_Level2, etc...
+Operacions servidor (agafar llista, etc...)
+Crec que això també ho pot fer l'eduard.
