@@ -18,5 +18,14 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-    name: 'MyApp'
+    views: [
+        'MyTabPanel'
+    ],
+    name: 'MyApp',
+
+    launch: function() {
+
+        Ext.create('MyApp.view.MyTabPanel', {fullscreen: true});
+    }
+
 });
