@@ -1,0 +1,27 @@
+Pàg. 1:
+
+Hola a tothom,
+
+Aquest és el resum de la feina que hem fet tant l'Eduard com en Salva en aquesta PAC número 2, pertanyent al projecte final de carrera. Aquest projecte contempla la creació d'una aplicació web que s'executa des d'un navegador web d'un dispositiu mòbil (com un smartphone o una tableta).
+
+Tal i com havíem planificat, hem anat escrivint la memòria des del primer dia i ja tenim enllestits els següents apartats:
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pàg. 4:
+
+Apartat 1: Una introducció sobre el nostre projecte, on s'explica una mica com va surgir la possibilitat de treballar en una aplicació que ajudi als estudiants de la llengua japonesa a aprendre els diferents conceptes mitjançant 3 eines: un diccionari de paraules i unes llistes d'estudi personalitzables, i un petit exercici en forma de joc que forma part d'un exercici de visualització i retenció de conceptes mitjançant targetes.
+
+Pàg. 5: També hem afegit el mateix contingut que ja vàrem lliurar dins la passada PAC número 1, com són els objectius generals i específics i la planificació amb fites i temporalització.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pàg. 7 i 8 (captures): Continuam amb l'apartat 2, l'estat de l'art. Tal i com ens ha aconsellat el Roman hem dedicat un apartat a parlar d'una aplicació que ja existeix dins el catàleg de la UOC que s'anomena Quadern Virtual d'Escriptura. És una aplicació que es pot fer servir amb ordinador + ratolí, tablet android o tauleta gràfica, i conté, per una banda, un assistent d’escriptura virtual que permet l'aprenentatge i pràctica del traç de caràcters, i per altra banda, una part teòrica sobre els caràcters. Aquesta part teòrica és la que menys profunditat presenta i de la que volem treure profit en aquest Projecte. Tal vegada es pugui integrar la nostra feina en un futur dins l'aplicació del Quadern Virtual, mai se sap.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pàg. 10, 11, 12 i 13 (captures): L'apartat 3 presenta un estudi de mercat on s'analitzen les aplicacions existents actualment per a dispositius mòbils que tenen com a objectiu l’aprenentatge del japonès. Hem dividit les aplicacions existents en les següents categories: diccionaris, flashcards, àudio i pràctica dels traços dels símbols kanji. Algunes de les aplicacions ens han encaixat en més d’una de les categories proposades. Veieu les captures de pantalla d'aquestes aplicacions: -- mostrar captures --
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pàg. 14: Passam a explicar ara ...
