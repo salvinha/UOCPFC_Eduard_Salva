@@ -10,18 +10,50 @@ Tal i com havíem planificat, hem anat escrivint la memòria des del primer dia i 
 
 Pàg. 4:
 
-Apartat 1: Una introducció sobre el nostre projecte, on s'explica una mica com va surgir la possibilitat de treballar en una aplicació que ajudi als estudiants de la llengua japonesa a aprendre els diferents conceptes mitjançant 3 eines: un diccionari de paraules i unes llistes d'estudi personalitzables, i un petit exercici en forma de joc que forma part d'un exercici de visualització i retenció de conceptes mitjançant targetes.
+Començam per l'apartat 1. Aquest és una introducció sobre el nostre projecte, on s'explica una mica com va surgir la possibilitat de treballar en una aplicació que ajudi als estudiants de la llengua japonesa a aprendre els diferents conceptes mitjançant 3 eines: un diccionari de paraules, unes llistes d'estudi personalitzables i un petit exercici en forma de joc que forma part d'un exercici de visualització i retenció de conceptes mitjançant targetes.
 
 Pàg. 5: També hem afegit el mateix contingut que ja vàrem lliurar dins la passada PAC número 1, com són els objectius generals i específics i la planificació amb fites i temporalització.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Pàg. 7 i 8 (captures): Continuam amb l'apartat 2, l'estat de l'art. Tal i com ens ha aconsellat el Roman hem dedicat un apartat a parlar d'una aplicació que ja existeix dins el catàleg de la UOC que s'anomena Quadern Virtual d'Escriptura. És una aplicació que es pot fer servir amb ordinador + ratolí, tablet android o tauleta gràfica, i conté, per una banda, un assistent d’escriptura virtual que permet l'aprenentatge i pràctica del traç de caràcters, i per altra banda, una part teòrica sobre els caràcters. Aquesta part teòrica és la que menys profunditat presenta i de la que volem treure profit en aquest Projecte. Tal vegada es pugui integrar la nostra feina en un futur dins l'aplicació del Quadern Virtual, mai se sap.
+Pàg. 7 i 8 (captures): Continuam amb l'apartat 2, l'estat de l'art. Tal i com ens ha aconsellat el Roman hem dedicat un apartat a parlar d'una aplicació que ja existeix dins el catàleg de la UOC que s'anomena Quadern Virtual d'Escriptura. És una aplicació que es pot fer servir amb un ordinador o amb un tablet Android gràfica, i conté, per una banda, un assistent d’escriptura virtual que permet l'aprenentatge i pràctica del traç de caràcters, i per altra banda, una part teòrica sobre els caràcters. Aquesta part teòrica és la que menys profunditat presenta i de la que volem treure profit en aquest Projecte. Tal vegada es pugui integrar la nostra feina en un futur dins l'aplicació del Quadern Virtual, mai se sap.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Pàg. 10, 11, 12 i 13 (captures): L'apartat 3 presenta un estudi de mercat on s'analitzen les aplicacions existents actualment per a dispositius mòbils que tenen com a objectiu l’aprenentatge del japonès. Hem dividit les aplicacions existents en les següents categories: diccionaris, flashcards, àudio i pràctica dels traços dels símbols kanji. Algunes de les aplicacions ens han encaixat en més d’una de les categories proposades. Veieu les captures de pantalla d'aquestes aplicacions: -- mostrar captures --
+Pàg. 10, 11, 12 i 13 (captures): Seguim amb l'apartat 3 presenta un estudi de mercat on s'analitzen les aplicacions existents actualment per a dispositius mòbils que tenen com a objectiu l’aprenentatge del japonès. Hem dividit les aplicacions existents en les següents categories: diccionaris, flashcards, àudio i pràctica dels traços dels símbols kanji. Algunes de les aplicacions ens han encaixat en més d’una de les categories proposades. Veieu un exemples de les captures de pantalla d'aquestes aplicacions: -- mostrar captures --
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Pàg. 14: Passam a explicar ara ...
+Pàg. 14: Passam a l'apartat 4, on hem explicat la metodologia que seguirem en tot el procés de creació del programari a partir d'aquests instants. Es tracta d'un mètode que comparteix origen amb la llengua japonesa i es diu Kanban. No farem un Kanban complet, sinó una versió més simple però sense oblidar quines són les tres regles que ens marcaran el ritme de treball. Aquestes són: 1.	Visualització en tot moment dels processos que feim els dos companys. 2. Limitar el treball en curs, és a dir, acordar prèviament el nombre d’ítems que es poden abordar en cada moment; i 3. Optimitzar el flux de treball.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pàg. 15 i 16: L'apartat 5 és el més extens que presentam en aquesta PAC número 2 i explica una mica com hem realitzat l'anàlisi i el disseny de la nostra aplicació. En un primer lloc explicarem quina tecnologia seguirem i com és l'arquitectura del sistema.
+
+Tecnològicament, aquest projecte es farà amb l'ajuda del framework Sencha Touch 2. És un gran marc de treball que permet al desenvolupador construir aplicacions que funcionin en els sistemes operatius iOS o Android, i en dispositius tan variats com BlackBerry, Kindle Fire, iPad, Nexus 7, etc. Per a la part "client" hem escollit l’entorn de treball Sencha Architect 2 i utilitzarem els nous estàndards HTML5 i CSS3, que seran utilitzats sobre un servidor web. La part "servidor" que correspongui la farem amb Node.js. Aquesta és una plataforma creada amb el motor JavaScript de Chrome, per desenvolupar aplicacions ràpides. Node.js es basa en un model que respon a esdeveniments, sense colls d'ampolla d'Entrada/Sortida que ho fan lleuger i eficient, perfecte per a aplicacions en temps real amb molta càrrega de dades i que corren a través de múltiples dispositius.
+
+El projecte l'hem centralitzat en un repositori públic que s'anomena GitHub. Allí anirem guardant tot el codi font i els documents que anem necessitant mentre l'aplicació progressa.
+
+L'arquitectura de l'aplicació web seguirà el model vista controlador. Aquest patró és aplicat per l’arquitectura del framework Sencha Touch i dóna bons resultats. El patró MVC és molt utilitzat en entorns web on l’usuari interactua amb la pàgina, plana o vista; el controlador rep la notificació de l’acció sol•licitada per l’usuari, accedeix al model si convé i executa l’acció. Després la vista s’encarrega de rebre les dades del model per visualitzar el resultat a l’usuari.
+
+Amb això ja tenim els apartats tecnologia i arquitectura del sistema. El que ens falta per explicar d'aquest apartat és el disseny preliminar del "client" i del "servidor".
+
+Pàg. 15 i 16: Pel disseny del "client" hem fet una primera versió de les pantalles de l'aplicació amb l’ajuda de l’eina Prototyper Free, la qual ens ha ajudat a fer una maqueta digital sense funcionalitat però amb un flux de navegació. Aquí us mostrem alguns exemples.
+
+Seguidament hem definit el diagrama de classes del model del "client", on es veu la interacció dels objectes "paraula", "llista" i "aplicació". A la memòria expliquem amb més detall què vol dir cada classe.
+
+I per acabar amb el model del "client" hem analitzat les peticions Client – Client, que són aquelles que no surten del dispositiu de l’usuari. En aquest cas no és necessari un motor tipus nodejs, sinó que n’hi haurà prou de programar un mòdul dins del Sencha que atengui aquestes peticions i retorni les respostes apropiades. Un exemple el tenim a la petició "crear_llista", que s'encarregarà de crear una nova llista buida amb el nom especificat per paràmetre.
+
+
+
+Finalment, seguint amb el model MVC exposat anteriorment, ara ens centrarem en la darrera part del disseny, la part "servidor". La idea és fer disponibles un conjunt de serveis, que seran els que invocaran certes accions del "client". D’aquesta manera, sempre que es vulgui realitzar alguna operació des de les pantalles, aquesta operació serà gestionada pel servidor. Apart dels avantatges i inconvenients que té l'arquitectura en qüestió (sub-apartat que hem inclòs a la memòria) hem dissenyat un diagrama de classes semblant al del model "client" a on intervenen els objectes "paraula", "idioma", "so" i "diccionari". Cada comunicació entre "client" i "servidor" es farà mitjançant peticions JSON, i guardarem tota la informació d'una paraula a una base de dades MySQL, que es comporta bé amb aquest tipus d'aplicacions.
+
+I ja per acabar amb la part "servidor" hem descrit les peticions Client - Servidor. Per exemple, tenim la petició "get_concepte_paraula" que s'executarà quan l'usuari vulgui recuperar una paraula a partir del seu identificador.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fins aquí el nostre treball. Esperem que us hagi agradat. Fins a la propera ocasió.
+
+
+
+
