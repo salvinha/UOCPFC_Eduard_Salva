@@ -1,0 +1,71 @@
+{
+    "type": "datamodel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "paraulaModel"
+    },
+    "id": "ExtBox1-ext-gen9985",
+    "designerId": "7764777c-43e3-411a-a898-e4d7986454fb",
+    "cn": [
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field",
+                "name": "id",
+                "type": "auto"
+            },
+            "designerId": "46bef29e-8456-4ade-8711-7e219b1131ae"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field1",
+                "name": "textcat",
+                "type": "string"
+            },
+            "designerId": "23ad08ee-eaec-4f5f-9e29-d35ae08eed76"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field2",
+                "name": "textjap",
+                "type": "string"
+            },
+            "designerId": "64c37d51-5186-4fce-b8fe-52d1c491a897"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field3",
+                "name": "pronjap",
+                "type": "string"
+            },
+            "designerId": "54cb6177-d14b-4b1f-8c22-cf53a2769533"
+        }
+    ]
+}

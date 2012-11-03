@@ -22,11 +22,11 @@
     "topInstanceFileMap": {
         "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09": {
             "paths": [
-                "metadata/view/MyTabPanel",
-                "app/view/override/MyTabPanel.js",
-                "app/view/MyTabPanel.js"
+                "metadata/view/menuPanel",
+                "app/view/override/menuPanel.js",
+                "app/view/menuPanel.js"
             ],
-            "className": "MyTabPanel"
+            "className": "menuPanel"
         },
         "060950e7-8c71-4de5-8433-b233981c439f": {
             "paths": [
@@ -39,15 +39,54 @@
                 "metadata/resource/Library"
             ],
             "className": "Library"
+        },
+        "9d7a005d-4d28-44ec-95f7-d4bebf9d8342": {
+            "paths": [
+                "metadata/store/paraulaJson",
+                "app/store/override/paraulaJson.js",
+                "app/store/paraulaJson.js"
+            ],
+            "className": "paraulaJson"
+        },
+        "7764777c-43e3-411a-a898-e4d7986454fb": {
+            "paths": [
+                "metadata/model/paraulaModel",
+                "app/model/override/paraulaModel.js",
+                "app/model/paraulaModel.js"
+            ],
+            "className": "paraulaModel"
+        },
+        "234286fb-d947-4b99-b956-cdb1326cb1ec": {
+            "paths": [
+                "metadata/controller/MyController",
+                "app/controller/override/MyController.js",
+                "app/controller/MyController.js"
+            ],
+            "className": "MyController"
+        },
+        "e3647606-2a7f-4270-ac4e-9f676467951a": {
+            "paths": [
+                "metadata/view/ListPanel",
+                "app/view/override/ListPanel.js",
+                "app/view/ListPanel.js"
+            ],
+            "className": "ListPanel"
         }
     },
     "viewOrderMap": {
         "view": [
+            "e3647606-2a7f-4270-ac4e-9f676467951a",
             "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09"
         ],
-        "store": [],
-        "controller": [],
-        "model": [],
+        "store": [
+            "9d7a005d-4d28-44ec-95f7-d4bebf9d8342"
+        ],
+        "controller": [
+            "234286fb-d947-4b99-b956-cdb1326cb1ec"
+        ],
+        "model": [
+            "7764777c-43e3-411a-a898-e4d7986454fb"
+        ],
         "resource": [
             "483e6d8d-8443-4010-a495-3f2939c8a003",
             "060950e7-8c71-4de5-8433-b233981c439f"

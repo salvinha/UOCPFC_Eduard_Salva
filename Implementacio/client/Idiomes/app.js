@@ -18,14 +18,24 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-    views: [
-        'MyTabPanel'
+    models: [
+        'paraulaModel'
     ],
-    name: 'MyApp',
+    stores: [
+        'paraulaJson'
+    ],
+    views: [
+        'menuPanel',
+        'ListPanel'
+    ],
+    name: 'IdiomesApp',
+    controllers: [
+        'MyController'
+    ],
 
     launch: function() {
 
-        Ext.create('MyApp.view.MyTabPanel', {fullscreen: true});
+        Ext.create('IdiomesApp.view.menuPanel', {fullscreen: true});
     }
 
 });

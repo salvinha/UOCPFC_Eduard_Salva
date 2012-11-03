@@ -1,0 +1,131 @@
+{
+    "type": "tabpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "menuPanel",
+        "designer|userAlias": "menupanel",
+        "designer|initialView": true,
+        "id": "menuPanel",
+        "ui": "light",
+        "defaults": null,
+        "modal": false
+    },
+    "id": "ExtBox1-ext-gen1920",
+    "designerId": "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09",
+    "cn": [
+        {
+            "type": "tabbar",
+            "reference": {
+                "name": "tabBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "center",
+                "designer|userClassName": "MyTabBar",
+                "docked": "bottom",
+                "ui": "light"
+            },
+            "designerId": "98e4d524-c319-45a7-ba17-edb02f277393"
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Diccionari",
+                "badgeText": "374",
+                "iconCls": "bookmarks",
+                "designer|userClassName": "MyContainer1",
+                "designer|displayName": null,
+                "html": null,
+                "id": "diccionari",
+                "width": "100%",
+                "layout": "fit"
+            },
+            "designerId": "6c82f06e-5b7e-419a-95c6-5e966f8d21ae",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "listPanel",
+                        "width": "100%"
+                    },
+                    "designerId": "5e895623-f3b9-4bb5-b0af-54e132be8065",
+                    "masterInstanceId": "ExtBox1-ext-gen16364"
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Llistes d'estudi",
+                "badgeText": "10",
+                "iconCls": "favorites",
+                "designer|userClassName": "MyContainer2",
+                "designer|displayName": "Llistes d'estudi",
+                "cls": [
+                    "card3"
+                ],
+                "html": "<h1>Llistes d'estudi</h1>"
+            },
+            "designerId": "c0c351b2-9a3f-46d8-aa92-949999e51278"
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Flashcards",
+                "iconCls": "organize",
+                "designer|userClassName": "MyContainer3",
+                "designer|displayName": "Flashcards",
+                "cls": [
+                    "card4"
+                ],
+                "html": "<h1>Flashcards</h1>"
+            },
+            "designerId": "b5bfa93b-d470-4f1e-bcfb-cc531df639d7"
+        },
+        {
+            "type": "toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyToolbar",
+                "docked": "top",
+                "height": 35,
+                "id": "myToolBar",
+                "itemId": "myToolBar",
+                "style": "font-size:10px;",
+                "ui": "light",
+                "scrollable": false,
+                "title": "MyToolbar"
+            },
+            "designerId": "7027edff-1539-418f-83e1-aba1c42527d1"
+        }
+    ]
+}
