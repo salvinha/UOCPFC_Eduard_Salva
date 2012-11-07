@@ -18,23 +18,18 @@ Ext.define('IdiomesApp.controller.MyController', {
 
     config: {
         control: {
-            "#menuPanel": {
-                activeitemchange: 'onMenuPanelActiveItemChange'
-            },
             "#paraulesList": {
                 itemtap: 'onListpanelTap'
             }
         }
     },
 
-    onMenuPanelActiveItemChange: function(container, value, oldValue, options) {
-        var finestra = container.getActiveItem().getId().substr(-1);
-
-        //Ext.Msg.alert('Finestra',finestra);
-    },
-
     onListpanelTap: function(dataview, index, target, record, e, options) {
+        IdiomesApp.titol=record.get('textcat');
+        //Auxiliar que ens servirà quan tornem de crear una nova instrucció
+        IdiomesApp.titolAux=record.get('textcat');
 
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }
 
 });

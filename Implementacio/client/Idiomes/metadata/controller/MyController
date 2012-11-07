@@ -19,31 +19,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "onMenuPanelActiveItemChange",
-                "fn": "onMenuPanelActiveItemChange",
-                "implHandler": [
-                    "var finestra = container.getActiveItem().getId().substr(-1);",
-                    "",
-                    "//Ext.Msg.alert('Finestra',finestra);"
-                ],
-                "name": "activeitemchange",
-                "designer|targetType": "Ext.Panel",
-                "designer|controlQuery": "#menuPanel"
-            },
-            "designerId": "1163b54d-72ef-45fb-b130-6543d5b8f3bd"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "designer|userClassName": "onListpanelTap",
                 "fn": "onListpanelTap",
                 "implHandler": [
-                    ""
+                    "IdiomesApp.titol=record.get('textcat');",
+                    "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
+                    "IdiomesApp.titolAux=record.get('textcat');",
+                    "",
+                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
                 ],
                 "name": "itemtap",
                 "designer|targetType": "Ext.dataview.List",

@@ -27,6 +27,7 @@ Ext.define('IdiomesApp.view.menuPanel', {
         modal: false,
         tabBar: {
             docked: 'bottom',
+            itemId: 'mytabbar',
             ui: 'light',
             layout: {
                 pack: 'center',
@@ -60,7 +61,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 cls: [
                     'card3'
                 ],
-                html: '<h1>Llistes d\'estudi</h1>'
+                html: '<h1>Llistes d\'estudi</h1>',
+                id: 'llistesdestudi'
             },
             {
                 xtype: 'container',
@@ -69,7 +71,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 cls: [
                     'card4'
                 ],
-                html: '<h1>Flashcards</h1>'
+                html: '<h1>Flashcards</h1>',
+                id: 'flashcards'
             },
             {
                 xtype: 'toolbar',
@@ -80,9 +83,24 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 style: 'font-size:10px;',
                 ui: 'light',
                 scrollable: false,
-                title: 'MyToolbar'
+                title: 'Diccionari'
+            }
+        ],
+        listeners: [
+            {
+                fn: 'onMenuPanelActiveItemChange',
+                event: 'activeitemchange'
             }
         ]
+    },
+
+    onMenuPanelActiveItemChange: function(container, value, oldValue, options) {
+        //Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.title);
+        IdiomesApp.titol=value.config.title;
+        //Auxiliar que ens servirà quan tornem de crear una nova instrucció
+        IdiomesApp.titolAux=value.config.title;
+
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }
 
 });
