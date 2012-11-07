@@ -1,0 +1,76 @@
+var mysql = require('../mysql/node_modules/mysql');
+
+var LANG_CAT = 'cat';
+var LANG_JAP = 'jap';
+
+function get_connection() {
+	return mysql.createConnection({
+		host		: 'localhost', 
+		user		: 'edu', 
+		password	: 'edu', 
+		database	: 'jap',
+	});
+}
+
+function is_word_in_dictionary(the_word) {
+	return true;
+}
+
+function last_insert_id(conn) {
+	var id = -1;
+	var sql = "SELECT LAST_INSERT_ID() AS id";
+	
+	conn.query(sql, function(err, rows, fields) {
+		if (err) throw err;
+		console.log("ID IS '", rows[0].id, "'"); // Funciona, pq no retorna OK?
+		id = rows[0].id;
+	});
+	
+	console.log("Returning", id);
+	return id;
+}
+
+
+exports.insert_word = function (to_insert) {
+	var connection = get_connection();
+	connection.connect();
+	
+	console.log('Inserting: ', to_insert.text_jap);
+	var sql = "INSERT INTO paraula VALUES (" + 
+		"null," + 
+		"'" + to_insert.text_cat + "'," + 
+		"'" + to_insert.text_jap + "'," + 
+		"null," + 
+		"null" + 
+		");"
+	
+	connection.query(sql, function(err, rows, fields) {
+	  if (err) throw err;
+	  // console.log('The solution is: ', rows[0].solution);
+	});
+	
+	
+	var insert_id = last_insert_id(connection);
+	
+	connection.end();
+
+}
+
+/*
+function test_db(to_insert) {
+	var db = require("../mysql/node_modules/mysql-native").createTCPClient(); // localhost:3306 by default
+	// db.auto_prepare = true;
+	db.set("charset", "utf8_general_ci");
+	
+	function dump_rows(cmd)
+	{
+	   cmd.addListener('row', function(r) { console.dir(r); } );
+	}
+	
+	db.auth("jap", "edu", "edu");
+	dump_rows(db.query("select 1+1,2,3,'4',length('hello')"));
+	dump_rows(db.execute("select 1+1,2,3,'4',length(?)", ["hello"]));
+	db.execute("insert into test values (null, ?)", [to_insert]);
+	db.close();
+}
+*/

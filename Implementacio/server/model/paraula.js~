@@ -9,5 +9,6 @@ exports.crear_concepte_paraula = function(
 		so_jap: ''
 	});
 	
-	return id;
+	console.log("ID = ", id);
+	return 1234;
 }

@@ -20,7 +20,7 @@ http.createServer(function(req, res) {
 	
 	var fullRequest = require('url').parse(url, true);
 	
-	var pathname = fullRequest.pathname.substring(1); 
+	var pathname = fullRequest.pathname.substring(1); // require('url').parse(url, true).pathname.substring(1);
 	var params = fullRequest.query;
 	
 	switch (pathname) {
@@ -32,7 +32,6 @@ http.createServer(function(req, res) {
 			params.text_japones, 
 			params.so_catala, 
 			params.so_japones);
-		
 		
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(id + "");
