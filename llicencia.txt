@@ -1,0 +1,3 @@
+Encara no hem decidit quina llicència tindrà l'aplicació.
+
+Possiblement es faci servir http://www.gnu.org/copyleft/gpl.html

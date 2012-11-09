@@ -1,0 +1,55 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ListPanel",
+        "designer|userAlias": "listpanel",
+        "id": "listPanel",
+        "layout": "fit"
+    },
+    "id": "ExtBox1-ext-gen16364",
+    "designerId": "e3647606-2a7f-4270-ac4e-9f676467951a",
+    "cn": [
+        {
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "paraulesList",
+                "designer|userAlias": "parauleslist",
+                "id": "paraulesList",
+                "style": "background-color:#FFEFD5;",
+                "loadingText": "Carregant...",
+                "store": "paraulaJson"
+            },
+            "designerId": "ff6a60e3-a47f-4a1b-991b-9a8b89e789b8",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div style=\"height:30px;\">",
+                            "    <p>{textcat}</p>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "3218ee03-b0a7-4709-9f3a-e56828fab768"
+                }
+            ]
+        }
+    ]
+}
