@@ -5,6 +5,10 @@
         "type": "array"
     },
     "codeClass": null,
-    "id": "ExtBox1-ext-gen1741",
-    "designerId": "b21c7592-a2f4-4893-8b24-88491a5ce179"
+    "userConfig": {
+        "basePath": "http://extjs.cachefly.net/touch/sencha-touch-2.0.0/",
+        "debug": true
+    },
+    "id": "ExtBox1-ext-gen9454",
+    "designerId": "483e6d8d-8443-4010-a495-3f2939c8a003"
 }

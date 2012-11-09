@@ -6,8 +6,21 @@
     },
     "codeClass": null,
     "userConfig": {
-        "name": "MyApp"
+        "models": [
+            "paraulaModel"
+        ],
+        "stores": [
+            "paraulaJson"
+        ],
+        "views": [
+            "menuPanel",
+            "ListPanel"
+        ],
+        "name": "IdiomesApp",
+        "controllers": [
+            "MyController"
+        ]
     },
-    "id": "ExtBox1-ext-gen1733",
+    "id": "ExtBox1-ext-gen6655",
     "designerId": "application"
 }
