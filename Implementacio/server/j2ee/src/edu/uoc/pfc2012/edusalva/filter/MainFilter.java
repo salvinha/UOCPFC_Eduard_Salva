@@ -29,14 +29,10 @@ public class MainFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		logger.info("Filter.doFilter()");
+//		req.setCharacterEncoding("UTF-8");
 		
 		try {
 			HttpServletRequest hr = (HttpServletRequest) req;
-			if (hr == null) {
-				logger.info("NULL request!");
-				return;
-			}
-			
 			HttpUtils.checkPath(hr);
 		} catch (NoPathException e) {
 			// TODO Handle.
