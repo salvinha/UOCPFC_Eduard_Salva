@@ -4,6 +4,24 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+    
+    <filter>
+		<filter-name>MainFilter</filter-name>
+		<filter-class>
+			edu.uoc.pfc2012.edusalva.filter.MainFilter
+		</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>MainFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
+	
 	<servlet>
 		<servlet-name>ControllerServlet</servlet-name>
 		<servlet-class>edu.uoc.pfc2012.edusalva.controller.ControllerServlet</servlet-class>
@@ -13,6 +31,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
+	
+		
 	<!-- No resource definitions here, only JDBC resources allowed, which MongoDB is not. -->
 
 </web-app>
