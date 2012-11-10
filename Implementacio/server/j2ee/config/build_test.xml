@@ -1,0 +1,79 @@
+<project name="PFC2012 Build File - Testing" default="deploy" basedir="/Users/edu/Documents/programacio/pfc2012">
+	<description>
+		PFC2012 Testing Ant Build File.
+	</description>
+	
+	<!-- Global properties. -->
+	<property name="appname"			value="pfc2012"/>
+	<property name="warfile"			value="${appname}.war"/>
+	<property name="test_host"			value="localhost"/>
+	<property name="tomcat_user"		value="tomcat"/>
+	<property name="tomcat_pass"		value="tomcat"/>
+	<property name="test_webapps"		value="/opt/apache-tomcat-7.0.25/webapps/"/>
+	<property name="tomcat_port"		value="8080"/>
+	<property name="tomcat_manager"		value="http://${test_host}:${tomcat_port}/manager/text"/>
+			
+	
+	<!-- Global locations. -->
+	<property name="repository_home"	location="/Users/edu/github/git_pfc/UOCPFC_Eduard_Salva/Implementacio/server/j2ee"/>
+	<property name="src"				location="${repository_home}/src"/>
+	<property name="config_home"		location="${repository_home}/config"/>
+	<property name="dist"				location="dist"/>
+	<property name="build"				location="build"/>
+	<property name="bin"				location="/Users/edu/Documents/workspace/prjPFC2012/bin"/>
+	<property name="webinf"				location="${repository_home}/WEB-INF"/>
+	<property name="lib"				location="${repository_home}/lib"/>
+	<property name="context_file"		location="context.xml"/>
+	<property name="log4j_file"			location="${config_home}/log4j.properties.test"/>
+	<property name="dbconfig"			location="${config_home}/db.properties"/>
+	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
+	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
+	
+	<!-- Configure the custom Ant tasks for the Manager application -->
+	<taskdef name="deploy"		classname="org.apache.catalina.ant.DeployTask"/>
+	<taskdef name="undeploy"	classname="org.apache.catalina.ant.UndeployTask"/>
+	
+	<!-- Tomcat libraries. -->
+	<path id="compilation_libs">
+		<fileset dir="${tomcat_libs}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+			
+			
+	<target name="clean">
+		<delete dir="${dist}"/>
+		<delete dir="${build}"/>
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+	</target>
+	
+	<target name="compile" depends="init">
+	    <echo message="SRC = ${src}"/>
+		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
+		<echo message="Copying ${log4j_file}"/>
+		<copy file="${log4j_file}" tofile="${build}/log4j.properties"/>
+		<copy file="${dbconfig}" tofile="${build}/db.properties"/>
+	</target>
+		
+
+	<target name="dist" depends="compile">
+		<war destfile="${dist}/${warfile}" webxml="${webinf}/web.xml">
+			<classes dir="${build}"/>
+			<lib dir="${lib}"/>
+			<metainf file="${context_file}"/>
+		</war>
+	</target>
+
+	<target name="deploy" depends="dist">
+		<undeploy url="${tomcat_manager}" username="${tomcat_user}" password="${tomcat_pass}" path="/${appname}" failOnError="false"/>
+		<deploy url="${tomcat_manager}" username="${tomcat_user}" password="${tomcat_pass}" path="/${appname}" war="${dist}/${warfile}"/>
+	</target>
+
+</project>
