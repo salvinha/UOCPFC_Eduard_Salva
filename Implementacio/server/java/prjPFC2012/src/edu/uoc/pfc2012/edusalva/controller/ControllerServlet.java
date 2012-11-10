@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
+import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
+import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestException;
+
 /**
  * Controller servlet, this is the main and only entry point to the server application.
  * This servlet receives any request and dispatches it appropriately.
@@ -29,8 +33,30 @@ public class ControllerServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		logger.info("OK.");
+		try {
+			String path = getPath(req);
+			logger.info("PATH = '" + path + "'");
+		} catch (NoPathException e) {
+			// TODO Handle.
+			logger.error("No path!");
+		} catch (WrongPathException e) {
+			// TODO Handle.
+			logger.error("Wrong path!");
+		} catch (Exception e) {
+			// TODO Handle.
+			logger.error("Unknown!!!");
+		}
 	}
+
 	
+	
+	private String getPath(HttpServletRequest req) throws WrongPathException {
+		String path = req.getPathInfo();
+		if (path == null || path.equals("/")) {
+			throw new NoPathException();
+		}
+		
+		return path;
+	}
 	
 }

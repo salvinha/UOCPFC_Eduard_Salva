@@ -23,6 +23,7 @@
 	<property name="lib"			location="${webinf}/lib"/>
 	<property name="context_file"	location="context.xml"/>
 	<property name="log4j_file"		location="log4j.properties.test"/>
+	<property name="dbconfig"		location="db.properties"/>
 	<property name="tomcat_home"	location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"	location="${tomcat_home}/lib"/>
 	
@@ -55,6 +56,7 @@
 		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
 		<echo message="Copying ${log4j_file}"/>
 		<copy file="${log4j_file}" tofile="${build}/log4j.properties"/>
+		<copy file="${dbconfig}" tofile="${build}/db.properties"/>
 	</target>
 		
 
