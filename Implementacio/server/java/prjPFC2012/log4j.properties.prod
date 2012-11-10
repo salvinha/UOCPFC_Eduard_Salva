@@ -1,0 +1,13 @@
+log4j.rootLogger=WARN, DICTIOHELPER
+
+# Define all the appenders
+log4j.appender.DICTIOHELPER=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.DICTIOHELPER.File=${catalina.base}/logs/dictiohelper
+log4j.appender.DICTIOHELPER.Append=true
+log4j.appender.DICTIOHELPER.Encoding=UTF-8
+
+# Roll-over the log once per day
+log4j.appender.DICTIOHELPER.DatePattern='.'yyyy-MM-dd'.log'
+log4j.appender.DICTIOHELPER.layout = org.apache.log4j.PatternLayout
+log4j.appender.DICTIOHELPER.layout.ConversionPattern = %d [%t] %-5p %c- %m%n
+

@@ -1,0 +1,63 @@
+<project name="PFC2012 Build File - Production" default="dist" basedir=".">
+	<description>
+		PFC2012 Production Ant Build File.
+	</description>
+	
+	<!-- Global properties. -->
+	<property name="appname"		value="pfc2012"/>
+	<property name="warfile"		value="${appname}.war"/>
+	<property name="test_host"		value="localhost"/>
+	<property name="tomcat_user"	value="tomcat"/>
+	<property name="tomcat_pass"	value="tomcat"/>
+	<property name="test_webapps"	value="/opt/apache-tomcat-7.0.25/webapps/"/>
+	<property name="test_port"		value="22"/>
+			
+	
+	<!-- Global locations. -->
+	<property name="src"			location="src"/>
+	<property name="dist"			location="dist"/>
+	<property name="build"			location="build"/>
+	<property name="bin"			location="bin"/>
+	<property name="webinf"			location="WEB-INF"/>
+	<property name="lib"			location="${webinf}/lib"/>
+	<property name="context_file"	location="context.xml"/>
+	<property name="log4j_file"		location="log4j.properties.prod"/>
+	<property name="tomcat_home"	location="/opt/apache-tomcat-7.0.25"/>
+	<property name="tomcat_libs"	location="${tomcat_home}/lib"/>
+	
+	<!-- Tomcat libraries. -->
+	<path id="compilation_libs">
+		<fileset dir="${tomcat_libs}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+			
+			
+	<target name="clean">
+		<delete dir="${dist}"/>
+		<delete dir="${build}"/>
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
+		<echo message="Copying ${log4j_file}"/>
+		<copy file="${log4j_file}" tofile="${build}/log4j.properties"/>
+	</target>
+		
+
+	<target name="dist" depends="compile">
+		<war destfile="${dist}/${warfile}" webxml="${webinf}/web.xml">
+			<classes dir="${build}"/>
+			<lib dir="${lib}"/>
+			<metainf file="${context_file}"/>
+		</war>
+	</target>
+</project>
