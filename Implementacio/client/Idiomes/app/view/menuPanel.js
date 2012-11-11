@@ -93,6 +93,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         style: 'font-size:16px;',
                         ui: 'back',
                         text: 'Enrere'
+                    },
+                    {
+                        xtype: 'button',
+                        docked: 'right',
+                        id: 'novaParaula',
+                        right: '5px',
+                        style: '',
+                        top: '5px',
+                        ui: 'action-round',
+                        iconAlign: 'center',
+                        iconCls: 'add',
+                        iconMask: true,
+                        text: ''
                     }
                 ]
             }

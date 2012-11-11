@@ -149,6 +149,29 @@
                         "text": "Enrere"
                     },
                     "designerId": "f6e089ad-de1f-4909-91c6-1a6b8dc2267a"
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton1",
+                        "designer|displayName": "Nova",
+                        "docked": "right",
+                        "id": "novaParaula",
+                        "right": "5px",
+                        "style": "",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconAlign": "center",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "29612123-3039-4bbc-bb46-9654d2fe4c53"
                 }
             ]
         },

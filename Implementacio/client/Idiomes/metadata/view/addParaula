@@ -1,0 +1,87 @@
+{
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|pack": "center",
+        "designer|userClassName": "addParaula",
+        "designer|userAlias": "addparaula",
+        "id": "addParaula",
+        "itemId": "addParaula",
+        "ui": null,
+        "layout": "vbox",
+        "scrollable": [
+            "vertical",
+            ""
+        ]
+    },
+    "id": "ExtBox1-ext-gen8428",
+    "designerId": "ca30f2ca-fa12-4eab-a267-80dc168683f8",
+    "cn": [
+        {
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyFieldSet",
+                "id": "formParaula",
+                "itemId": "fieldsetparaula",
+                "title": "Afegir una paraula"
+            },
+            "designerId": "76ba4f85-0f9c-4889-91cb-b19665dec13e",
+            "cn": [
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField",
+                        "label": "Català",
+                        "name": "textcat",
+                        "required": true
+                    },
+                    "designerId": "7d6e2f0d-7402-464c-886c-59486d844038"
+                },
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField1",
+                        "label": "Kanji",
+                        "name": "textjap",
+                        "required": true
+                    },
+                    "designerId": "bfd72aff-0fa8-459c-ba08-c3752f2aa26a"
+                },
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField2",
+                        "label": "Pronunciació (Jap)",
+                        "name": "pronjap",
+                        "required": true
+                    },
+                    "designerId": "e82c7b10-e435-40e1-bbd5-6827ce872154"
+                }
+            ]
+        }
+    ]
+}
