@@ -29,7 +29,8 @@ public class MainFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		logger.info("Filter.doFilter()");
-//		req.setCharacterEncoding("UTF-8");
+
+		// Tambe s'ha de configurar el Connector del Tomcat per acceptar peticions GET en UTF-8.
 		
 		try {
 			HttpServletRequest hr = (HttpServletRequest) req;
@@ -47,6 +48,9 @@ public class MainFilter implements Filter {
 			logger.error("Unknown!!!");
 			throw new IOException("Unknown!");
 		}
+		
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
 		
 		// At this point, the request may be forwarded.
 		chain.doFilter(req, res);

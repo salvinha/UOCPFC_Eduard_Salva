@@ -50,18 +50,11 @@ public class ControllerServlet extends HttpServlet {
 		String catala = req.getParameter("text_catala");
 		String japones = req.getParameter("text_japones");
 		
-		logger.info("CONTENT_TYPE = '" + req.getContentType() + "'");
-		
-		logger.info("JAP = '" + japones + "'");
-	
 		String msg = null;
 		
-//		msg = db(req);
+		msg = db(req);
 		
-		msg = my(req);
 		logger.info("MSG = '" + msg + "'");
-		
-		res.setCharacterEncoding("UTF-8");
 		
 		Writer w = res.getWriter();
 		w.write(msg);
@@ -69,38 +62,9 @@ public class ControllerServlet extends HttpServlet {
 		
 	}
 	
-	private String my(HttpServletRequest req) {
-		String msg = null;
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = null;
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap","edu", "edu");
-//			String sql = "SELECT japones FROM paraula WHERE id = 1";
-//			ResultSet rs = connection.createStatement().executeQuery(sql);
-//			rs.next();
-//			logger.info("BD = '" + rs.getString(1) + "'");
-//			msg = rs.getString(1);
-//			logger.info("Connected: " + connection);
-//			rs.close();
-			
-			String sql = "INSERT INTO paraula (id, catala, japones) values (NULL, ?, ?)";
-			PreparedStatement pst = connection.prepareStatement(sql);
-			pst.setString(1, req.getParameter("text_catala"));
-			pst.setString(2, req.getParameter("text_japones"));
-			pst.executeUpdate();
-			pst.close();
-			connection.close();
-			msg = ".";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return msg;
-	}
 
 	private String  db(HttpServletRequest req) throws IOException {
-		Mongo m = new Mongo("192.168.1.34", 27017);
+		Mongo m = new Mongo("localhost", 27017);
 		DB db = m.getDB("test");
 		DBCollection coll = db.getCollection("things");
 		
@@ -108,8 +72,8 @@ public class ControllerServlet extends HttpServlet {
 
 		String msg = "No response";
 		
-//		insert(coll, catala, japones);
-//		msg = query(coll);
+//		insert(coll, req.getParameter("text_catala"), req.getParameter("text_japones"));
+		msg = query(coll);
 		
 		m.close();
 		
