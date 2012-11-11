@@ -1,7 +1,8 @@
 package edu.uoc.pfc2012.edusalva.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
+@JsonFilter("myFilter")
 public class KoncepteParaula {
 	private String id;
 

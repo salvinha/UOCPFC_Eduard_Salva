@@ -12,6 +12,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.db.DBController;
@@ -66,7 +69,10 @@ public class CreateKonceptWorker extends AbstractWorker {
 			Writer w = getRes().getWriter();
 			
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(w, koncept); // De moment retornem tot l'objecte. Mes endavant haurem de retornar nomes l'ID.
+			// Filtre per incloure nomes l'ID en la resposta.
+			FilterProvider filters = new SimpleFilterProvider().addFilter("myFilter", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
+			mapper.setFilters(filters);
+			mapper.writeValue(w, koncept); 
 			
 			w.write(id);
 			w.flush();
