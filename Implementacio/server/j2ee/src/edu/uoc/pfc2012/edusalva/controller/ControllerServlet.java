@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -24,74 +28,53 @@ import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestException;
 import edu.uoc.pfc2012.edusalva.utils.HttpUtils;
+import edu.uoc.pfc2012.edusalva.worker.AbstractWorker;
+import edu.uoc.pfc2012.edusalva.worker.WorkerFactory;
 
 /**
- * Controller servlet, this is the main and only entry point to the server application.
+ * This is the main and only entry point to the server application.
+ * <p>
  * This servlet receives any request and dispatches it appropriately.
- * @author Eduard Capell Brufau (ecapell@uoc.edu)
- * @author Salvador Lorca sans (salvinha@uoc.edu)
+ * </p>
+ * <p>
+ * Requests received by this Servlet have already been checked (ie only valid requests are
+ * allowed through) by the <code>ServerActionFilter</code> Filter.
+ * </p>
+ * <p>
+ * All requests are encoded in UTF-8, this is ensured by the <code>EncodingFilter</code> Filter.
+ * </p>
+ * 
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca sans (<a href="mailto:salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ * @see edu.uoc.pfc2012.edusalva.filter.ServerActionFilter
+ * @see edu.uoc.pfc2012.edusalva.filter.EncodingFilter
  */
 public class ControllerServlet extends HttpServlet {
 	
 	/**
-	 * 
+	 * Long value with the servial version UID for this class.
 	 */
 	private static final long serialVersionUID = 1866281077747194045L;
 	
 	/**
-	 * 
+	 * Logger object.
 	 */
 	private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
+
+	/**
+	 * This is the javadoc for the service() method.
+	 */
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		logger.info("OK.");
-		
-		String catala = req.getParameter("text_catala");
-		String japones = req.getParameter("text_japones");
-		
-		String msg = null;
-		
-		msg = db(req);
-		
-		logger.info("MSG = '" + msg + "'");
-		
-		Writer w = res.getWriter();
-		w.write(msg);
-		w.flush();
-		
+		processRequest(req, res);
 	}
 	
 
-	private String  db(HttpServletRequest req) throws IOException {
-		Mongo m = new Mongo("localhost", 27017);
-		DB db = m.getDB("test");
-		DBCollection coll = db.getCollection("things");
-		
-		logger.info("Encoding: " + req.getCharacterEncoding());
+	private void processRequest(HttpServletRequest req, HttpServletResponse res) {
+		AbstractWorker worker = WorkerFactory.getWorker(req, res);
+		worker.processRequest();
+	}
 
-		String msg = "No response";
-		
-//		insert(coll, req.getParameter("text_catala"), req.getParameter("text_japones"));
-		msg = query(coll);
-		
-		m.close();
-		
-		return msg;
-
-	}
-	private void insert(DBCollection coll, String catala, String japones) {
-		BasicDBObject doc = new BasicDBObject();
-		doc.put("text_catala", catala);
-		doc.put("text_japones", japones);
-		doc.put("audio_catala", null);
-		doc.put("audio_japones", null);
-		coll.insert(doc);
-	}
-	
-	private String query(DBCollection coll) {
-		DBObject doc = coll.findOne();
-		return "RESPONSE: " + doc.get("text_japones");
-	}
 }
 

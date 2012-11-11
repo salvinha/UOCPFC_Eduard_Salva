@@ -1,6 +1,6 @@
 var http = require('http');
 var paraula = require('./model/paraula.js');
-var port = 3000;
+var port = 8080;
 
 var create_koncept = function(text_catala, text_japones, so_catala, so_japones) {
 	return paraula.crear_concepte_paraula(text_catala, text_japones, so_catala, so_japones);
@@ -23,16 +23,19 @@ http.createServer(function(req, res) {
 	var pathname = fullRequest.pathname.substring(1); 
 	var params = fullRequest.query;
 	
+	console.log(pathname);
+	
 	switch (pathname) {
-	case 'crear_concepte_paraula':
+	case 'pfc2012/crear_concepte_paraula':
 		console.log('cat = ' + params.text_catala);
-		
-		var id = create_koncept(
+		var len = params.audio_japones.length;
+		console.log("LEN_AUDIO = " + len);
+		var id = "holahola"; /* create_koncept(
 			params.text_catala, 
 			params.text_japones, 
 			params.so_catala, 
 			params.so_japones);
-		
+		*/
 		
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(id + "");

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
+import edu.uoc.pfc2012.edusalva.controller.exception.WrongMethodException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
 
 public abstract class HttpUtils {
@@ -19,10 +20,28 @@ public abstract class HttpUtils {
 		}
 		
 		if (path.equals("/crear_concepte_paraula")) {
-			logger.info("Path is OK (" + path + ")");
 			return;
 		}
 		
 		throw new WrongPathException("Path is not valid: '" + path + "'");
+	}
+	
+	
+	public static final void checkRequestMethod(HttpServletRequest req) throws WrongMethodException {
+		if (true)
+			return;
+		
+		if (req == null) {
+			throw new WrongMethodException("Request is null!");
+		}
+		
+		if (req.getMethod() == null || req.getMethod().trim().length() == 0) {
+			throw new WrongMethodException("Request method is null or empty!");
+		}
+		
+		String method = req.getMethod();
+		if (!("POST".equalsIgnoreCase(method))) {
+			throw new WrongMethodException("Method not accepted: " + method);
+		}
 	}
 }
