@@ -44,7 +44,16 @@ Ext.define('IdiomesApp.controller.MyController', {
             IdiomesApp.titol="Diccionari";
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('novaParaula').setHidden(false);
             Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
+        }else if (IdiomesApp.titol=="Nova paraula"){
+            IdiomesApp.titol="Diccionari";
+            Ext.getCmp('listPanel').setHidden(false);
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('novaParaula').setHidden(false);
+            Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);
+        }else{
+            console.log('Cas no contemplat mentre es prem el botó Enrere');
         }
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);

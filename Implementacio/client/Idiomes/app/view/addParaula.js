@@ -30,7 +30,7 @@ Ext.define('IdiomesApp.view.addParaula', {
                 xtype: 'fieldset',
                 id: 'formParaula',
                 itemId: 'fieldsetparaula',
-                title: 'Afegir una paraula',
+                title: 'Nova paraula',
                 items: [
                     {
                         xtype: 'textfield',
@@ -51,8 +51,45 @@ Ext.define('IdiomesApp.view.addParaula', {
                         required: true
                     }
                 ]
+            },
+            {
+                xtype: 'button',
+                itemId: 'submit',
+                ui: 'confirm',
+                iconCls: 'add',
+                iconMask: true,
+                text: 'Guardar'
+            }
+        ],
+        listeners: [
+            {
+                fn: 'onSubmitTap',
+                event: 'tap',
+                delegate: '#submit'
             }
         ]
+    },
+
+    onSubmitTap: function(button, e, options) {
+        var form = Ext.getCmp('addParaula'),
+            store = Ext.getCmp('paraulesList').getStore(),
+            paraulaRecord = form.getValues();
+
+
+        //Store to local storage
+        store.add(paraulaRecord);
+
+        //Confirmation
+        form.reset();
+        Ext.getCmp('paraulesList').deselectAll();
+
+        IdiomesApp.titol=IdiomesApp.titolAux;
+
+        Ext.getCmp('listPanel').setHidden(false);
+
+        Ext.getCmp('diccionari').remove(form,true);
+
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }
 
 });

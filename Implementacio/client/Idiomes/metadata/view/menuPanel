@@ -162,6 +162,7 @@
                         "designer|displayName": "Nova",
                         "docked": "right",
                         "id": "novaParaula",
+                        "itemId": "mybutton1",
                         "right": "5px",
                         "style": "",
                         "top": "5px",
@@ -171,7 +172,39 @@
                         "iconMask": true,
                         "text": ""
                     },
-                    "designerId": "29612123-3039-4bbc-bb46-9654d2fe4c53"
+                    "designerId": "29612123-3039-4bbc-bb46-9654d2fe4c53",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaParaulaTap",
+                                "fn": "onNovaParaulaTap",
+                                "implHandler": [
+                                    "//console.log('***1***');",
+                                    "Ext.getCmp('listPanel').setHidden(true);",
+                                    "//console.log('***2***');",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "//console.log('***3***');",
+                                    "IdiomesApp.titol=\"Nova paraula\";",
+                                    "//console.log('***4***');",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "//console.log('***5***');",
+                                    "",
+                                    "Ext.getCmp('diccionari').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addParaula'",
+                                    "});",
+                                    "//console.log('***FIN***');"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "e07c68b4-46df-4ce4-97c3-5c83ee0a956e"
+                        }
+                    ]
                 }
             ]
         },

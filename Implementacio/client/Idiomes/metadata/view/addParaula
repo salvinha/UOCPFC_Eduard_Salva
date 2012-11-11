@@ -32,7 +32,7 @@
                 "designer|userClassName": "MyFieldSet",
                 "id": "formParaula",
                 "itemId": "fieldsetparaula",
-                "title": "Afegir una paraula"
+                "title": "Nova paraula"
             },
             "designerId": "76ba4f85-0f9c-4889-91cb-b19665dec13e",
             "cn": [
@@ -80,6 +80,60 @@
                         "required": true
                     },
                     "designerId": "e82c7b10-e435-40e1-bbd5-6827ce872154"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton2",
+                "itemId": "submit",
+                "ui": "confirm",
+                "iconCls": "add",
+                "iconMask": true,
+                "text": "Guardar"
+            },
+            "designerId": "f337a1a7-5ce1-465b-8bd7-20b0f3c97c46",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onSubmitTap",
+                        "fn": "onSubmitTap",
+                        "implHandler": [
+                            "var form = Ext.getCmp('addParaula'),",
+                            "    store = Ext.getCmp('paraulesList').getStore(),",
+                            "    paraulaRecord = form.getValues();",
+                            "",
+                            "",
+                            "//Store to local storage",
+                            "store.add(paraulaRecord);",
+                            "",
+                            "//Confirmation",
+                            "form.reset();",
+                            "Ext.getCmp('paraulesList').deselectAll();",
+                            "",
+                            "IdiomesApp.titol=IdiomesApp.titolAux;",
+                            "",
+                            "Ext.getCmp('listPanel').setHidden(false);",
+                            "",
+                            "Ext.getCmp('diccionari').remove(form,true);",
+                            "",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "73a17584-21ce-4527-8dea-ab95d0649c13"
                 }
             ]
         }

@@ -98,6 +98,7 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         xtype: 'button',
                         docked: 'right',
                         id: 'novaParaula',
+                        itemId: 'mybutton1',
                         right: '5px',
                         style: '',
                         top: '5px',
@@ -112,10 +113,32 @@ Ext.define('IdiomesApp.view.menuPanel', {
         ],
         listeners: [
             {
+                fn: 'onNovaParaulaTap',
+                event: 'tap',
+                delegate: '#novaParaula'
+            },
+            {
                 fn: 'onMenuPanelActiveItemChange',
                 event: 'activeitemchange'
             }
         ]
+    },
+
+    onNovaParaulaTap: function(button, e, options) {
+        //console.log('***1***');
+        Ext.getCmp('listPanel').setHidden(true);
+        //console.log('***2***');
+        Ext.getCmp('enrere').setHidden(false);
+        //console.log('***3***');
+        IdiomesApp.titol="Nova paraula";
+        //console.log('***4***');
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+        //console.log('***5***');
+
+        Ext.getCmp('diccionari').setActiveItem({
+            xclass: 'IdiomesApp.view.addParaula'
+        });
+        //console.log('***FIN***');
     },
 
     onMenuPanelActiveItemChange: function(container, value, oldValue, options) {

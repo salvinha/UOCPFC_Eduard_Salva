@@ -50,6 +50,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
     onParaulesListItemTap: function(dataview, index, target, record, e, options) {
         Ext.getCmp('listPanel').setHidden(true);
         Ext.getCmp('enrere').setHidden(false);
+        Ext.getCmp('novaParaula').setHidden(true);
         IdiomesApp.titol="Paraula: "+record.get('id');
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
