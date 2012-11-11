@@ -35,6 +35,49 @@ Ext.define('IdiomesApp.store.paraulaJson', {
         sorters: {
             id: 'ordenaParaula',
             property: 'textcat'
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonstoreAddrecords',
+                event: 'addrecords'
+            },
+            {
+                fn: 'onJsonstoreRemoverecords',
+                event: 'removerecords'
+            },
+            {
+                fn: 'onJsonstoreLoad',
+                event: 'load'
+            }
+        ]
+    },
+
+    onJsonstoreAddrecords: function(store, records, eOpts) {
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0);
+
+        var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; 
+        console.log(comptadorParaules);
+
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);
+        console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);
+    },
+
+    onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0);
+
+        var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; 
+        console.log(comptadorParaules);
+
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);
+        console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);
+    },
+
+    onJsonstoreLoad: function(store, records, successful, operation, eOpts) {
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0);
+
+        var comptadorParaules = this.getCount();
+
+        Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules);
     }
+
 });
