@@ -129,7 +129,84 @@
                 "scrollable": false,
                 "title": "Diccionari"
             },
-            "designerId": "7027edff-1539-418f-83e1-aba1c42527d1"
+            "designerId": "7027edff-1539-418f-83e1-aba1c42527d1",
+            "cn": [
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton",
+                        "designer|displayName": "Enrere",
+                        "hidden": true,
+                        "id": "enrere",
+                        "itemId": "enrere",
+                        "style": "font-size:16px;",
+                        "ui": "back",
+                        "text": "Enrere"
+                    },
+                    "designerId": "f6e089ad-de1f-4909-91c6-1a6b8dc2267a"
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton1",
+                        "designer|displayName": "Nova",
+                        "docked": "right",
+                        "id": "novaParaula",
+                        "itemId": "mybutton1",
+                        "right": "5px",
+                        "style": "",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconAlign": "center",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "29612123-3039-4bbc-bb46-9654d2fe4c53",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaParaulaTap",
+                                "fn": "onNovaParaulaTap",
+                                "implHandler": [
+                                    "//console.log('***1***');",
+                                    "Ext.getCmp('listPanel').setHidden(true);",
+                                    "//console.log('***2***');",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "//console.log('***3***');",
+                                    "IdiomesApp.titol=\"Nova paraula\";",
+                                    "//console.log('***4***');",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "//console.log('***5***');",
+                                    "",
+                                    "Ext.getCmp('diccionari').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addParaula'",
+                                    "});",
+                                    "//console.log('***FIN***');"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "e07c68b4-46df-4ce4-97c3-5c83ee0a956e"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "type": "basiceventbinding",
@@ -147,6 +224,7 @@
                     "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
                     "IdiomesApp.titolAux=value.config.title;",
                     "",
+                    "Ext.getCmp('enrere').setHidden(true);",
                     "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
                 ],
                 "name": "activeitemchange"

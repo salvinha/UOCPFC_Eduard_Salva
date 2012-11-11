@@ -1,0 +1,59 @@
+{
+    "type": "container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "start",
+        "designer|userClassName": "DetallParaula",
+        "id": "DetallParaula",
+        "itemId": "DetallParaula",
+        "minHeight": 500,
+        "style": "overflow: hidden;",
+        "layout": "vbox"
+    },
+    "id": "ExtBox1-ext-gen5352",
+    "designerId": "a5e5c805-e0dc-4586-949a-8393349519dd",
+    "cn": [
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": 0,
+                "designer|userClassName": "MyContainer4",
+                "designer|displayName": "ParaulaTarjeta",
+                "id": "paraulaTarjeta"
+            },
+            "designerId": "5210aaa6-0254-4b79-83c8-026a1a63583b",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "tpl",
+                        "implHandler": [
+                            "<div>",
+                            "    <p><h1>{textcat}</h1></p>",
+                            "    <hr/>",
+                            "    <p><h1>{textjap}</h1></p>",
+                            "    <p><h2>{pronjap}</h2></p>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "tpl"
+                    },
+                    "designerId": "c4cbb84e-6c67-4782-aa97-5513357978ea"
+                }
+            ]
+        }
+    ]
+}

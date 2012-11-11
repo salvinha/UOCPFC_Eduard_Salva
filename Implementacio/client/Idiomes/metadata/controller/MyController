@@ -1,0 +1,77 @@
+{
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MyController"
+    },
+    "id": "ExtBox1-ext-gen2808",
+    "designerId": "234286fb-d947-4b99-b956-cdb1326cb1ec",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onListpanelTap",
+                "fn": "onListpanelTap",
+                "implHandler": [
+                    "//IdiomesApp.titol=record.get('textcat');",
+                    "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
+                    "console.log(Ext.getCmp('myToolBar').getTitle());",
+                    "IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();",
+                    "",
+                    "//Establim el títol amb el nom de la paraula en la barra superior",
+                    "//Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                    "",
+                    "console.log('onListpanelTap');"
+                ],
+                "name": "itemtap",
+                "designer|targetType": "Ext.dataview.List",
+                "designer|controlQuery": "#paraulesList"
+            },
+            "designerId": "25045f39-24ee-48f5-8b37-3c93a9bc6809"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onEnrereTap",
+                "fn": "onEnrereTap",
+                "implHandler": [
+                    "if (IdiomesApp.titol.substr(0,7)==\"Paraula\"){",
+                    "    IdiomesApp.titol=\"Diccionari\";",
+                    "    Ext.getCmp('listPanel').setHidden(false);",
+                    "    Ext.getCmp('enrere').setHidden(true);",
+                    "    Ext.getCmp('novaParaula').setHidden(false);",
+                    "    Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);",
+                    "}else if (IdiomesApp.titol==\"Nova paraula\"){",
+                    "    IdiomesApp.titol=\"Diccionari\";",
+                    "    Ext.getCmp('listPanel').setHidden(false);",
+                    "    Ext.getCmp('enrere').setHidden(true);",
+                    "    Ext.getCmp('novaParaula').setHidden(false);",
+                    "    Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);",
+                    "}else{",
+                    "    console.log('Cas no contemplat mentre es prem el botó Enrere');",
+                    "}",
+                    "",
+                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                ],
+                "name": "tap",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "#enrere"
+            },
+            "designerId": "733092e0-9ab9-4af8-8202-a4d4cd431222"
+        }
+    ]
+}
