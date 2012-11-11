@@ -25,7 +25,8 @@
                 "designer|userClassName": "paraulesList",
                 "designer|userAlias": "parauleslist",
                 "id": "paraulesList",
-                "style": "background-color:#FFEFD5;",
+                "itemId": "mylist",
+                "style": null,
                 "loadingText": "Carregant...",
                 "store": "paraulaJson"
             },
@@ -41,13 +42,53 @@
                     "userConfig": {
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
-                            "<div style=\"height:30px;\">",
+                            "<div style=\"height:85px;\">",
                             "    <p>{textcat}</p>",
+                            "    <p>{textjap}</p>",
+                            "    <p>{pronjap}</p>",
                             "</div>"
                         ],
                         "designer|displayName": "itemTpl"
                     },
                     "designerId": "3218ee03-b0a7-4709-9f3a-e56828fab768"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onParaulesListItemTap",
+                        "fn": "onParaulesListItemTap",
+                        "implHandler": [
+                            "Ext.getCmp('listPanel').setHidden(true);",
+                            "Ext.getCmp('enrere').setHidden(false);",
+                            "IdiomesApp.titol=\"Paraula: \"+record.get('id');",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "",
+                            "console.log('onParaulesListItemTap');",
+                            "",
+                            "var tarjeta = Ext.getCmp('DetallParaula');",
+                            "",
+                            "if (tarjeta) {",
+                            "    Ext.getCmp('diccionari').setActiveItem(tarjeta);",
+                            "} else {",
+                            "    /*console.log(record.get('id'));",
+                            "    console.log(record);*/",
+                            "    Ext.getCmp('diccionari').setActiveItem({",
+                            "        xclass: 'IdiomesApp.view.DetallParaula'",
+                            "    });",
+                            "",
+                            "}",
+                            "",
+                            "Ext.getCmp('paraulaTarjeta').setRecord(record);",
+                            "IdiomesApp.paraula=record.get(\"id\");"
+                        ],
+                        "name": "itemtap"
+                    },
+                    "designerId": "7d093eb6-da0b-44a6-9420-a593f35dc59b"
                 }
             ]
         }

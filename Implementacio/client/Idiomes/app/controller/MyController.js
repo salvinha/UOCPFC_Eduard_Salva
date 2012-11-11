@@ -20,14 +20,32 @@ Ext.define('IdiomesApp.controller.MyController', {
         control: {
             "#paraulesList": {
                 itemtap: 'onListpanelTap'
+            },
+            "#enrere": {
+                tap: 'onEnrereTap'
             }
         }
     },
 
     onListpanelTap: function(dataview, index, target, record, e, options) {
-        IdiomesApp.titol=record.get('textcat');
+        //IdiomesApp.titol=record.get('textcat');
         //Auxiliar que ens servirà quan tornem de crear una nova instrucció
-        IdiomesApp.titolAux=record.get('textcat');
+        console.log(Ext.getCmp('myToolBar').getTitle());
+        IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();
+
+        //Establim el títol amb el nom de la paraula en la barra superior
+        //Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        console.log('onListpanelTap');
+    },
+
+    onEnrereTap: function(button, e, options) {
+        if (IdiomesApp.titol.substr(0,7)=="Paraula"){
+            IdiomesApp.titol="Diccionari";
+            Ext.getCmp('listPanel').setHidden(false);
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
+        }
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }

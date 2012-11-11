@@ -26,7 +26,8 @@ Ext.application({
     ],
     views: [
         'menuPanel',
-        'ListPanel'
+        'ListPanel',
+        'DetallParaula'
     ],
     name: 'IdiomesApp',
     controllers: [

@@ -71,10 +71,19 @@
                 "app/view/ListPanel.js"
             ],
             "className": "ListPanel"
+        },
+        "a5e5c805-e0dc-4586-949a-8393349519dd": {
+            "paths": [
+                "metadata/view/DetallParaula",
+                "app/view/override/DetallParaula.js",
+                "app/view/DetallParaula.js"
+            ],
+            "className": "DetallParaula"
         }
     },
     "viewOrderMap": {
         "view": [
+            "a5e5c805-e0dc-4586-949a-8393349519dd",
             "e3647606-2a7f-4270-ac4e-9f676467951a",
             "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09"
         ],

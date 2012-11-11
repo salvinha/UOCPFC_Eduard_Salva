@@ -26,16 +26,50 @@ Ext.define('IdiomesApp.view.ListPanel', {
             {
                 xtype: 'list',
                 id: 'paraulesList',
-                style: 'background-color:#FFEFD5;',
+                itemId: 'mylist',
                 itemTpl: [
-                    '<div style="height:30px;">',
+                    '<div style="height:85px;">',
                     '    <p>{textcat}</p>',
+                    '    <p>{textjap}</p>',
+                    '    <p>{pronjap}</p>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',
                 store: 'paraulaJson'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onParaulesListItemTap',
+                event: 'itemtap',
+                delegate: '#paraulesList'
+            }
         ]
+    },
+
+    onParaulesListItemTap: function(dataview, index, target, record, e, options) {
+        Ext.getCmp('listPanel').setHidden(true);
+        Ext.getCmp('enrere').setHidden(false);
+        IdiomesApp.titol="Paraula: "+record.get('id');
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        console.log('onParaulesListItemTap');
+
+        var tarjeta = Ext.getCmp('DetallParaula');
+
+        if (tarjeta) {
+            Ext.getCmp('diccionari').setActiveItem(tarjeta);
+        } else {
+            /*console.log(record.get('id'));
+            console.log(record);*/
+            Ext.getCmp('diccionari').setActiveItem({
+                xclass: 'IdiomesApp.view.DetallParaula'
+            });
+
+        }
+
+        Ext.getCmp('paraulaTarjeta').setRecord(record);
+        IdiomesApp.paraula=record.get("id");
     }
 
 });

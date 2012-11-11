@@ -55,6 +55,73 @@
                 "property": "textcat"
             },
             "designerId": "d345bafd-fdf1-4de0-bbc7-cf57bb0186fa"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreAddrecords",
+                "fn": "onJsonstoreAddrecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
+                    "console.log(comptadorParaules);",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);",
+                    "console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);"
+                ],
+                "name": "addrecords"
+            },
+            "designerId": "152d4a70-a4a6-4ba4-a4c3-05bc3b306aaf"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreRemoverecords",
+                "fn": "onJsonstoreRemoverecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
+                    "console.log(comptadorParaules);",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);",
+                    "console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);"
+                ],
+                "name": "removerecords"
+            },
+            "designerId": "7249a6be-5a9a-4cce-9fda-9b8510846cff"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreLoad",
+                "fn": "onJsonstoreLoad",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = this.getCount();",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules);"
+                ],
+                "name": "load"
+            },
+            "designerId": "865e44dc-338d-4775-a023-2a0e56d66148"
         }
     ]
 }

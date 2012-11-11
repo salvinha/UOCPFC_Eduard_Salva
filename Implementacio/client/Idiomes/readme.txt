@@ -1,10 +1,9 @@
-Gestió dels processos de treball
-Projecte Final de Carrera
-Autor: Ivan Ortega Jiménez
-Consultor: Roman Roset Mayals
-Titulació: Enginyeria Informàtica
-Curs: 2011 / 2012 (Segon semestre)
+[UOC] Projecte Final de Carrera
+Alumnes: Capell Brufau, Eduard i Lorca Sans, Salvador
+Consultor: Roset Mayals, Roman
+App: Aprenentatge d'Idiomes
 
-En aquest projecte es pretén solucionar el problema d’accés als processos de treball de les normes ISO mitjançant una aplicació per a dispositius mòbils (telèfons i tabletes) que suporten HTML5 i CSS3.
-Aquesta aplicació de funcionament molt intuïtiu serà accessible per qualsevol empleat d’una empresa determinada, i li permet consultar els processos de treball que li apliquen. Hi haurà diferents sistemes d’accés als processos de treball per tal de facilitar la utilitat de l’aplicació segons el perfil d’usuari.
-
+Funcionament del projecte: L’aplicació en mòbils permet la gestió de les llistes d’estudi i les paraules, més la visualització de les flashcards. Les característiques principals són les següents:
+	- Personalització de les llistes: Possibilitat de crear noves llistes d’estudi i d’afegir/modificar/esborrar elements a aquestes llistes. Per exemple: Dies de la setmana, mesos de l’any, colors, números, coses d'un hotel, aliments, etc.
+	- Gestió d’un diccionari de paraules: Creació, modificació i esborrat de paraules que proveiran les llistes d’estudi.
+	- Visualització de les flashcards: Desplaçament entre fitxes amb opció per escoltar com es pronuncia la paraula que conté i presentació de les fitxes usant la metodologia del sistema Leitner

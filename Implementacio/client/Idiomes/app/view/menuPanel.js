@@ -83,7 +83,18 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 style: 'font-size:10px;',
                 ui: 'light',
                 scrollable: false,
-                title: 'Diccionari'
+                title: 'Diccionari',
+                items: [
+                    {
+                        xtype: 'button',
+                        hidden: true,
+                        id: 'enrere',
+                        itemId: 'enrere',
+                        style: 'font-size:16px;',
+                        ui: 'back',
+                        text: 'Enrere'
+                    }
+                ]
             }
         ],
         listeners: [
@@ -100,6 +111,7 @@ Ext.define('IdiomesApp.view.menuPanel', {
         //Auxiliar que ens servirà quan tornem de crear una nova instrucció
         IdiomesApp.titolAux=value.config.title;
 
+        Ext.getCmp('enrere').setHidden(true);
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }
 
