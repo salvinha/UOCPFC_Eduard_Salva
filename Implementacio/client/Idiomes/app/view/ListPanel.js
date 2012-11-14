@@ -51,6 +51,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
         Ext.getCmp('listPanel').setHidden(true);
         Ext.getCmp('enrere').setHidden(false);
         Ext.getCmp('novaParaula').setHidden(true);
+        Ext.getCmp('editarParaula').setHidden(false);
         IdiomesApp.titol="Paraula: "+record.get('id');
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
