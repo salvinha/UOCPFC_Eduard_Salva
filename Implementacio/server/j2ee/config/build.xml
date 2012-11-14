@@ -4,26 +4,29 @@
 	</description>
 	
 	<!-- Global properties. -->
-	<property name="appname"		value="pfc2012"/>
-	<property name="warfile"		value="${appname}.war"/>
-	<property name="test_host"		value="localhost"/>
-	<property name="tomcat_user"	value="tomcat"/>
-	<property name="tomcat_pass"	value="tomcat"/>
-	<property name="test_webapps"	value="/opt/apache-tomcat-7.0.25/webapps/"/>
-	<property name="test_port"		value="22"/>
+	<property name="appname"			value="pfc2012"/>
+	<property name="warfile"			value="${appname}.war"/>
+	<property name="test_host"			value="localhost"/>
+	<property name="tomcat_user"		value="tomcat"/>
+	<property name="tomcat_pass"		value="tomcat"/>
+	<property name="test_webapps"		value="/opt/apache-tomcat-7.0.25/webapps/"/>
+	<property name="test_port"			value="22"/>
+	<property name="environment"		value="prod"/>
 			
 	
 	<!-- Global locations. -->
-	<property name="src"			location="src"/>
-	<property name="dist"			location="dist"/>
-	<property name="build"			location="build"/>
-	<property name="bin"			location="bin"/>
-	<property name="webinf"			location="WEB-INF"/>
-	<property name="lib"			location="${webinf}/lib"/>
-	<property name="context_file"	location="context.xml"/>
-	<property name="log4j_file"		location="log4j.properties.prod"/>
-	<property name="tomcat_home"	location="/opt/apache-tomcat-7.0.25"/>
-	<property name="tomcat_libs"	location="${tomcat_home}/lib"/>
+	<property name="src"				location="src"/>
+	<property name="dist"				location="dist"/>
+	<property name="build"				location="build"/>
+	<property name="bin"				location="bin"/>
+	<property name="webinf"				location="WEB-INF"/>
+	<property name="lib"				location="${webinf}/lib"/>
+	<property name="context_file"		location="context.xml"/>
+	<property name="log4j_file"			location="log4j.properties.${environment}"/>
+	<property name="dbconfig"			location="${config_home}/db.properties.${environment}"/>
+	<property name="server_config"		location="${config_home}/pfc2012.server.properties.${environment}"/>
+	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
+	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
 	
 	<!-- Tomcat libraries. -->
 	<path id="compilation_libs">

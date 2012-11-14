@@ -1,12 +1,6 @@
 package edu.uoc.pfc2012.edusalva.controller;
 
 import java.io.IOException;
-import java.io.Writer;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,20 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-
-import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
-import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
-import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestException;
-import edu.uoc.pfc2012.edusalva.utils.HttpUtils;
 import edu.uoc.pfc2012.edusalva.worker.AbstractWorker;
 import edu.uoc.pfc2012.edusalva.worker.WorkerFactory;
 
@@ -73,6 +53,7 @@ public class ControllerServlet extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse res) {
 		AbstractWorker worker = WorkerFactory.getWorker(req, res);
+		logger.debug("WORKER = " + worker);
 		worker.processRequest();
 	}
 

@@ -8,14 +8,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-
-import edu.uoc.pfc2012.edusalva.controller.ControllerServlet;
-import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
-import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
-import edu.uoc.pfc2012.edusalva.utils.HttpUtils;
 
 public class EncodingFilter implements Filter {
 

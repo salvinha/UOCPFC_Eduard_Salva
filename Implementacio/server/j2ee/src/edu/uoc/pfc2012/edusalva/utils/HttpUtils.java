@@ -19,7 +19,9 @@ public abstract class HttpUtils {
 			throw new NoPathException();
 		}
 		
-		if (path.equals("/crear_concepte_paraula")) {
+		if (path.equals(PFCConstants.PATH_CREATE_CONCEPTE_PARAULA)) {
+			return;
+		} else if (path.equals(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA)) {
 			return;
 		}
 		
@@ -28,9 +30,6 @@ public abstract class HttpUtils {
 	
 	
 	public static final void checkRequestMethod(HttpServletRequest req) throws WrongMethodException {
-		if (true)
-			return;
-		
 		if (req == null) {
 			throw new WrongMethodException("Request is null!");
 		}

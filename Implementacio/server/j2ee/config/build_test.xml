@@ -12,6 +12,10 @@
 	<property name="test_webapps"		value="/opt/apache-tomcat-7.0.25/webapps/"/>
 	<property name="tomcat_port"		value="8080"/>
 	<property name="tomcat_manager"		value="http://${test_host}:${tomcat_port}/manager/text"/>
+	<property name="environment"		value="test"/>
+	<property name="log4j"				value="log4j.properties"/>
+	<property name="dbconfig"			value="db.properties"/>
+	<property name="server_config"		value="pfc2012.server.properties"/>
 			
 	
 	<!-- Global locations. -->
@@ -24,8 +28,9 @@
 	<property name="webinf"				location="${repository_home}/WEB-INF"/>
 	<property name="lib"				location="${repository_home}/lib"/>
 	<property name="context_file"		location="context.xml"/>
-	<property name="log4j_file"			location="${config_home}/log4j.properties.test"/>
-	<property name="dbconfig"			location="${config_home}/db.properties"/>
+	<property name="log4j_file"			location="${config_home}/${log4j}"/>
+	<property name="dbconfig_file"		location="${config_home}/${dbconfig}"/>
+	<property name="server_config_file"	location="${config_home}/${server_config}"/>
 	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
 	
@@ -57,9 +62,10 @@
 	<target name="compile" depends="init">
 	    <echo message="SRC = ${src}"/>
 		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
-		<echo message="Copying ${log4j_file}"/>
-		<copy file="${log4j_file}" tofile="${build}/log4j.properties"/>
-		<copy file="${dbconfig}" tofile="${build}/db.properties"/>
+		<echo message="Copying properties files ..."/>
+		<copy file="${log4j_file}.${environment}" 				tofile="${build}/${log4j}"/>
+		<copy file="${dbconfig_file}.${environment}" 			tofile="${build}/${dbconfig}"/>
+		<copy file="${server_config_file}.${environment}" 		tofile="${build}/${server_config}"/>
 	</target>
 		
 

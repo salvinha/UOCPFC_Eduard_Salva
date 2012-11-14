@@ -52,19 +52,40 @@ public class CreateKonceptWorker extends AbstractWorker {
 		try {
 			koncept.setTextCatala(getParams().get("text_catala")[0]);
 			koncept.setTextJapones(getParams().get("text_japones")[0]);
-			String audio64 = getParams().get("audio_japones")[0];
+			String audioJap = null;
+			String audioCat = null;
 			
-			// 1 - Descodifiquem Base64 per obtenir el binary del fitxer, i l'escrivim.
-			String m = "/Users/edu/Desktop/m.mp3";
-			byte[] bytes = Base64.decodeBase64(audio64.getBytes());
-			FileOutputStream outs = new FileOutputStream(new File(m));
-			outs.write(bytes);
-			outs.flush();
-			outs.close();
-
+			if (getParams().containsKey("audio_japones")) {
+				// TODO Moure el tema de base64 a una classe helper (Utils?)
+				audioJap = getParams().get("audio_japones")[0];
+				String m = "/Users/edu/Desktop/jap.mp3";
+				byte[] bytes = Base64.decodeBase64(audioJap.getBytes());
+				FileOutputStream outs = new FileOutputStream(new File(m));
+				outs.write(bytes);
+				outs.flush();
+				outs.close();
+				// TODO Desar a Koncept, en funcio de la ruta on es guardi.
+			} 
 			
-			String id = DBController.createKoncept(koncept);
-			koncept.setId(id);
+			if (getParams().containsKey("audio_catala")) {
+				audioCat = getParams().get("audio_catala")[0];
+				String m = "/Users/edu/Desktop/cat.mp3";
+				byte[] bytes = Base64.decodeBase64(audioCat.getBytes());
+				FileOutputStream outs = new FileOutputStream(new File(m));
+				outs.write(bytes);
+				outs.flush();
+				outs.close();
+			}
+			
+			// TODO Gestionar amb excepcions.
+			boolean b = DBController.konceptExists(koncept);
+			String id = null;
+			if (!b) {
+				id = DBController.createKoncept(koncept);
+				koncept.setId(id);
+			} else {
+				logger.warn("Already exists!");
+			}
 			
 			Writer w = getRes().getWriter();
 			
@@ -79,7 +100,6 @@ public class CreateKonceptWorker extends AbstractWorker {
 			w.close();
 		} catch (Exception e) {
 			logger.error("Error processing request!");
-			logger.error(e.getStackTrace().toString());
 			e.printStackTrace();
 		}
 	}
