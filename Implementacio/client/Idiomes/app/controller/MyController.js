@@ -29,7 +29,6 @@ Ext.define('IdiomesApp.controller.MyController', {
 
     onListpanelTap: function(dataview, index, target, record, e, options) {
         //IdiomesApp.titol=record.get('textcat');
-        //Auxiliar que ens servirà quan tornem de crear una nova instrucció
         console.log(Ext.getCmp('myToolBar').getTitle());
         IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();
 

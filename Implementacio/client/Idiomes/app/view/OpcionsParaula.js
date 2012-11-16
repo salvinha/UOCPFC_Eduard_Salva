@@ -75,7 +75,7 @@ Ext.define('IdiomesApp.view.OpcionsParaula', {
                 //Esborrem la instrucció del JSON
                 Ext.getStore('paraulaJson').removeAt(Ext.getStore('paraulaJson').find('id',IdiomesApp.paraula)); 
 
-                IdiomesApp.titol=IdiomesApp.titolAux;
+                IdiomesApp.titol="Diccionari";
                 Ext.getCmp('listPanel').setHidden(false);
                 Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
                 IdiomesApp.paraula=-1;
@@ -99,17 +99,7 @@ Ext.define('IdiomesApp.view.OpcionsParaula', {
             xclass: 'IdiomesApp.view.editParaula'
         });
 
-        store =  Ext.data.StoreManager.lookup('paraulaJson').load(function() {
-            store.each(function(records){
-                console.log(records); // <-- object array
-                var textCat = records.get('textcat');
-                Ext.getCmp('textCatEdit').setValue(textCat);
-                var textJap = records.get('textjap');
-                Ext.getCmp('textJapEdit').setValue(textJap);
-                var pronJap = records.get('pronjap');
-                Ext.getCmp('pronJapEdit').setValue(pronJap);
-            });           
-        }); 
+        //console.log(IdiomesApp.paraulaTextCat);
     },
 
     onBtnCancelarParaulaTap: function(button, e, options) {

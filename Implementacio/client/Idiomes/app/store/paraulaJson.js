@@ -56,20 +56,16 @@ Ext.define('IdiomesApp.store.paraulaJson', {
         Ext.getCmp('menuPanel').getTabBar().getComponent(0);
 
         var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; 
-        console.log(comptadorParaules);
 
         Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);
-        console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);
     },
 
     onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
         Ext.getCmp('menuPanel').getTabBar().getComponent(0);
 
         var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; 
-        console.log(comptadorParaules);
 
         Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);
-        console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);
     },
 
     onJsonstoreLoad: function(store, records, successful, operation, eOpts) {

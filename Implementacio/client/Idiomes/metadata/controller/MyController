@@ -23,7 +23,6 @@
                 "fn": "onListpanelTap",
                 "implHandler": [
                     "//IdiomesApp.titol=record.get('textcat');",
-                    "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
                     "console.log(Ext.getCmp('myToolBar').getTitle());",
                     "IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();",
                     "",

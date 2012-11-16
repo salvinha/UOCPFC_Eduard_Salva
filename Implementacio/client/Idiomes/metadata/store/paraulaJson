@@ -70,10 +70,8 @@
                     "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
                     "",
                     "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
-                    "console.log(comptadorParaules);",
                     "",
-                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);",
-                    "console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);"
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);"
                 ],
                 "name": "addrecords"
             },
@@ -93,10 +91,8 @@
                     "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
                     "",
                     "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
-                    "console.log(comptadorParaules);",
                     "",
-                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);",
-                    "console.log(Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText);"
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);"
                 ],
                 "name": "removerecords"
             },

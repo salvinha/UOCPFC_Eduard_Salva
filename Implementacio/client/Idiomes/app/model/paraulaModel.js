@@ -34,6 +34,24 @@ Ext.define('IdiomesApp.model.paraulaModel', {
                 name: 'pronjap',
                 type: 'string'
             }
+        ],
+        validations: [
+            {
+                type: 'presence',
+                field: 'id'
+            },
+            {
+                type: 'presence',
+                field: 'textcat'
+            },
+            {
+                type: 'presence',
+                field: 'textjap'
+            },
+            {
+                type: 'presence',
+                field: 'pronjap'
+            }
         ]
     }
 });

@@ -76,7 +76,7 @@ Ext.define('IdiomesApp.view.addParaula', {
             paraulaRecord = form.getValues();
 
 
-        //Store to local storage
+        //Nou registre en l'emmagatzematge local
         store.add(paraulaRecord);
 
         //Confirmation

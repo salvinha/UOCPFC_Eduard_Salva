@@ -56,6 +56,29 @@ Ext.define('IdiomesApp.view.editParaula', {
                         name: 'pronjap',
                         required: true
                     }
+                ],
+                listeners: [
+                    {
+                        fn: function(component, options) {
+                            var rec = Ext.create('IdiomesApp.model.paraulaModel', {
+                                id: IdiomesApp.paraula,
+                                textcat: IdiomesApp.paraulaTextCat,
+                                textjap: IdiomesApp.paraulaTextJap,
+                                pronjap: IdiomesApp.paraulaPronJap
+                            });
+
+                            console.log(Ext.getCmp('editParaula'));
+
+                            //No funciona
+                            //Ext.getCmp('editParaula').setRecord(rec);
+
+                            //Carregarem les dades així:
+                            Ext.getCmp('textCatEdit').setValue(rec.get('textcat'));
+                            Ext.getCmp('textJapEdit').setValue(rec.get('textjap'));
+                            Ext.getCmp('pronJapEdit').setValue(rec.get('pronjap'));
+                        },
+                        event: 'initialize'
+                    }
                 ]
             },
             {
@@ -77,25 +100,88 @@ Ext.define('IdiomesApp.view.editParaula', {
     },
 
     onSubmitTap: function(button, e, options) {
-        var form = Ext.getCmp('addParaula'),
+        var form = Ext.getCmp('editParaula'),
             store = Ext.getCmp('paraulesList').getStore(),
             paraulaRecord = form.getValues();
 
+        console.log('*****');
+        console.log(paraulaRecord.textcat);
+        console.log('*****');
 
-        //Store to local storage
-        store.add(paraulaRecord);
+        //Primer eliminam el registre antic
+        Ext.getStore('paraulaJson').removeAt(Ext.getStore('paraulaJson').find('id',IdiomesApp.paraula)); 
+
+        //Guardam el registre nou
+        //get the record 
+        var record = form.getRecord();
+        //get the form values
+        var values = form.getValues();
+        //if a new record
+        if(!record){
+            var newRecord = new IdiomesApp.model.paraulaModel(values);
+            Ext.getStore('paraulaJson').add(newRecord);
+        }else{
+            //existing record
+            record.set(values);
+        }
+        Ext.getStore('paraulaJson').sync();
+
+
+        Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);
+        Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
 
         //Confirmation
         form.reset();
         Ext.getCmp('paraulesList').deselectAll();
 
-        IdiomesApp.titol=IdiomesApp.titolAux;
+        IdiomesApp.titol="Diccionari";
 
         Ext.getCmp('listPanel').setHidden(false);
+        Ext.getCmp('novaParaula').setHidden(false);
 
         Ext.getCmp('diccionari').remove(form,true);
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+
+        /*console.log('1b');
+        var editParaula = IdiomesApp.views.editParaula;
+        console.log('2b');
+        var currentParaula = editParaula.getRecord();
+        console.log('3b');
+        // Actualitza la paraula amb els valors del formulari
+        editParaula.updateRecord(currentParaula);
+        console.log('4b');
+        var errors = currentParaula.validate();
+        console.log('5b');
+        if (!errors.isValid()) {
+            currentParaula.reject();
+            Ext.Msg.alert('Espera!', errors.getByField('title')[0].message, Ext.emptyFn);
+            return;
+        }
+        console.log('6b');
+
+        var listPanel = IdiomesApp.views.listPanel;
+        //Ext.getCmp('listPanel').setHidden(false);
+        console.log('7b');
+        var paraulaStore = listPanel.getStore();
+        console.log('8b');
+        if (paraulaStore.findRecord('id', currentParaula.data.id) === null) {
+            paraulaStore.add(currentParaula);
+            console.log('9b');
+        } else {
+            currentParaula.setDirty();
+            console.log('10b');
+        }
+
+        paraulaStore.sync();
+        console.log('11b');
+        paraulaStore.sort([{ property: 'textcat', direction: 'ASC'}]);
+        console.log('12b');
+        listPanel.refresh();
+        console.log('13b');
+        IdiomesApp.views.viewport.setActiveItem('diccionari', { type: 'slide', direction: 'right' });
+        console.log('14b');*/
     }
 
 });

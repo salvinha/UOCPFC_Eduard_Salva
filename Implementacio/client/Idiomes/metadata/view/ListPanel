@@ -28,7 +28,8 @@
                 "itemId": "mylist",
                 "style": null,
                 "loadingText": "Carregant...",
-                "store": "paraulaJson"
+                "store": "paraulaJson",
+                "onItemDisclosure": true
             },
             "designerId": "ff6a60e3-a47f-4a1b-991b-9a8b89e789b8",
             "cn": [
@@ -67,7 +68,7 @@
                             "Ext.getCmp('enrere').setHidden(false);",
                             "Ext.getCmp('novaParaula').setHidden(true);",
                             "Ext.getCmp('editarParaula').setHidden(false);",
-                            "IdiomesApp.titol=\"Paraula: \"+record.get('id');",
+                            "IdiomesApp.titol=\"Paraula: \"+record.get('textcat');",
                             "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
                             "",
                             "console.log('onParaulesListItemTap');",
@@ -86,7 +87,12 @@
                             "}",
                             "",
                             "Ext.getCmp('paraulaTarjeta').setRecord(record);",
-                            "IdiomesApp.paraula=record.get(\"id\");"
+                            "",
+                            "//Atributs per a la posterior càrrega de dades en el formulari d'edició",
+                            "IdiomesApp.paraula=record.get(\"id\");",
+                            "IdiomesApp.paraulaTextCat=record.get(\"textcat\");",
+                            "IdiomesApp.paraulaTextJap=record.get(\"textjap\");",
+                            "IdiomesApp.paraulaPronJap=record.get(\"pronjap\");"
                         ],
                         "name": "itemtap"
                     },

@@ -35,7 +35,8 @@ Ext.define('IdiomesApp.view.ListPanel', {
                     '</div>'
                 ],
                 loadingText: 'Carregant...',
-                store: 'paraulaJson'
+                store: 'paraulaJson',
+                onItemDisclosure: true
             }
         ],
         listeners: [
@@ -52,7 +53,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
         Ext.getCmp('enrere').setHidden(false);
         Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('editarParaula').setHidden(false);
-        IdiomesApp.titol="Paraula: "+record.get('id');
+        IdiomesApp.titol="Paraula: "+record.get('textcat');
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
         console.log('onParaulesListItemTap');
@@ -71,7 +72,12 @@ Ext.define('IdiomesApp.view.ListPanel', {
         }
 
         Ext.getCmp('paraulaTarjeta').setRecord(record);
+
+        //Atributs per a la posterior càrrega de dades en el formulari d'edició
         IdiomesApp.paraula=record.get("id");
+        IdiomesApp.paraulaTextCat=record.get("textcat");
+        IdiomesApp.paraulaTextJap=record.get("textjap");
+        IdiomesApp.paraulaPronJap=record.get("pronjap");
     }
 
 });
