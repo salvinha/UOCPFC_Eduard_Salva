@@ -1,0 +1,227 @@
+{
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|pack": "center",
+        "designer|userClassName": "editParaula",
+        "designer|userAlias": "editparaula",
+        "id": "editParaula",
+        "itemId": "editParaula",
+        "ui": null,
+        "layout": "vbox",
+        "scrollable": [
+            "vertical",
+            ""
+        ]
+    },
+    "id": "ExtBox1-ext-gen22833",
+    "designerId": "e92da493-31f4-45b2-9d9b-62a04cebe526",
+    "cn": [
+        {
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyFieldSet",
+                "id": "formParaulaEdit",
+                "itemId": "fieldsetparaulaedit",
+                "title": "Edició de paraula"
+            },
+            "designerId": "80f4b065-c345-4e12-84ed-18ea1f25f758",
+            "cn": [
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField",
+                        "id": "textCatEdit",
+                        "itemId": "textCatEdit",
+                        "label": "Català",
+                        "name": "textcat",
+                        "required": true
+                    },
+                    "designerId": "67ef9164-5bb4-4cb9-9ebc-193877ae2073"
+                },
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField1",
+                        "id": "textJapEdit",
+                        "itemId": "textJapEdit",
+                        "label": "Kanji",
+                        "name": "textjap",
+                        "required": true
+                    },
+                    "designerId": "b3aeec62-de13-4a91-98c7-1de517e36840"
+                },
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField2",
+                        "id": "pronJapEdit",
+                        "itemId": "pronJapEdit",
+                        "label": "Pronunciació (Jap)",
+                        "name": "pronjap",
+                        "required": true
+                    },
+                    "designerId": "bb06dcca-854b-4cc9-9dc7-2af26df81a46"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onFormParaulaEditInitialize",
+                        "fn": "onFormParaulaEditInitialize",
+                        "implHandler": [
+                            "var rec = Ext.create('IdiomesApp.model.paraulaModel', {",
+                            "    id: IdiomesApp.paraula,",
+                            "    textcat: IdiomesApp.paraulaTextCat,",
+                            "    textjap: IdiomesApp.paraulaTextJap,",
+                            "    pronjap: IdiomesApp.paraulaPronJap,",
+                            "    llista: IdiomesApp.paraulaLlista",
+                            "});",
+                            "",
+                            "console.log(Ext.getCmp('editParaula'));",
+                            "",
+                            "//No funciona",
+                            "//Ext.getCmp('editParaula').setRecord(rec);",
+                            "",
+                            "//Carregarem les dades així:",
+                            "Ext.getCmp('textCatEdit').setValue(rec.get('textcat'));",
+                            "Ext.getCmp('textJapEdit').setValue(rec.get('textjap'));",
+                            "Ext.getCmp('pronJapEdit').setValue(rec.get('pronjap'));",
+                            "",
+                            "console.log(rec.get('llista'));",
+                            "",
+                            "Ext.getCmp('llistaEdit').setValue(rec.get('llista'));"
+                        ],
+                        "name": "initialize"
+                    },
+                    "designerId": "a71863e8-8ed1-482a-b2a4-2c8e953b2589"
+                },
+                {
+                    "type": "selectfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySelectField1",
+                        "designer|displayName": "llistaEdit",
+                        "id": "llistaEdit",
+                        "itemId": "llistaEdit",
+                        "label": "Llista",
+                        "name": "llista",
+                        "displayField": "nom",
+                        "store": "llistaJson",
+                        "valueField": "id"
+                    },
+                    "designerId": "aed1a93d-0ef0-468c-bd50-309cb3bad139"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton2",
+                "itemId": "submit",
+                "ui": "confirm",
+                "iconCls": "add",
+                "iconMask": true,
+                "text": "Guardar"
+            },
+            "designerId": "3ce667d8-dafb-476b-a14b-344a6651c938",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onSubmitTap",
+                        "fn": "onSubmitTap",
+                        "implHandler": [
+                            "var form = Ext.getCmp('editParaula'),",
+                            "    store = Ext.getCmp('paraulesList').getStore(),",
+                            "    paraulaRecord = form.getValues();",
+                            "",
+                            "//console.log('*****');",
+                            "//console.log(paraulaRecord.textcat);",
+                            "//console.log('*****');",
+                            "",
+                            "//Primer eliminam el registre antic",
+                            "Ext.getStore('paraulaJson').removeAt(Ext.getStore('paraulaJson').find('id',IdiomesApp.paraula)); ",
+                            "",
+                            "//Guardam el registre nou",
+                            "//get the record ",
+                            "var record = form.getRecord();",
+                            "//get the form values",
+                            "var values = form.getValues();",
+                            "//if a new record",
+                            "if(!record){",
+                            "    var newRecord = new IdiomesApp.model.paraulaModel(values);",
+                            "    Ext.getStore('paraulaJson').add(newRecord);",
+                            "}else{",
+                            "    //existing record",
+                            "    record.set(values);",
+                            "}",
+                            "Ext.getStore('paraulaJson').sync();",
+                            "",
+                            "",
+                            "Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);",
+                            "Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);",
+                            "",
+                            "//Confirmation",
+                            "form.reset();",
+                            "Ext.getCmp('paraulesList').deselectAll();",
+                            "",
+                            "IdiomesApp.titol=\"Diccionari\";",
+                            "",
+                            "Ext.getCmp('listPanel').setHidden(false);",
+                            "Ext.getCmp('novaParaula').setHidden(false);",
+                            "",
+                            "Ext.getCmp('diccionari').remove(form,true);",
+                            "",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "24b46aa1-814d-4c43-a48d-916ee4edfdc6"
+                }
+            ]
+        }
+    ]
+}

@@ -29,14 +29,13 @@ Ext.define('IdiomesApp.controller.MyController', {
 
     onListpanelTap: function(dataview, index, target, record, e, options) {
         //IdiomesApp.titol=record.get('textcat');
-        //Auxiliar que ens servirà quan tornem de crear una nova instrucció
-        console.log(Ext.getCmp('myToolBar').getTitle());
+        //console.log(Ext.getCmp('myToolBar').getTitle());
         IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();
 
         //Establim el títol amb el nom de la paraula en la barra superior
         //Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
-        console.log('onListpanelTap');
+        //console.log('onListpanelTap');
     },
 
     onEnrereTap: function(button, e, options) {
@@ -45,18 +44,29 @@ Ext.define('IdiomesApp.controller.MyController', {
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
+            Ext.getCmp('editarParaula').setHidden(true);
             Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
-        }else if (IdiomesApp.titol=="Nova paraula"){
+        }else if (IdiomesApp.titol=="Nova paraula" || IdiomesApp.titol=="Edició de paraula"){
+            if (IdiomesApp.titol=="Edició de paraula"){
+                Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);
+            }else{
+                Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);
+            }
+            Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
             IdiomesApp.titol="Diccionari";
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
-            Ext.getCmp('novaParaula').setHidden(false);
-            Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);
+            Ext.getCmp('novaParaula').setHidden(false);    
         }else{
             console.log('Cas no contemplat mentre es prem el botó Enrere');
         }
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+    },
+
+    init: function(application) {
+        IdiomesApp.titol="Diccionari";
+        IdiomesApp.titolAux="Diccionari";
     }
 
 });

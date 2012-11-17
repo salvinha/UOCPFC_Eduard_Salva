@@ -23,14 +23,13 @@
                 "fn": "onListpanelTap",
                 "implHandler": [
                     "//IdiomesApp.titol=record.get('textcat');",
-                    "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
-                    "console.log(Ext.getCmp('myToolBar').getTitle());",
+                    "//console.log(Ext.getCmp('myToolBar').getTitle());",
                     "IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();",
                     "",
                     "//Establim el títol amb el nom de la paraula en la barra superior",
                     "//Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
                     "",
-                    "console.log('onListpanelTap');"
+                    "//console.log('onListpanelTap');"
                 ],
                 "name": "itemtap",
                 "designer|targetType": "Ext.dataview.List",
@@ -54,13 +53,19 @@
                     "    Ext.getCmp('listPanel').setHidden(false);",
                     "    Ext.getCmp('enrere').setHidden(true);",
                     "    Ext.getCmp('novaParaula').setHidden(false);",
+                    "    Ext.getCmp('editarParaula').setHidden(true);",
                     "    Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);",
-                    "}else if (IdiomesApp.titol==\"Nova paraula\"){",
+                    "}else if (IdiomesApp.titol==\"Nova paraula\" || IdiomesApp.titol==\"Edició de paraula\"){",
+                    "    if (IdiomesApp.titol==\"Edició de paraula\"){",
+                    "        Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);",
+                    "    }else{",
+                    "        Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);",
+                    "    }",
+                    "    Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);",
                     "    IdiomesApp.titol=\"Diccionari\";",
                     "    Ext.getCmp('listPanel').setHidden(false);",
                     "    Ext.getCmp('enrere').setHidden(true);",
-                    "    Ext.getCmp('novaParaula').setHidden(false);",
-                    "    Ext.getCmp('diccionari').remove(Ext.getCmp('addParaula'),true);",
+                    "    Ext.getCmp('novaParaula').setHidden(false);    ",
                     "}else{",
                     "    console.log('Cas no contemplat mentre es prem el botó Enrere');",
                     "}",
@@ -72,6 +77,26 @@
                 "designer|controlQuery": "#enrere"
             },
             "designerId": "733092e0-9ab9-4af8-8202-a4d4cd431222"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "init",
+                "fn": "init",
+                "designer|params": [
+                    "application"
+                ],
+                "implHandler": [
+                    "IdiomesApp.titol=\"Diccionari\";",
+                    "IdiomesApp.titolAux=\"Diccionari\";"
+                ]
+            },
+            "designerId": "d05a7fa7-5a52-48b2-8e6e-465ad35b20bf"
         }
     ]
 }
