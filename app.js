@@ -19,16 +19,20 @@ Ext.Loader.setConfig({
 
 Ext.application({
     models: [
-        'paraulaModel'
+        'paraulaModel',
+        'llistaModel'
     ],
     stores: [
-        'paraulaJson'
+        'paraulaJson',
+        'llistaJson'
     ],
     views: [
         'menuPanel',
         'ListPanel',
         'DetallParaula',
-        'addParaula'
+        'addParaula',
+        'OpcionsParaula',
+        'editParaula'
     ],
     name: 'IdiomesApp',
     controllers: [

@@ -49,6 +49,17 @@ Ext.define('IdiomesApp.view.addParaula', {
                         label: 'Pronunciació (Jap)',
                         name: 'pronjap',
                         required: true
+                    },
+                    {
+                        xtype: 'selectfield',
+                        id: 'selectFieldLlista',
+                        itemId: 'selectFieldLlista',
+                        label: 'Llista',
+                        name: 'llista',
+                        placeHolder: 'Llista d\'estudi',
+                        displayField: 'nom',
+                        store: 'llistaJson',
+                        valueField: 'id'
                     }
                 ]
             },
@@ -75,8 +86,14 @@ Ext.define('IdiomesApp.view.addParaula', {
             store = Ext.getCmp('paraulesList').getStore(),
             paraulaRecord = form.getValues();
 
+        if (!IdiomesApp.idNovaParaula){
+            IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;
+        }else{
+            IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;
+        }
 
-        //Store to local storage
+        //Nou registre en l'emmagatzematge local
+        paraulaRecord.id=IdiomesApp.idNovaParaula;
         store.add(paraulaRecord);
 
         //Confirmation
@@ -85,11 +102,15 @@ Ext.define('IdiomesApp.view.addParaula', {
 
         IdiomesApp.titol=IdiomesApp.titolAux;
 
-        Ext.getCmp('listPanel').setHidden(false);
-
+        Ext.getCmp('enrere').setHidden(true);
         Ext.getCmp('diccionari').remove(form,true);
 
+        Ext.getCmp('listPanel').setHidden(false);
+        Ext.getCmp('novaParaula').setHidden(false);
+
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        Ext.getCmp('diccionari').removeAt(1);
     }
 
 });

@@ -1,0 +1,71 @@
+{
+    "type": "datamodel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "llistaModel"
+    },
+    "id": "ExtBox1-ext-gen7482",
+    "designerId": "206168fa-0b60-490c-ade3-48e7722b9fcc",
+    "cn": [
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field",
+                "name": "id",
+                "type": "int"
+            },
+            "designerId": "7e5a1927-52da-4f8a-8feb-02efb40e9e13"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field6",
+                "name": "nom",
+                "type": "string"
+            },
+            "designerId": "a8cb0048-7ba2-47eb-b52f-eca607b93666"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation",
+                "designer|displayName": "PresenceValidationId",
+                "field": "id"
+            },
+            "designerId": "1c7f021b-66fb-4993-bba9-66f4dfa57768"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation1",
+                "designer|displayName": "PresenceValidationNom",
+                "field": "nom"
+            },
+            "designerId": "70f5d8fb-de99-4827-b9b9-f75ab8f90fb5"
+        }
+    ]
+}

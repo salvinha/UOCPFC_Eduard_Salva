@@ -28,7 +28,9 @@
                 "itemId": "mylist",
                 "style": null,
                 "loadingText": "Carregant...",
-                "store": "paraulaJson"
+                "store": "paraulaJson",
+                "grouped": true,
+                "onItemDisclosure": false
             },
             "designerId": "ff6a60e3-a47f-4a1b-991b-9a8b89e789b8",
             "cn": [
@@ -43,7 +45,7 @@
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
                             "<div style=\"height:85px;\">",
-                            "    <p>{textcat}</p>",
+                            "    <p>{textcat} ({llista})</p>",
                             "    <p>{textjap}</p>",
                             "    <p>{pronjap}</p>",
                             "</div>"
@@ -66,10 +68,11 @@
                             "Ext.getCmp('listPanel').setHidden(true);",
                             "Ext.getCmp('enrere').setHidden(false);",
                             "Ext.getCmp('novaParaula').setHidden(true);",
-                            "IdiomesApp.titol=\"Paraula: \"+record.get('id');",
-                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "Ext.getCmp('editarParaula').setHidden(false);",
+                            "IdiomesApp.titol=\"Paraula\";",
+                            "IdiomesApp.titolAux=\"Paraula\";",
                             "",
-                            "console.log('onParaulesListItemTap');",
+                            "//console.log('onParaulesListItemTap');",
                             "",
                             "var tarjeta = Ext.getCmp('DetallParaula');",
                             "",
@@ -85,11 +88,29 @@
                             "}",
                             "",
                             "Ext.getCmp('paraulaTarjeta').setRecord(record);",
-                            "IdiomesApp.paraula=record.get(\"id\");"
+                            "",
+                            "//Atributs per a la posterior càrrega de dades en el formulari d'edició",
+                            "IdiomesApp.paraula=record.get(\"id\");",
+                            "IdiomesApp.paraulaTextCat=record.get(\"textcat\");",
+                            "IdiomesApp.paraulaTextJap=record.get(\"textjap\");",
+                            "IdiomesApp.paraulaPronJap=record.get(\"pronjap\");",
+                            "IdiomesApp.paraulaLlista=record.get(\"llista\");"
                         ],
                         "name": "itemtap"
                     },
                     "designerId": "7d093eb6-da0b-44a6-9420-a593f35dc59b"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "8a23b775-9c4f-4197-8b39-0a886bf6b931"
                 }
             ]
         }

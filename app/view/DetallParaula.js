@@ -36,6 +36,7 @@ Ext.define('IdiomesApp.view.DetallParaula', {
                     '    <hr/>',
                     '    <p><h1>{textjap}</h1></p>',
                     '    <p><h2>{pronjap}</h2></p>',
+                    '    <p><h3>{llista}</h3></p>',
                     '</div>'
                 ]
             }

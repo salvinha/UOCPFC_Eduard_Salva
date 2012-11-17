@@ -107,6 +107,20 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         iconCls: 'add',
                         iconMask: true,
                         text: ''
+                    },
+                    {
+                        xtype: 'button',
+                        docked: 'right',
+                        height: 22,
+                        hidden: true,
+                        id: 'editarParaula',
+                        itemId: 'editarParaula',
+                        right: '5px',
+                        top: '5px',
+                        ui: 'action-round',
+                        iconCls: 'more',
+                        iconMask: true,
+                        text: ''
                     }
                 ]
             }
@@ -118,6 +132,11 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 delegate: '#novaParaula'
             },
             {
+                fn: 'onEditarParaulaTap',
+                event: 'tap',
+                delegate: '#editarParaula'
+            },
+            {
                 fn: 'onMenuPanelActiveItemChange',
                 event: 'activeitemchange'
             }
@@ -125,15 +144,13 @@ Ext.define('IdiomesApp.view.menuPanel', {
     },
 
     onNovaParaulaTap: function(button, e, options) {
-        //console.log('***1***');
+        Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('listPanel').setHidden(true);
-        //console.log('***2***');
         Ext.getCmp('enrere').setHidden(false);
-        //console.log('***3***');
+        IdiomesApp.titolAux=IdiomesApp.titol;
         IdiomesApp.titol="Nova paraula";
-        //console.log('***4***');
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-        //console.log('***5***');
+        //console.log('***6***');
 
         Ext.getCmp('diccionari').setActiveItem({
             xclass: 'IdiomesApp.view.addParaula'
@@ -141,10 +158,21 @@ Ext.define('IdiomesApp.view.menuPanel', {
         //console.log('***FIN***');
     },
 
+    onEditarParaulaTap: function(button, e, options) {
+        Ext.getCmp('novaParaula').setHidden(true);
+        Ext.getCmp('editarParaula').setHidden(false);
+        Ext.getCmp('enrere').setHidden(false);
+
+        var sheet = button.actionSheet;
+        if (!sheet) {
+            sheet = button.actionSheet = Ext.Viewport.add(Ext.widget('opcionsParaula'));
+        }
+        sheet.show();
+    },
+
     onMenuPanelActiveItemChange: function(container, value, oldValue, options) {
         //Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.title);
         IdiomesApp.titol=value.config.title;
-        //Auxiliar que ens servirà quan tornem de crear una nova instrucció
         IdiomesApp.titolAux=value.config.title;
 
         Ext.getCmp('enrere').setHidden(true);

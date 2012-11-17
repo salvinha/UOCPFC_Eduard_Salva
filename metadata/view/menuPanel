@@ -185,15 +185,13 @@
                                 "designer|userClassName": "onNovaParaulaTap",
                                 "fn": "onNovaParaulaTap",
                                 "implHandler": [
-                                    "//console.log('***1***');",
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
                                     "Ext.getCmp('listPanel').setHidden(true);",
-                                    "//console.log('***2***');",
                                     "Ext.getCmp('enrere').setHidden(false);",
-                                    "//console.log('***3***');",
+                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
                                     "IdiomesApp.titol=\"Nova paraula\";",
-                                    "//console.log('***4***');",
                                     "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
-                                    "//console.log('***5***');",
+                                    "//console.log('***6***');",
                                     "",
                                     "Ext.getCmp('diccionari').setActiveItem({",
                                     "    xclass: 'IdiomesApp.view.addParaula'",
@@ -203,6 +201,57 @@
                                 "name": "tap"
                             },
                             "designerId": "e07c68b4-46df-4ce4-97c3-5c83ee0a956e"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton7",
+                        "designer|displayName": "Edita",
+                        "docked": "right",
+                        "height": 22,
+                        "hidden": true,
+                        "id": "editarParaula",
+                        "itemId": "editarParaula",
+                        "right": "5px",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconCls": "more",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "0efedb58-8797-47ed-b1bf-c0746d15cc34",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onEditarParaulaTap",
+                                "fn": "onEditarParaulaTap",
+                                "implHandler": [
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "Ext.getCmp('editarParaula').setHidden(false);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "",
+                                    "var sheet = button.actionSheet;",
+                                    "if (!sheet) {",
+                                    "    sheet = button.actionSheet = Ext.Viewport.add(Ext.widget('opcionsParaula'));",
+                                    "}",
+                                    "sheet.show();"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "50047ede-a301-4402-932e-eba9dd5c4115"
                         }
                     ]
                 }
@@ -221,7 +270,6 @@
                 "implHandler": [
                     "//Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.title);",
                     "IdiomesApp.titol=value.config.title;",
-                    "//Auxiliar que ens servirà quan tornem de crear una nova instrucció",
                     "IdiomesApp.titolAux=value.config.title;",
                     "",
                     "Ext.getCmp('enrere').setHidden(true);",
