@@ -36,7 +36,9 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 ],
                 loadingText: 'Carregant...',
                 store: 'paraulaJson',
-                onItemDisclosure: true
+                grouped: true,
+                onItemDisclosure: false,
+                indexBar: true
             }
         ],
         listeners: [

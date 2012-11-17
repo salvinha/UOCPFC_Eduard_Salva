@@ -22,6 +22,8 @@ Ext.define('IdiomesApp.store.paraulaJson', {
 
     config: {
         autoLoad: true,
+        groupDir: 'ASC',
+        groupField: 'textcat',
         model: 'IdiomesApp.model.paraulaModel',
         storeId: 'paraulaJson',
         proxy: {
@@ -49,7 +51,12 @@ Ext.define('IdiomesApp.store.paraulaJson', {
                 fn: 'onJsonstoreLoad',
                 event: 'load'
             }
-        ]
+        ],
+        grouper: {
+            groupFn: function(record) {
+                return record.get('textcat')[0];
+            }
+        }
     },
 
     onJsonstoreAddrecords: function(store, records, eOpts) {

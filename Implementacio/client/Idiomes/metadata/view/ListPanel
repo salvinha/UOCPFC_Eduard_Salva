@@ -29,7 +29,8 @@
                 "style": null,
                 "loadingText": "Carregant...",
                 "store": "paraulaJson",
-                "onItemDisclosure": true
+                "grouped": true,
+                "onItemDisclosure": false
             },
             "designerId": "ff6a60e3-a47f-4a1b-991b-9a8b89e789b8",
             "cn": [
@@ -98,6 +99,18 @@
                         "name": "itemtap"
                     },
                     "designerId": "7d093eb6-da0b-44a6-9420-a593f35dc59b"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "8a23b775-9c4f-4197-8b39-0a886bf6b931"
                 }
             ]
         }

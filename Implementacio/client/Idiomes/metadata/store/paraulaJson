@@ -8,6 +8,8 @@
     "userConfig": {
         "designer|userClassName": "paraulaJson",
         "autoLoad": true,
+        "groupDir": "ASC",
+        "groupField": "textcat",
         "model": "paraulaModel",
         "storeId": "paraulaJson"
     },
@@ -118,6 +120,39 @@
                 "name": "load"
             },
             "designerId": "865e44dc-338d-4775-a023-2a0e56d66148"
+        },
+        {
+            "type": "grouper",
+            "reference": {
+                "name": "grouper",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyGrouper"
+            },
+            "designerId": "ed4f34f8-bb96-41c8-822b-1f4f34a67869",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "groupFn",
+                        "fn": "groupFn",
+                        "designer|params": [
+                            "record"
+                        ],
+                        "implHandler": [
+                            "return record.get('textcat')[0];"
+                        ]
+                    },
+                    "designerId": "03784e2e-a609-4346-9d43-5e7b123039e4"
+                }
+            ]
         }
     ]
 }

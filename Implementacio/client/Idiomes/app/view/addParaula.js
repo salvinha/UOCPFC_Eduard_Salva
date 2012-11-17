@@ -102,9 +102,11 @@ Ext.define('IdiomesApp.view.addParaula', {
 
         IdiomesApp.titol=IdiomesApp.titolAux;
 
-        Ext.getCmp('listPanel').setHidden(false);
-
+        Ext.getCmp('enrere').setHidden(true);
         Ext.getCmp('diccionari').remove(form,true);
+
+        Ext.getCmp('listPanel').setHidden(false);
+        Ext.getCmp('novaParaula').setHidden(false);
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
