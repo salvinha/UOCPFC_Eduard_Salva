@@ -7,10 +7,12 @@
     "codeClass": null,
     "userConfig": {
         "models": [
-            "paraulaModel"
+            "paraulaModel",
+            "llistaModel"
         ],
         "stores": [
-            "paraulaJson"
+            "paraulaJson",
+            "llistaJson"
         ],
         "views": [
             "menuPanel",

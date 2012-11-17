@@ -19,10 +19,12 @@ Ext.Loader.setConfig({
 
 Ext.application({
     models: [
-        'paraulaModel'
+        'paraulaModel',
+        'llistaModel'
     ],
     stores: [
-        'paraulaJson'
+        'paraulaJson',
+        'llistaJson'
     ],
     views: [
         'menuPanel',

@@ -29,13 +29,13 @@ Ext.define('IdiomesApp.controller.MyController', {
 
     onListpanelTap: function(dataview, index, target, record, e, options) {
         //IdiomesApp.titol=record.get('textcat');
-        console.log(Ext.getCmp('myToolBar').getTitle());
+        //console.log(Ext.getCmp('myToolBar').getTitle());
         IdiomesApp.titolAux=Ext.getCmp('myToolBar').getTitle();
 
         //Establim el títol amb el nom de la paraula en la barra superior
         //Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
-        console.log('onListpanelTap');
+        //console.log('onListpanelTap');
     },
 
     onEnrereTap: function(button, e, options) {
@@ -62,6 +62,11 @@ Ext.define('IdiomesApp.controller.MyController', {
         }
 
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+    },
+
+    init: function(application) {
+        IdiomesApp.titol="Diccionari";
+        IdiomesApp.titolAux="Diccionari";
     }
 
 });

@@ -80,6 +80,29 @@
                         "required": true
                     },
                     "designerId": "e82c7b10-e435-40e1-bbd5-6827ce872154"
+                },
+                {
+                    "type": "selectfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySelectField",
+                        "designer|displayName": "llista",
+                        "id": "selectFieldLlista",
+                        "itemId": "selectFieldLlista",
+                        "label": "Llista",
+                        "name": "llista",
+                        "value": null,
+                        "placeHolder": "Llista d'estudi",
+                        "displayField": "nom",
+                        "options": null,
+                        "store": "llistaJson",
+                        "valueField": "id"
+                    },
+                    "designerId": "16255607-56b7-40e2-a49f-c3519b63b511"
                 }
             ]
         },
@@ -115,8 +138,14 @@
                             "    store = Ext.getCmp('paraulesList').getStore(),",
                             "    paraulaRecord = form.getValues();",
                             "",
+                            "if (!IdiomesApp.idNovaParaula){",
+                            "    IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;",
+                            "}else{",
+                            "    IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;",
+                            "}",
                             "",
                             "//Nou registre en l'emmagatzematge local",
+                            "paraulaRecord.id=IdiomesApp.idNovaParaula;",
                             "store.add(paraulaRecord);",
                             "",
                             "//Confirmation",
@@ -129,7 +158,9 @@
                             "",
                             "Ext.getCmp('diccionari').remove(form,true);",
                             "",
-                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "",
+                            "Ext.getCmp('diccionari').removeAt(1);"
                         ],
                         "name": "tap"
                     },

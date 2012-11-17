@@ -1,0 +1,123 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "llistaJson",
+        "autoLoad": true,
+        "model": "llistaModel",
+        "storeId": "llistaJson"
+    },
+    "id": "ExtBox1-ext-gen5428",
+    "designerId": "05c012f6-7cd9-4d86-866a-b91b5a291f64",
+    "cn": [
+        {
+            "type": "ajaxproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyAjaxProxy",
+                "url": "data/llista.json"
+            },
+            "designerId": "19dc88da-79a8-4797-be2b-6f589e1354e5",
+            "cn": [
+                {
+                    "type": "jsonreader",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonReader",
+                        "rootProperty": "data"
+                    },
+                    "designerId": "5a0d3e39-39b4-4f2d-84b4-cf956648eb8a"
+                }
+            ]
+        },
+        {
+            "type": "sorter",
+            "reference": {
+                "name": "sorters",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MySorter",
+                "id": "ordenaLlista",
+                "property": "nom"
+            },
+            "designerId": "644f0eb3-e76a-44dc-9a10-f30b3d4f73de"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreAddrecords",
+                "fn": "onJsonstoreAddrecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1);",
+                    "",
+                    "var comptadorLlistes = Ext.getCmp('menuPanel').getTabBar().getComponent(1)._badgeText; ",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1).setBadgeText(comptadorLlistes+1);"
+                ],
+                "name": "addrecords"
+            },
+            "designerId": "24b9d7e1-9a96-418a-845b-ad5409f401ba"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreRemoverecords",
+                "fn": "onJsonstoreRemoverecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1);",
+                    "",
+                    "var comptadorLlistes = Ext.getCmp('menuPanel').getTabBar().getComponent(1)._badgeText; ",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1).setBadgeText(comptadorLlistes-1);"
+                ],
+                "name": "removerecords"
+            },
+            "designerId": "51b7efe6-c121-4627-a311-39a83ba8fcb4"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreLoad",
+                "fn": "onJsonstoreLoad",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1);",
+                    "",
+                    "var comptadorLlistes = this.getCount();",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(1).setBadgeText(comptadorLlistes);"
+                ],
+                "name": "load"
+            },
+            "designerId": "60f4c402-a79c-43c6-a2b4-66af46964164"
+        }
+    ]
+}

@@ -3,17 +3,20 @@
         id: 1,
 		textcat: 'Arbre',
 		textjap: 'kanji arbre',
-		pronjap: 'ki'
+		pronjap: 'ki',
+		llista: 4
     }, {
         id: 2,
 		textcat: 'Pedra',
 		textjap: 'kanji pedra',
-		pronjap: 'ishi'
+		pronjap: 'ishi',
+		llista: 4
     }, {
         id: 3,
 		textcat: 'Aigua',
 		textjap: 'kanji aigua',
-		pronjap: 'mizu'
+		pronjap: 'mizu',
+		llista: 4
     }]
 }
 

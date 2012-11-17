@@ -68,6 +68,21 @@
             "designerId": "54cb6177-d14b-4b1f-8c22-cf53a2769533"
         },
         {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field4",
+                "name": "llista",
+                "defaultValue": null,
+                "type": "int"
+            },
+            "designerId": "a2fe1e81-0ad8-41cc-98fe-bc03033817cf"
+        },
+        {
             "type": "presencevalidation",
             "reference": {
                 "name": "validations",

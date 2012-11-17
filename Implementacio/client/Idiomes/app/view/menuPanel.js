@@ -144,15 +144,13 @@ Ext.define('IdiomesApp.view.menuPanel', {
     },
 
     onNovaParaulaTap: function(button, e, options) {
-        //console.log('***1***');
+        Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('listPanel').setHidden(true);
-        //console.log('***2***');
         Ext.getCmp('enrere').setHidden(false);
-        //console.log('***3***');
+        IdiomesApp.titolAux=IdiomesApp.titol;
         IdiomesApp.titol="Nova paraula";
-        //console.log('***4***');
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-        //console.log('***5***');
+        //console.log('***6***');
 
         Ext.getCmp('diccionari').setActiveItem({
             xclass: 'IdiomesApp.view.addParaula'
@@ -161,6 +159,7 @@ Ext.define('IdiomesApp.view.menuPanel', {
     },
 
     onEditarParaulaTap: function(button, e, options) {
+        Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('editarParaula').setHidden(false);
         Ext.getCmp('enrere').setHidden(false);
 

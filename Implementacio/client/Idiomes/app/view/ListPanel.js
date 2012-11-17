@@ -29,7 +29,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 itemId: 'mylist',
                 itemTpl: [
                     '<div style="height:85px;">',
-                    '    <p>{textcat}</p>',
+                    '    <p>{textcat} ({llista})</p>',
                     '    <p>{textjap}</p>',
                     '    <p>{pronjap}</p>',
                     '</div>'
@@ -53,10 +53,10 @@ Ext.define('IdiomesApp.view.ListPanel', {
         Ext.getCmp('enrere').setHidden(false);
         Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('editarParaula').setHidden(false);
-        IdiomesApp.titol="Paraula: "+record.get('textcat');
-        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+        IdiomesApp.titol="Paraula";
+        IdiomesApp.titolAux="Paraula";
 
-        console.log('onParaulesListItemTap');
+        //console.log('onParaulesListItemTap');
 
         var tarjeta = Ext.getCmp('DetallParaula');
 
@@ -78,6 +78,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
         IdiomesApp.paraulaTextCat=record.get("textcat");
         IdiomesApp.paraulaTextJap=record.get("textjap");
         IdiomesApp.paraulaPronJap=record.get("pronjap");
+        IdiomesApp.paraulaLlista=record.get("llista");
     }
 
 });

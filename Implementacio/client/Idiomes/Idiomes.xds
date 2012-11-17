@@ -104,6 +104,22 @@
                 "app/view/editParaula.js"
             ],
             "className": "editParaula"
+        },
+        "05c012f6-7cd9-4d86-866a-b91b5a291f64": {
+            "paths": [
+                "metadata/store/llistaJson",
+                "app/store/override/llistaJson.js",
+                "app/store/llistaJson.js"
+            ],
+            "className": "llistaJson"
+        },
+        "206168fa-0b60-490c-ade3-48e7722b9fcc": {
+            "paths": [
+                "metadata/model/llistaModel",
+                "app/model/override/llistaModel.js",
+                "app/model/llistaModel.js"
+            ],
+            "className": "llistaModel"
         }
     },
     "viewOrderMap": {
@@ -116,13 +132,15 @@
             "a76a2506-c550-4116-8f1b-a4b955d30347"
         ],
         "store": [
-            "9d7a005d-4d28-44ec-95f7-d4bebf9d8342"
+            "9d7a005d-4d28-44ec-95f7-d4bebf9d8342",
+            "05c012f6-7cd9-4d86-866a-b91b5a291f64"
         ],
         "controller": [
             "234286fb-d947-4b99-b956-cdb1326cb1ec"
         ],
         "model": [
-            "7764777c-43e3-411a-a898-e4d7986454fb"
+            "7764777c-43e3-411a-a898-e4d7986454fb",
+            "206168fa-0b60-490c-ade3-48e7722b9fcc"
         ],
         "resource": [
             "483e6d8d-8443-4010-a495-3f2939c8a003",
