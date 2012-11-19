@@ -1,3 +1,0 @@
-Per a treballar amb un projecte Sencha Touch en local, i executar-lo sobre xampp (una distribució apache) s'ha de seguir el següent manual:
-
-http://www.sencha.com/learn/sencha-touch-quick-start/

@@ -1,1 +1,0 @@
-http://docs.sencha.com/architect/2/

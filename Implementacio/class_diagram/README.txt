@@ -1,1 +1,0 @@
-Aqu’ hi van els diagrames d'objectes que estem utilitzant durant el disseny i la implementaci—.

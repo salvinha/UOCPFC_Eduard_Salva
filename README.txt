@@ -1,0 +1,1 @@
+Branca TEST: Versió de l'aplicació per fer proves de enllaç entre client i servidor (de moment només en el manteniment de Diccionari)

@@ -1,3 +1,0 @@
-per convertir WMA a MP3 en Linux:
-	for i in `ls *.wma`; do avconv -i $i "$i.mp3"; done;
-
