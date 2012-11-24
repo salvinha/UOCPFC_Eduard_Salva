@@ -18,12 +18,12 @@ public abstract class WorkerFactory {
 		String path = req.getPathInfo();
 		Map<String, String[]> params = req.getParameterMap();
 		
-		logger.info("PATH = '"+ path + "'");
-		
 		if (PFCConstants.PATH_CREATE_CONCEPTE_PARAULA.equals(path)) {
 			return createKoncept(req, res, path, params);
 		} else if (PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA.equals(path)) {
 			return searchConcept(req, res, path, params);
+		} else if (PFCConstants.PATH_EDIT_CONCEPTE_PARAULA.equals(path)) {
+			return editKoncept(req, res, path, params);
 		}
 		
 		// TODO throw Exception
@@ -39,4 +39,11 @@ public abstract class WorkerFactory {
 		SearchKonceptWorker w = new SearchKonceptWorker(req, res, path, params);
 		return w;
 	}
+	
+	private static AbstractWorker editKoncept(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
+		EditKonceptWorker w = new EditKonceptWorker();
+		return w;
+	}
+
+	
 }

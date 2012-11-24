@@ -2,8 +2,11 @@ package edu.uoc.pfc2012.edusalva.worker;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +21,8 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.db.DBController;
+import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
+import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
 public class CreateKonceptWorker extends AbstractWorker {
 	private static final Logger logger = Logger.getLogger(CreateKonceptWorker.class.getName());
@@ -50,58 +55,82 @@ public class CreateKonceptWorker extends AbstractWorker {
 	@Override
 	public void processRequest() {
 		try {
-			koncept.setTextCatala(getParams().get("text_catala")[0]);
-			koncept.setTextJapones(getParams().get("text_japones")[0]);
-			String audioJap = null;
-			String audioCat = null;
-			
-			if (getParams().containsKey("audio_japones")) {
-				// TODO Moure el tema de base64 a una classe helper (Utils?)
-				audioJap = getParams().get("audio_japones")[0];
-				String m = "/Users/edu/Desktop/jap.mp3";
-				byte[] bytes = Base64.decodeBase64(audioJap.getBytes());
-				FileOutputStream outs = new FileOutputStream(new File(m));
-				outs.write(bytes);
-				outs.flush();
-				outs.close();
-				// TODO Desar a Koncept, en funcio de la ruta on es guardi.
-			} 
-			
-			if (getParams().containsKey("audio_catala")) {
-				audioCat = getParams().get("audio_catala")[0];
-				String m = "/Users/edu/Desktop/cat.mp3";
-				byte[] bytes = Base64.decodeBase64(audioCat.getBytes());
-				FileOutputStream outs = new FileOutputStream(new File(m));
-				outs.write(bytes);
-				outs.flush();
-				outs.close();
-			}
-			
+			koncept.setTextCatala(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA)[0]);
+			koncept.setTextJapones(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);
+
 			// TODO Gestionar amb excepcions.
 			boolean b = DBController.konceptExists(koncept);
 			String id = null;
-			if (!b) {
-				id = DBController.createKoncept(koncept);
-				koncept.setId(id);
-			} else {
-				logger.warn("Already exists!");
-			}
 			
 			Writer w = getRes().getWriter();
 			
-			ObjectMapper mapper = new ObjectMapper();
-			// Filtre per incloure nomes l'ID en la resposta.
-			FilterProvider filters = new SimpleFilterProvider().addFilter("myFilter", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
-			mapper.setFilters(filters);
-			mapper.writeValue(w, koncept); 
-			
-			w.write(id);
+			if (!b) {
+				id = DBController.createKoncept(koncept);
+				koncept.setId(id);
+				
+				logger.info("Koncept created. ID = " +  id);
+				
+				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)) {
+					processAudio(getParams(), PFCConstants.LANG_JAP, koncept);
+				} 
+				
+				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)) {
+					processAudio(getParams(), PFCConstants.LANG_CAT, koncept);
+				}
+				
+				ObjectMapper mapper = new ObjectMapper();
+				// Filtre per incloure nomes l'ID en la resposta.
+				FilterProvider filters = new SimpleFilterProvider().addFilter("id_only", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
+				mapper.setFilters(filters);
+				mapper.writeValue(w, koncept); 
+				
+				w.write(id);
+			} else {
+				w.write("No way!");
+				logger.warn("Already exists!");
+			}
+
 			w.flush();
 			w.close();
 		} catch (Exception e) {
 			logger.error("Error processing request!");
 			e.printStackTrace();
 		}
+	}
+	
+	private void processAudio(Map<String, String[]> params, String lang, KoncepteParaula k) throws IOException {
+		logger.info("Processing audio for '" + lang + " ...");
+		
+		Properties props;
+		try {
+			props = PFCUtils.getProperties(PFCConstants.KEY_PROPERTIES_SERVER_FILE);
+		} catch (Exception e) {
+			throw new IOException("Error looking for properties file.");
+		}
+		
+		String folder = props.getProperty(PFCConstants.PROPERTY_MP3_ROOT) + System.getProperty("file.separator") + lang;
+		
+		logger.info("FOLDER = '" + folder + "'");
+		
+		String audio = null;
+		if (lang.equals(PFCConstants.LANG_CAT)) {
+			audio = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)[0];
+		} else if (lang.equals(PFCConstants.LANG_JAP)) {
+			audio = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)[0];
+		}
+		
+		logger.info("audio.length() = " + audio.length());
+		
+		String path = folder + System.getProperty("file.separator") + k.getId() + ".mp3";
+		OutputStream out = new FileOutputStream(new File(path));
+		try {
+			PFCUtils.saveBase64(audio, out);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new IOException("Cannot save in Base64!");
+		}
+		
+		// TODO Desar a Koncept, en funcio de la ruta on es guardi.
 	}
 
 	public KoncepteParaula getKoncept() {

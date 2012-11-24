@@ -1,5 +1,6 @@
 package edu.uoc.pfc2012.edusalva.db;
 
+import java.net.UnknownHostException;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -9,10 +10,13 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
+import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
 public class DBController {
 
@@ -22,26 +26,33 @@ public class DBController {
 	
 	private static DBCollection getDBCollection() throws Exception {
 		if (props == null) {
-			props = new Properties();
 			try {
-				props.load(DBController.class.getClassLoader().getResourceAsStream("/db.properties"));
+				props = PFCUtils.getProperties(PFCConstants.KEY_PROPERTIES_DB_FILE);
 			} catch (Exception e) {
-				logger.error("Cannot load properties!");
+				throw new Exception("Unable to load DB properties file.");
 			}
-			
-			logger.info("HOST = " + props.getProperty("db.mongo.host"));
 		}
-		m = new Mongo(props.getProperty("db.mongo.host"), Integer.parseInt(props.getProperty("db.mongo.port")));
+		try {
+			m = new Mongo(
+				props.getProperty(PFCConstants.PROPERTY_DB_MONGO_HOST), 
+				Integer.parseInt(props.getProperty(PFCConstants.PROPERTY_DB_MONGO_PORT)));
+		} catch (NumberFormatException e) {
+			// Wrong port number. TODO Handle
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			// Problems with DB host. TODO Handle
+			e.printStackTrace();
+		}
+		
 		m.setWriteConcern(WriteConcern.SAFE);
-		DB db = m.getDB(props.getProperty("db.mongo.dbName"));
-		DBCollection coll = db.getCollection(props.getProperty("db.mongo.collectionName"));
+		DB db = m.getDB(props.getProperty(PFCConstants.PROPERTY_DB_MONGO_DBNAME));
+		DBCollection coll = db.getCollection(props.getProperty(PFCConstants.PROPERTY_DB_MONGO_COLLECTION_NAME));
 		
 		return coll;
 	}
 	
 	
 	private static void closeDB() {
-		// TODO Auto-generated method stub
 		m.close();
 	}
 	
@@ -49,14 +60,13 @@ public class DBController {
 		DBCollection col;
 		try {
 			BasicDBObject query = new BasicDBObject();
-			query.put("text_catala", k.getTextCatala());
-			query.put("text_japones", k.getTextJapones());
+			query.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextCatala());
+			query.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextJapones());
 			
 			col = getDBCollection();
 			
 			DBCursor cursor = col.find(query);
 			if (cursor != null && cursor.hasNext()) {
-				logger.info("Found it!");
 				return true;
 			}
 		} catch (Exception e) {
@@ -66,7 +76,6 @@ public class DBController {
 			closeDB();
 		}
 		
-		logger.info("Not found.");
 		return false;
 	}
 	
@@ -77,13 +86,12 @@ public class DBController {
 			coll = getDBCollection();
 			
 			BasicDBObject doc = new BasicDBObject();
-			doc.put("text_catala", k.getTextCatala());
-			doc.put("text_japones", k.getTextJapones());
-			doc.put("audio_catala", null);
-			doc.put("audio_japones", null);
+			doc.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextCatala());
+			doc.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextJapones());
+			doc.put(PFCConstants.DB_FIELD_AUDIO_CA, null);
+			doc.put(PFCConstants.DB_FIELD_AUDIO_JP, null);
 			coll.insert(doc);
-			ObjectId id = (ObjectId)doc.get( "_id" );
-			logger.info("ID = '" + id.toString() + "'");
+			ObjectId id = (ObjectId)doc.get(PFCConstants.DB_FIELD_ID);
 			
 			return id.toString();
 			
@@ -98,19 +106,33 @@ public class DBController {
 
 
 	public static KoncepteParaula getKoncept(String text, String idioma) {
-		DBCollection coll;
-		logger.info("Searching koncept...");
+		DBCollection col;
 		try {
-			coll = getDBCollection();
-			logger.info("Collection: " + coll);
-			KoncepteParaula k = new KoncepteParaula();
+			col = getDBCollection();
+			BasicDBObject query = new BasicDBObject();
+			String fieldText = null;
+			if (PFCConstants.LANG_CAT.equals(idioma)) {
+				fieldText = PFCConstants.DB_FIELD_TEXT_CA;
+			} else if (PFCConstants.LANG_CAT.equals(idioma)) {
+				fieldText = PFCConstants.DB_FIELD_TEXT_JP;
+			} else {
+				return null;
+			}
+			query.put(fieldText, text);
+			col = getDBCollection();
 			
-			// TODO Cridar funcions del driver MongoDB per trobar un element.
-			k.setId("19287398127398");
-			k.setTextCatala("El text en català");
-			k.setTextJapones("製品を実");
-			
-			return k;
+			DBCursor cursor = col.find(query);
+			if (cursor != null && cursor.hasNext()) {
+				DBObject dbo = cursor.next();
+				KoncepteParaula k = new KoncepteParaula();
+				k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
+				k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
+				k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+				k.setAudioCatala(null);
+				k.setAudioJapones(null);
+
+				return k;
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		} finally {

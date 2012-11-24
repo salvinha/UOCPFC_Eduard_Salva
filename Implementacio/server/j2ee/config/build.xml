@@ -1,4 +1,4 @@
-<project name="PFC2012 Build File - Production" default="dist" basedir=".">
+<project name="PFC2012 Build File - Production" default="dist" basedir="/Users/edu/Documents/programacio/pfc2012">
 	<description>
 		PFC2012 Production Ant Build File.
 	</description>
@@ -10,23 +10,33 @@
 	<property name="tomcat_user"		value="tomcat"/>
 	<property name="tomcat_pass"		value="tomcat"/>
 	<property name="test_webapps"		value="/opt/apache-tomcat-7.0.25/webapps/"/>
-	<property name="test_port"			value="22"/>
+	<property name="tomcat_port"		value="8080"/>
+	<property name="tomcat_manager"		value="http://${test_host}:${tomcat_port}/manager/text"/>
 	<property name="environment"		value="prod"/>
+	<property name="log4j"				value="log4j.properties"/>
+	<property name="dbconfig"			value="db.properties"/>
+	<property name="server_config"		value="pfc2012.server.properties"/>
 			
 	
 	<!-- Global locations. -->
-	<property name="src"				location="src"/>
+	<property name="repository_home"	location="/Users/edu/github/git_pfc/UOCPFC_Eduard_Salva/Implementacio/server/j2ee"/>
+	<property name="src"				location="${repository_home}/src"/>
+	<property name="config_home"		location="${repository_home}/config"/>
 	<property name="dist"				location="dist"/>
 	<property name="build"				location="build"/>
-	<property name="bin"				location="bin"/>
-	<property name="webinf"				location="WEB-INF"/>
-	<property name="lib"				location="${webinf}/lib"/>
+	<property name="bin"				location="/Users/edu/Documents/workspace/prjPFC2012/bin"/>
+	<property name="webinf"				location="${repository_home}/WEB-INF"/>
+	<property name="lib"				location="${repository_home}/lib"/>
 	<property name="context_file"		location="context.xml"/>
-	<property name="log4j_file"			location="log4j.properties.${environment}"/>
-	<property name="dbconfig"			location="${config_home}/db.properties.${environment}"/>
-	<property name="server_config"		location="${config_home}/pfc2012.server.properties.${environment}"/>
+	<property name="log4j_file"			location="${config_home}/${log4j}"/>
+	<property name="dbconfig_file"		location="${config_home}/${dbconfig}"/>
+	<property name="server_config_file"	location="${config_home}/${server_config}"/>
 	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
+	
+	<!-- Configure the custom Ant tasks for the Manager application -->
+	<taskdef name="deploy"		classname="org.apache.catalina.ant.DeployTask"/>
+	<taskdef name="undeploy"	classname="org.apache.catalina.ant.UndeployTask"/>
 	
 	<!-- Tomcat libraries. -->
 	<path id="compilation_libs">
@@ -50,9 +60,12 @@
 	</target>
 	
 	<target name="compile" depends="init">
+	    <echo message="SRC = ${src}"/>
 		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
-		<echo message="Copying ${log4j_file}"/>
-		<copy file="${log4j_file}" tofile="${build}/log4j.properties"/>
+		<echo message="Copying properties files ..."/>
+		<copy file="${log4j_file}.${environment}" 				tofile="${build}/${log4j}"/>
+		<copy file="${dbconfig_file}.${environment}" 			tofile="${build}/${dbconfig}"/>
+		<copy file="${server_config_file}.${environment}" 		tofile="${build}/${server_config}"/>
 	</target>
 		
 
@@ -63,4 +76,5 @@
 			<metainf file="${context_file}"/>
 		</war>
 	</target>
+
 </project>

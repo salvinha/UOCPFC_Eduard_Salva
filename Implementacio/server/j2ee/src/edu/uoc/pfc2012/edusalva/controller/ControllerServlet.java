@@ -53,7 +53,6 @@ public class ControllerServlet extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse res) {
 		AbstractWorker worker = WorkerFactory.getWorker(req, res);
-		logger.debug("WORKER = " + worker);
 		worker.processRequest();
 	}
 

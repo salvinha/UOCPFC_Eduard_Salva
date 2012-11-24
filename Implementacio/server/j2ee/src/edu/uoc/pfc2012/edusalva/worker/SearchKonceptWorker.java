@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.db.DBController;
+import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 public class SearchKonceptWorker extends AbstractWorker {
 
@@ -30,15 +31,10 @@ public class SearchKonceptWorker extends AbstractWorker {
 		logger.debug("Searching!");
 		
 		// Arriba una petició de cerca d'una paraula, cal saber text i idioma.
-		String text = getParams().get("text_cerca")[0];
-		String idioma = getParams().get("idioma")[0];
-		
-		logger.info("TEXT = '" + text + "'");
-		logger.info("IDIOMA = '" + idioma + "'");
+		String text = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_SEARCH)[0];
+		String idioma = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA)[0];
 		
 		KoncepteParaula k = DBController.getKoncept(text, idioma);
-		
-		logger.debug("K = " + k);
 		
 		try {
 			Writer w = getRes().getWriter();

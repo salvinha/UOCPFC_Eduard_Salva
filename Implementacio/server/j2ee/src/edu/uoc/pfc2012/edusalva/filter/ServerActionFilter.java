@@ -15,7 +15,8 @@ import org.apache.log4j.Logger;
 import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongMethodException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
-import edu.uoc.pfc2012.edusalva.utils.HttpUtils;
+import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestParametersException;
+import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
 public class ServerActionFilter implements Filter {
 
@@ -24,7 +25,6 @@ public class ServerActionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hr = null;
-		
 		// 1 - Request has to be HTTP.
 		try {
 			// Casting request to HttpServletRequest and checking the path.
@@ -37,7 +37,7 @@ public class ServerActionFilter implements Filter {
 		
 		// 2 - Request method must be right.
 		try {
-			HttpUtils.checkRequestMethod(hr);
+			PFCUtils.checkRequestMethod(hr);
 		} catch (WrongMethodException e) {
 			// TODO Handle.
 			logger.error(e.getMessage());
@@ -47,7 +47,7 @@ public class ServerActionFilter implements Filter {
 		
 		// 3 - Path must be OK.
 		try{
-			HttpUtils.checkPath(hr);
+			PFCUtils.checkPath(hr);
 		}catch (NoPathException e) {
 			// TODO Handle.
 			logger.error("No path!");
@@ -59,6 +59,14 @@ public class ServerActionFilter implements Filter {
 		} catch (Exception e) {
 			// TODO Handle.
 			logger.error("Unknown!!!");
+			return;
+		}
+		
+		// 4 - Params must be OK.
+		try {
+			PFCUtils.checkRequestParameters(hr);
+		} catch (WrongRequestParametersException e) {
+			logger.error("Wrong request parameters!");
 			return;
 		}
 

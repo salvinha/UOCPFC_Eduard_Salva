@@ -11,6 +11,8 @@ import javax.servlet.ServletResponse;
 
 import org.apache.log4j.Logger;
 
+import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
+
 public class EncodingFilter implements Filter {
 
 	private static final Logger logger = Logger.getLogger(EncodingFilter.class.getName());
@@ -18,8 +20,8 @@ public class EncodingFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		// Tomcat Connector configuration to accept UTF-8 requests: URIEncoding="UTF-8"
-		res.setCharacterEncoding("UTF-8");
-		res.setContentType("application/json;charset=UTF-8");
+		res.setCharacterEncoding(PFCConstants.HTTP_RESPONSE_ENCODING);
+		res.setContentType(PFCConstants.HTTP_RESPONSE_CONTENT_TYPE);
 		
 		// At this point, the request may be forwarded.
 		chain.doFilter(req, res);
