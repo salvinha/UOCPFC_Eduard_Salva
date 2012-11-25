@@ -1,12 +1,9 @@
 package edu.uoc.pfc2012.edusalva.utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -37,10 +34,14 @@ public abstract class PFCUtils {
 		PFC2012Request rCreate = new PFC2012Request(PFCConstants.PATH_CREATE_CONCEPTE_PARAULA);
 		PFC2012Request rEdit = new PFC2012Request(PFCConstants.PATH_EDIT_CONCEPTE_PARAULA);
 		PFC2012Request rSearch = new PFC2012Request(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA);
+		PFC2012Request rGet = new PFC2012Request(PFCConstants.PATH_GET_CONCEPTE_PARAULA);
+		PFC2012Request rGetSound = new PFC2012Request(PFCConstants.PATH_GET_SOUND);
 		
 		requests.put(PFCConstants.PATH_CREATE_CONCEPTE_PARAULA, rCreate);
 		requests.put(PFCConstants.PATH_EDIT_CONCEPTE_PARAULA, rEdit);
 		requests.put(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA, rSearch);
+		requests.put(PFCConstants.PATH_GET_CONCEPTE_PARAULA, rGet);
+		requests.put(PFCConstants.PATH_GET_SOUND, rGetSound);
 	}
 	
 	
@@ -82,6 +83,10 @@ public abstract class PFCUtils {
 		} else if (path.equals(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA)) {
 			return;
 		} else if (path.equals(PFCConstants.PATH_EDIT_CONCEPTE_PARAULA)) {
+			return;
+		} else if (path.equals(PFCConstants.PATH_GET_CONCEPTE_PARAULA)) {
+			return;
+		} else if (path.equals(PFCConstants.PATH_GET_SOUND)) {
 			return;
 		}
 		

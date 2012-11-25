@@ -37,6 +37,13 @@ public class PFC2012Request {
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_TEXT_SEARCH);
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA);
 			setMinimumOptional(0);
+		} else if (PFCConstants.PATH_GET_CONCEPTE_PARAULA.equals(getPath())) {
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_ID);
+			setMinimumOptional(0);
+		} else if (PFCConstants.PATH_GET_SOUND.equals(getPath())) {
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_ID);
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA);
+			setMinimumOptional(0);
 		}
 	}
 

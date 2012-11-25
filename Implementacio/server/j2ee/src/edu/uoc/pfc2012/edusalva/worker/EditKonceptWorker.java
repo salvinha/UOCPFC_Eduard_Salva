@@ -70,10 +70,6 @@ public class EditKonceptWorker extends AbstractWorker {
 				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
 			}
 
-			
-			
-			
-			
 			w.flush();
 			w.close();
 		} catch (Exception e) {

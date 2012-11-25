@@ -24,6 +24,10 @@ public abstract class WorkerFactory {
 			return searchConcept(req, res, path, params);
 		} else if (PFCConstants.PATH_EDIT_CONCEPTE_PARAULA.equals(path)) {
 			return editKoncept(req, res, path, params);
+		} else if (PFCConstants.PATH_GET_CONCEPTE_PARAULA.equals(path)) {
+			return getKoncept(req, res, path, params);
+		} else if (PFCConstants.PATH_GET_SOUND.equals(path)) {
+			return getSound(req, res, path, params);
 		}
 		
 		// TODO throw Exception
@@ -45,5 +49,14 @@ public abstract class WorkerFactory {
 		return w;
 	}
 
+	private static AbstractWorker getKoncept(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
+		GetKonceptWorker w = new GetKonceptWorker(req, res, path, params);
+		return w;
+	}
+	
+	private static AbstractWorker getSound(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
+		GetSoundWorker w = new GetSoundWorker(req, res, path, params);
+		return w;
+	}
 	
 }

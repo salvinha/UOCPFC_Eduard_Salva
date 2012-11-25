@@ -7,6 +7,7 @@ public interface PFCConstants {
 	
 	public static final String RESPONSE_WRONG_PARAMETERS = "-1";
 	public static final String RESPONSE_SEARCH_FOUND_NOTHING = "-2";
+	public static final String RESPONSE_NO_AUDIO = "-3";
 	
 	public static final String HTTP_REQUEST_PARAM_TEXT_CA = "text_catala";
 	public static final String HTTP_REQUEST_PARAM_TEXT_JP = "text_japones";
@@ -43,5 +44,7 @@ public interface PFCConstants {
 	public static final String PATH_CREATE_CONCEPTE_PARAULA = "/crear_concepte_paraula";
 	public static final String PATH_SEARCH_CONCEPTE_PARAULA = "/search_concepte_paraula";
 	public static final String PATH_EDIT_CONCEPTE_PARAULA = "/editar_concepte_paraula";
+	public static final String PATH_GET_CONCEPTE_PARAULA = "/get_concepte_paraula";
+	public static final String PATH_GET_SOUND = "/get_sound";
 	
 }
