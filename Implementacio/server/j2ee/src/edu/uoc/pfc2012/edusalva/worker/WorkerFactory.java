@@ -41,7 +41,7 @@ public abstract class WorkerFactory {
 	}
 	
 	private static AbstractWorker editKoncept(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
-		EditKonceptWorker w = new EditKonceptWorker();
+		EditKonceptWorker w = new EditKonceptWorker(req, res, path, params);
 		return w;
 	}
 

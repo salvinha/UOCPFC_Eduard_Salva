@@ -1,5 +1,6 @@
 package edu.uoc.pfc2012.edusalva.db;
 
+import java.io.InvalidObjectException;
 import java.net.UnknownHostException;
 import java.util.Properties;
 
@@ -88,8 +89,15 @@ public class DBController {
 			BasicDBObject doc = new BasicDBObject();
 			doc.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextCatala());
 			doc.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextJapones());
-			doc.put(PFCConstants.DB_FIELD_AUDIO_CA, null);
-			doc.put(PFCConstants.DB_FIELD_AUDIO_JP, null);
+
+			if (k.getAudioCatala() != null) {
+				doc.put(PFCConstants.DB_FIELD_AUDIO_CA, null);				
+			}
+
+			if (k.getAudioJapones() != null) {
+				doc.put(PFCConstants.DB_FIELD_AUDIO_JP, null);				
+			}
+
 			coll.insert(doc);
 			ObjectId id = (ObjectId)doc.get(PFCConstants.DB_FIELD_ID);
 			
@@ -140,6 +148,64 @@ public class DBController {
 		}
 		
 		return null;
+	}
+
+
+	public static KoncepteParaula findById(String id) throws Exception {
+		DBCollection col = null;
+		KoncepteParaula k = null;
+		
+		try {
+			col = getDBCollection();
+			DBObject search = new BasicDBObject("_id", new ObjectId(id));
+			DBObject found = col.findOne(search);
+			
+			k = new KoncepteParaula();
+			k.setId(id);
+			k.setTextCatala(found.get("text_catala").toString());
+			k.setTextJapones(found.get("text_japones").toString());
+		} catch (IllegalArgumentException e) {
+			logger.info("Not found!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error searching for object with id '" + id + "'");
+		} finally {
+			closeDB();
+		}
+		
+		return k;
+	}
+
+
+	public static void update(KoncepteParaula k) {
+		DBCollection col = null;
+		
+		try {
+			col = getDBCollection();
+			BasicDBObject newDoc = new BasicDBObject();
+			newDoc.put("_id", new ObjectId(k.getId()));
+			if (k.getTextCatala() != null) {
+				newDoc.put("text_catala", k.getTextCatala());				
+			}
+
+			if (k.getTextJapones() != null) {
+				newDoc.put("text_japones", k.getTextJapones());				
+			}
+
+			if (k.getAudioCatala() != null) {
+				newDoc.put("audio_catala", k.getAudioCatala());				
+			}
+
+			if (k.getAudioJapones() != null) {
+				newDoc.put("audio_japones", k.getAudioJapones());				
+			}
+			
+			col.update(new BasicDBObject().append("_id", new ObjectId(k.getId())), newDoc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 	}
 
 }

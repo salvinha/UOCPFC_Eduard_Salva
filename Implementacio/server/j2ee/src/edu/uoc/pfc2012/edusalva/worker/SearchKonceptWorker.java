@@ -39,7 +39,11 @@ public class SearchKonceptWorker extends AbstractWorker {
 		try {
 			Writer w = getRes().getWriter();
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(w, k);
+			if (k != null) {
+				mapper.writeValue(w, k);				
+			} else {
+				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
+			}
 			w.flush();
 			w.close();
 		} catch (IOException e) {

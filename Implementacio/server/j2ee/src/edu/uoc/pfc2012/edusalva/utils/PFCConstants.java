@@ -4,7 +4,10 @@ public interface PFCConstants {
 	
 	public static final String HTTP_RESPONSE_ENCODING = "UTF-8";
 	public static final String HTTP_RESPONSE_CONTENT_TYPE = "application/json;charset=UTF-8";
-
+	
+	public static final String RESPONSE_WRONG_PARAMETERS = "-1";
+	public static final String RESPONSE_SEARCH_FOUND_NOTHING = "-2";
+	
 	public static final String HTTP_REQUEST_PARAM_TEXT_CA = "text_catala";
 	public static final String HTTP_REQUEST_PARAM_TEXT_JP = "text_japones";
 	public static final String HTTP_REQUEST_PARAM_AUDIO_CA = "audio_catala";

@@ -1,6 +1,7 @@
 package edu.uoc.pfc2012.edusalva.filter;
 
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -16,6 +17,7 @@ import edu.uoc.pfc2012.edusalva.controller.exception.NoPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongMethodException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestParametersException;
+import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
 public class ServerActionFilter implements Filter {
@@ -67,6 +69,10 @@ public class ServerActionFilter implements Filter {
 			PFCUtils.checkRequestParameters(hr);
 		} catch (WrongRequestParametersException e) {
 			logger.error("Wrong request parameters!");
+			Writer w = res.getWriter();
+			w.write(PFCConstants.RESPONSE_WRONG_PARAMETERS);
+			w.flush();
+			w.close();
 			return;
 		}
 

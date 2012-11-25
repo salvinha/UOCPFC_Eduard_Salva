@@ -79,14 +79,14 @@ public class CreateKonceptWorker extends AbstractWorker {
 				}
 				
 				ObjectMapper mapper = new ObjectMapper();
-				// Filtre per incloure nomes l'ID en la resposta.
+				// Filtre per incloure nomes l'ID en la resposta. // TODO Check!
 				FilterProvider filters = new SimpleFilterProvider().addFilter("id_only", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
 				mapper.setFilters(filters);
-				mapper.writeValue(w, koncept); 
+				mapper.writeValue(w, koncept.getId());
 				
 				w.write(id);
 			} else {
-				w.write("No way!");
+				w.write("Word already exists.");
 				logger.warn("Already exists!");
 			}
 
@@ -129,8 +129,6 @@ public class CreateKonceptWorker extends AbstractWorker {
 			e.printStackTrace();
 			throw new IOException("Cannot save in Base64!");
 		}
-		
-		// TODO Desar a Koncept, en funcio de la ruta on es guardi.
 	}
 
 	public KoncepteParaula getKoncept() {

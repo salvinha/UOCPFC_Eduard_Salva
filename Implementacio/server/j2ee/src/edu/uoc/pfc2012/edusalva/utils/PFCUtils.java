@@ -28,6 +28,9 @@ public abstract class PFCUtils {
 	private static final Logger logger = Logger.getLogger(PFCUtils.class.getName());
 	private static Map<String, PFC2012Request> requests = null;
 	
+	/*
+	 * Initialization of parameters for requests.
+	 */
 	static {
 		requests = new HashMap<String, PFC2012Request>();
 		

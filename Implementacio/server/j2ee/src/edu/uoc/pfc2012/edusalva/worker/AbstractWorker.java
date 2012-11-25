@@ -11,7 +11,7 @@ public abstract class AbstractWorker {
 	private String path;
 	private HttpServletRequest req;
 	private HttpServletResponse res;
-	
+
 	public abstract void processRequest();
 
 	public Map<String, String[]> getParams() {
