@@ -8,6 +8,8 @@
     "userConfig": {
         "designer|userClassName": "llistaJson",
         "autoLoad": true,
+        "groupDir": "ASC",
+        "groupField": "nom",
         "model": "llistaModel",
         "storeId": "llistaJson"
     },
@@ -118,6 +120,39 @@
                 "name": "load"
             },
             "designerId": "60f4c402-a79c-43c6-a2b4-66af46964164"
+        },
+        {
+            "type": "grouper",
+            "reference": {
+                "name": "grouper",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyGrouper1"
+            },
+            "designerId": "93b944c2-1b0e-43df-a525-d6aeb3936fdd",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "groupFn",
+                        "fn": "groupFn",
+                        "designer|params": [
+                            "record"
+                        ],
+                        "implHandler": [
+                            "return record.get('nom')[0];"
+                        ]
+                    },
+                    "designerId": "79ff3a1d-008d-48b0-96ab-d8b5fecd115c"
+                }
+            ]
         }
     ]
 }

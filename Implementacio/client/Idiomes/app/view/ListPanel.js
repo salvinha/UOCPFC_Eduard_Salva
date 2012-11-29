@@ -29,7 +29,7 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 itemId: 'mylist',
                 itemTpl: [
                     '<div style="height:85px;">',
-                    '    <p>{textcat} ({llista})</p>',
+                    '    <p>{textcat}</p>',
                     '    <p>{textjap}</p>',
                     '    <p>{pronjap}</p>',
                     '</div>'

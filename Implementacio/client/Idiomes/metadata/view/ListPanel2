@@ -1,0 +1,71 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ListPanel2",
+        "designer|userAlias": "listpanel2",
+        "id": "listPanel2",
+        "layout": "fit"
+    },
+    "id": "ExtBox1-ext-gen3887",
+    "designerId": "ac4862c7-6d28-47e2-b2b9-8ea65e685f52",
+    "cn": [
+        {
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "paraulesList",
+                "designer|userAlias": "parauleslist",
+                "id": "llistesestudiList",
+                "itemId": "mylist2",
+                "style": null,
+                "loadingText": "Carregant...",
+                "store": "llistaJson",
+                "disableSelection": true,
+                "grouped": true,
+                "onItemDisclosure": false
+            },
+            "designerId": "05b86f3a-8c32-4fb0-af0f-165efdf5cfaa",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div style=\"height:25px;\">",
+                            "    <p>{nom}</p>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "fc52e6c5-0fdd-4d24-8dad-82da509481e9"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "e2e7b0d5-6e94-4e73-af1d-1aa7ba30d891"
+                }
+            ]
+        }
+    ]
+}
