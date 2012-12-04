@@ -28,18 +28,64 @@ Ext.define('IdiomesApp.view.ListPanel2', {
                 id: 'llistesestudiList',
                 itemId: 'mylist2',
                 itemTpl: [
-                    '<div style="height:25px;">',
+                    '<div class="deleteplaceholder">',
                     '    <p>{nom}</p>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',
                 store: 'llistaJson',
-                disableSelection: true,
+                disableSelection: false,
                 grouped: true,
                 onItemDisclosure: false,
                 indexBar: true
             }
+        ],
+        listeners: [
+            {
+                fn: 'onLlistesestudiListItemSwipe',
+                event: 'itemswipe',
+                delegate: '#llistesestudiList'
+            }
         ]
+    },
+
+    onLlistesestudiListItemSwipe: function(dataview, index, target, record, e, options) {
+        if (e.direction == "left") {
+            var del = Ext.create("Ext.Button", {
+                ui: "decline",
+                text: "Delete",
+                style: "position:relative;width:100px;",
+                handler: function() {
+                    Ext.Msg.confirm("Alerta", "Estàs segur que vols esborrar aquesta llista d'estudi?", 
+                    function ( answer ) { 
+                        if ( answer == 'yes') {
+                            record.stores[0].remove(record);
+                            //record.stores[0].sync();
+                        } 
+                    }
+                    );
+                }
+            });
+            var removeDeleteButton = function() {
+                Ext.Anim.run(del, 'fade', {
+                    after: function() {
+                        del.destroy();
+                    },
+                    out: true
+                });
+            };
+            del.renderTo(Ext.DomQuery.selectNode(".deleteplaceholder", target.dom));
+            dataview.on({
+                single: true,
+                buffer: 250,
+                itemtouchstart: removeDeleteButton
+            });
+            dataview.element.on({
+                single: true,
+                buffer: 250,
+                touchstart: removeDeleteButton
+            });
+        }
     }
 
 });

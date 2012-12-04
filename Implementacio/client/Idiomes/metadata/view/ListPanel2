@@ -29,7 +29,7 @@
                 "style": null,
                 "loadingText": "Carregant...",
                 "store": "llistaJson",
-                "disableSelection": true,
+                "disableSelection": false,
                 "grouped": true,
                 "onItemDisclosure": false
             },
@@ -45,7 +45,7 @@
                     "userConfig": {
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
-                            "<div style=\"height:25px;\">",
+                            "<div class=\"deleteplaceholder\">",
                             "    <p>{nom}</p>",
                             "</div>"
                         ],
@@ -64,6 +64,58 @@
                         "designer|userClassName": "MyIndexBar"
                     },
                     "designerId": "e2e7b0d5-6e94-4e73-af1d-1aa7ba30d891"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onLlistesestudiListItemSwipe",
+                        "fn": "onLlistesestudiListItemSwipe",
+                        "implHandler": [
+                            "if (e.direction == \"left\") {",
+                            "    var del = Ext.create(\"Ext.Button\", {",
+                            "        ui: \"decline\",",
+                            "        text: \"Delete\",",
+                            "        style: \"position:relative;width:100px;\",",
+                            "        handler: function() {",
+                            "            Ext.Msg.confirm(\"Alerta\", \"Estàs segur que vols esborrar aquesta llista d'estudi?\", ",
+                            "            function ( answer ) { ",
+                            "                if ( answer == 'yes') {",
+                            "                    record.stores[0].remove(record);",
+                            "                    //record.stores[0].sync();",
+                            "                } ",
+                            "            }",
+                            "            );",
+                            "        }",
+                            "    });",
+                            "    var removeDeleteButton = function() {",
+                            "        Ext.Anim.run(del, 'fade', {",
+                            "            after: function() {",
+                            "                del.destroy();",
+                            "            },",
+                            "            out: true",
+                            "        });",
+                            "    };",
+                            "    del.renderTo(Ext.DomQuery.selectNode(\".deleteplaceholder\", target.dom));",
+                            "    dataview.on({",
+                            "        single: true,",
+                            "        buffer: 250,",
+                            "        itemtouchstart: removeDeleteButton",
+                            "    });",
+                            "    dataview.element.on({",
+                            "        single: true,",
+                            "        buffer: 250,",
+                            "        touchstart: removeDeleteButton",
+                            "    });",
+                            "}"
+                        ],
+                        "name": "itemswipe"
+                    },
+                    "designerId": "34ff63b3-d9d4-43e5-aeb9-d28a6c345cb4"
                 }
             ]
         }
