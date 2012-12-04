@@ -47,7 +47,8 @@
                         "designer|userClassName": "MyTextField",
                         "label": "Català",
                         "name": "textcat",
-                        "required": true
+                        "required": true,
+                        "autoCapitalize": true
                     },
                     "designerId": "7d6e2f0d-7402-464c-886c-59486d844038"
                 },

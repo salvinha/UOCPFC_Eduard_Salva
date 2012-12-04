@@ -49,7 +49,8 @@
                         "itemId": "textCatEdit",
                         "label": "Català",
                         "name": "textcat",
-                        "required": true
+                        "required": true,
+                        "autoCapitalize": true
                     },
                     "designerId": "67ef9164-5bb4-4cb9-9ebc-193877ae2073"
                 },
