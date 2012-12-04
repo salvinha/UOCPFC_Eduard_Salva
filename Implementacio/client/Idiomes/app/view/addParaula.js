@@ -36,7 +36,8 @@ Ext.define('IdiomesApp.view.addParaula', {
                         xtype: 'textfield',
                         label: 'Català',
                         name: 'textcat',
-                        required: true
+                        required: true,
+                        autoCapitalize: true
                     },
                     {
                         xtype: 'textfield',

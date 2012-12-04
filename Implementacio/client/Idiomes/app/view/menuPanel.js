@@ -117,6 +117,20 @@ Ext.define('IdiomesApp.view.menuPanel', {
                     {
                         xtype: 'button',
                         docked: 'right',
+                        id: 'novaLlista',
+                        itemId: 'mybutton1',
+                        right: '5px',
+                        style: '',
+                        top: '5px',
+                        ui: 'action-round',
+                        iconAlign: 'center',
+                        iconCls: 'add',
+                        iconMask: true,
+                        text: ''
+                    },
+                    {
+                        xtype: 'button',
+                        docked: 'right',
                         height: 22,
                         hidden: true,
                         id: 'editarParaula',
@@ -136,6 +150,11 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 fn: 'onNovaParaulaTap',
                 event: 'tap',
                 delegate: '#novaParaula'
+            },
+            {
+                fn: 'onNovaLlista',
+                event: 'tap',
+                delegate: '#novaLlista'
             },
             {
                 fn: 'onEditarParaulaTap',
@@ -164,6 +183,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
         //console.log('***FIN***');
     },
 
+    onNovaLlista: function(button, e, options) {
+        Ext.getCmp('novaLlista').setHidden(true);
+        Ext.getCmp('listPanel2').setHidden(true);
+        Ext.getCmp('enrere').setHidden(false);
+        IdiomesApp.titolAux=IdiomesApp.titol;
+        IdiomesApp.titol="Nova llista d'estudi";
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        Ext.getCmp('llistesdestudi').setActiveItem({
+            xclass: 'IdiomesApp.view.addLlista'
+        });
+    },
+
     onEditarParaulaTap: function(button, e, options) {
         Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('editarParaula').setHidden(false);
@@ -183,9 +215,11 @@ Ext.define('IdiomesApp.view.menuPanel', {
 
         if (value.config.id == 'llistesdestudi'){
             Ext.getCmp('novaParaula').setHidden(true);
+            Ext.getCmp('novaLlista').setHidden(false);
         }
 
         if (value.config.id == 'diccionari'){
+            Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
         }
 

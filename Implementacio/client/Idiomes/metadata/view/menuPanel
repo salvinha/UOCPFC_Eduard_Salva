@@ -174,7 +174,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|userClassName": "MyButton1",
-                        "designer|displayName": "Nova",
+                        "designer|displayName": "NovaParaula",
                         "docked": "right",
                         "id": "novaParaula",
                         "itemId": "mybutton1",
@@ -216,6 +216,58 @@
                                 "name": "tap"
                             },
                             "designerId": "e07c68b4-46df-4ce4-97c3-5c83ee0a956e"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton1",
+                        "designer|displayName": "NovaLlista",
+                        "docked": "right",
+                        "id": "novaLlista",
+                        "itemId": "mybutton1",
+                        "right": "5px",
+                        "style": "",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconAlign": "center",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "c621ce40-3257-498a-8da1-3fcc19261848",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaLlista",
+                                "fn": "onNovaLlista",
+                                "implHandler": [
+                                    "Ext.getCmp('novaLlista').setHidden(true);",
+                                    "Ext.getCmp('listPanel2').setHidden(true);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
+                                    "IdiomesApp.titol=\"Nova llista d'estudi\";",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "",
+                                    "Ext.getCmp('llistesdestudi').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addLlista'",
+                                    "});"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "5d9a5307-a821-496b-8dad-3da8a8e3bdae"
                         }
                     ]
                 },
@@ -289,9 +341,11 @@
                     "",
                     "if (value.config.id == 'llistesdestudi'){",
                     "    Ext.getCmp('novaParaula').setHidden(true);",
+                    "    Ext.getCmp('novaLlista').setHidden(false);",
                     "}",
                     "",
                     "if (value.config.id == 'diccionari'){",
+                    "    Ext.getCmp('novaLlista').setHidden(true);",
                     "    Ext.getCmp('novaParaula').setHidden(false);",
                     "}",
                     "",

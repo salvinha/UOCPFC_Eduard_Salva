@@ -33,7 +33,8 @@ Ext.application({
         'addParaula',
         'OpcionsParaula',
         'editParaula',
-        'ListPanel2'
+        'ListPanel2',
+        'addLlista'
     ],
     name: 'IdiomesApp',
     controllers: [

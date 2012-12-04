@@ -128,6 +128,14 @@
                 "app/view/ListPanel2.js"
             ],
             "className": "ListPanel2"
+        },
+        "8b17ad66-4fa9-4bc4-b450-86661c676075": {
+            "paths": [
+                "metadata/view/addLlista",
+                "app/view/override/addLlista.js",
+                "app/view/addLlista.js"
+            ],
+            "className": "addLlista"
         }
     },
     "viewOrderMap": {
@@ -137,6 +145,7 @@
             "ac4862c7-6d28-47e2-b2b9-8ea65e685f52",
             "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09",
             "ca30f2ca-fa12-4eab-a267-80dc168683f8",
+            "8b17ad66-4fa9-4bc4-b450-86661c676075",
             "e92da493-31f4-45b2-9d9b-62a04cebe526",
             "a76a2506-c550-4116-8f1b-a4b955d30347"
         ],
