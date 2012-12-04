@@ -22,6 +22,8 @@ Ext.define('IdiomesApp.store.llistaJson', {
 
     config: {
         autoLoad: true,
+        groupDir: 'ASC',
+        groupField: 'nom',
         model: 'IdiomesApp.model.llistaModel',
         storeId: 'llistaJson',
         proxy: {
@@ -49,7 +51,12 @@ Ext.define('IdiomesApp.store.llistaJson', {
                 fn: 'onJsonstoreLoad',
                 event: 'load'
             }
-        ]
+        ],
+        grouper: {
+            groupFn: function(record) {
+                return record.get('nom')[0];
+            }
+        }
     },
 
     onJsonstoreAddrecords: function(store, records, eOpts) {

@@ -57,6 +57,17 @@ Ext.define('IdiomesApp.controller.MyController', {
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);    
+        }else if (IdiomesApp.titol=="Nova llista d'estudi" || IdiomesApp.titol=="Edició de llista d'estudi"){
+            if (IdiomesApp.titol=="Edició de llista d'estudi"){
+                Ext.getCmp('llistesdestudi').remove(Ext.getCmp('editLlista'),true);
+            }else{
+                Ext.getCmp('llistesdestudi').remove(Ext.getCmp('addLlista'),true);
+            }
+            //Ext.getCmp('llistesdestudi').remove(Ext.getCmp('DetallLlista'),true);
+            IdiomesApp.titol="Llistes d'estudi";
+            Ext.getCmp('listPanel2').setHidden(false);
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('novaLlista').setHidden(false);  
         }else{
             console.log('Cas no contemplat mentre es prem el botó Enrere');
         }

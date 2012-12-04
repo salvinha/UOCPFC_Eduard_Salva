@@ -18,7 +18,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
     alias: 'widget.menupanel',
 
     requires: [
-        'IdiomesApp.view.ListPanel'
+        'IdiomesApp.view.ListPanel',
+        'IdiomesApp.view.ListPanel2'
     ],
 
     config: {
@@ -38,7 +39,6 @@ Ext.define('IdiomesApp.view.menuPanel', {
             {
                 xtype: 'container',
                 title: 'Diccionari',
-                badgeText: '374',
                 iconCls: 'bookmarks',
                 id: 'diccionari',
                 width: '100%',
@@ -56,13 +56,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
             {
                 xtype: 'container',
                 title: 'Llistes d\'estudi',
-                badgeText: '10',
                 iconCls: 'favorites',
-                cls: [
-                    'card3'
-                ],
-                html: '<h1>Llistes d\'estudi</h1>',
-                id: 'llistesdestudi'
+                id: 'llistesdestudi',
+                width: '100%',
+                layout: {
+                    type: 'fit'
+                },
+                items: [
+                    {
+                        xtype: 'listpanel2',
+                        itemId: 'listPanel2',
+                        width: '100%'
+                    }
+                ]
             },
             {
                 xtype: 'container',
@@ -111,6 +117,20 @@ Ext.define('IdiomesApp.view.menuPanel', {
                     {
                         xtype: 'button',
                         docked: 'right',
+                        id: 'novaLlista',
+                        itemId: 'mybutton1',
+                        right: '5px',
+                        style: '',
+                        top: '5px',
+                        ui: 'action-round',
+                        iconAlign: 'center',
+                        iconCls: 'add',
+                        iconMask: true,
+                        text: ''
+                    },
+                    {
+                        xtype: 'button',
+                        docked: 'right',
                         height: 22,
                         hidden: true,
                         id: 'editarParaula',
@@ -130,6 +150,11 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 fn: 'onNovaParaulaTap',
                 event: 'tap',
                 delegate: '#novaParaula'
+            },
+            {
+                fn: 'onNovaLlista',
+                event: 'tap',
+                delegate: '#novaLlista'
             },
             {
                 fn: 'onEditarParaulaTap',
@@ -158,6 +183,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
         //console.log('***FIN***');
     },
 
+    onNovaLlista: function(button, e, options) {
+        Ext.getCmp('novaLlista').setHidden(true);
+        Ext.getCmp('listPanel2').setHidden(true);
+        Ext.getCmp('enrere').setHidden(false);
+        IdiomesApp.titolAux=IdiomesApp.titol;
+        IdiomesApp.titol="Nova llista d'estudi";
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        Ext.getCmp('llistesdestudi').setActiveItem({
+            xclass: 'IdiomesApp.view.addLlista'
+        });
+    },
+
     onEditarParaulaTap: function(button, e, options) {
         Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('editarParaula').setHidden(false);
@@ -171,9 +209,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
     },
 
     onMenuPanelActiveItemChange: function(container, value, oldValue, options) {
-        //Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.title);
+        //Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.id);
         IdiomesApp.titol=value.config.title;
         IdiomesApp.titolAux=value.config.title;
+
+        if (value.config.id == 'llistesdestudi'){
+            Ext.getCmp('novaParaula').setHidden(true);
+            Ext.getCmp('novaLlista').setHidden(false);
+        }
+
+        if (value.config.id == 'diccionari'){
+            Ext.getCmp('novaLlista').setHidden(true);
+            Ext.getCmp('novaParaula').setHidden(false);
+        }
 
         Ext.getCmp('enrere').setHidden(true);
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
