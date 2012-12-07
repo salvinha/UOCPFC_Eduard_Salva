@@ -19,7 +19,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
 
     requires: [
         'IdiomesApp.view.ListPanel',
-        'IdiomesApp.view.ListPanel2'
+        'IdiomesApp.view.ListPanel2',
+        'IdiomesApp.view.ListPanel3'
     ],
 
     config: {
@@ -74,11 +75,16 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 xtype: 'container',
                 title: 'Flashcards',
                 iconCls: 'organize',
-                cls: [
-                    'card4'
-                ],
-                html: '<h1>Flashcards</h1>',
-                id: 'flashcards'
+                id: 'flashcards',
+                width: '100%',
+                layout: {
+                    type: 'fit'
+                },
+                items: [
+                    {
+                        xtype: 'listpanel3'
+                    }
+                ]
             },
             {
                 xtype: 'toolbar',
@@ -104,19 +110,19 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         xtype: 'button',
                         docked: 'right',
                         id: 'novaParaula',
-                        itemId: 'mybutton1',
+                        itemId: 'mybutton10',
                         right: '5px',
-                        style: '',
+                        style: 'font-size:12px',
                         top: '5px',
-                        ui: 'action-round',
+                        ui: 'confirm-round',
                         iconAlign: 'center',
                         iconCls: 'add',
-                        iconMask: true,
-                        text: ''
+                        iconMask: true
                     },
                     {
                         xtype: 'button',
                         docked: 'right',
+                        hidden: true,
                         id: 'novaLlista',
                         itemId: 'mybutton1',
                         right: '5px',
@@ -147,7 +153,7 @@ Ext.define('IdiomesApp.view.menuPanel', {
         ],
         listeners: [
             {
-                fn: 'onNovaParaulaTap',
+                fn: 'onMybutton10Tap',
                 event: 'tap',
                 delegate: '#novaParaula'
             },
@@ -168,19 +174,17 @@ Ext.define('IdiomesApp.view.menuPanel', {
         ]
     },
 
-    onNovaParaulaTap: function(button, e, options) {
+    onMybutton10Tap: function(button, e, options) {
         Ext.getCmp('novaParaula').setHidden(true);
         Ext.getCmp('listPanel').setHidden(true);
         Ext.getCmp('enrere').setHidden(false);
         IdiomesApp.titolAux=IdiomesApp.titol;
         IdiomesApp.titol="Nova paraula";
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-        //console.log('***6***');
 
         Ext.getCmp('diccionari').setActiveItem({
             xclass: 'IdiomesApp.view.addParaula'
         });
-        //console.log('***FIN***');
     },
 
     onNovaLlista: function(button, e, options) {
@@ -214,13 +218,21 @@ Ext.define('IdiomesApp.view.menuPanel', {
         IdiomesApp.titolAux=value.config.title;
 
         if (value.config.id == 'llistesdestudi'){
+            Ext.getCmp('listPanel2').setHidden(false);
             Ext.getCmp('novaParaula').setHidden(true);
             Ext.getCmp('novaLlista').setHidden(false);
         }
 
         if (value.config.id == 'diccionari'){
+            Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
+        }
+
+        if (value.config.id == 'flashcards'){
+            IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
+            Ext.getCmp('novaLlista').setHidden(true);
+            Ext.getCmp('novaParaula').setHidden(true);
         }
 
         Ext.getCmp('enrere').setHidden(true);

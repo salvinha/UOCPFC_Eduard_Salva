@@ -1,0 +1,71 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ListPanel3",
+        "designer|userAlias": "listpanel3",
+        "id": "listPanel3",
+        "layout": "fit"
+    },
+    "id": "ExtBox1-ext-gen7897",
+    "designerId": "cf29c1e6-6d40-4058-ba09-13523ef0a69d",
+    "cn": [
+        {
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "paraulesList",
+                "designer|userAlias": "parauleslist",
+                "id": "llistesestudiListFlashcards",
+                "itemId": "mylist3",
+                "style": null,
+                "loadingText": "Carregant...",
+                "store": "llistaJson",
+                "disableSelection": false,
+                "grouped": true,
+                "onItemDisclosure": false
+            },
+            "designerId": "d62095d2-c853-485d-b2f2-f8e6b53ddc01",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div>",
+                            "    <p>{nom}</p>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "78c431de-2356-458d-a501-0250ee110ba5"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "749c3b2e-0afb-4a36-bd69-c819e1b4ce57"
+                }
+            ]
+        }
+    ]
+}
