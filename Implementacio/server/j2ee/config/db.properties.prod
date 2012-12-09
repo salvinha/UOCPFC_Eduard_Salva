@@ -2,5 +2,5 @@ db.mongo.host = clone.vps
 db.mongo.port = 27017
 db.mongo.username = test
 db.mongo.password = test
-db.mongo.dbName = test
+db.mongo.dbName = uocpfc
 db.mongo.collectionName = words

@@ -6,14 +6,14 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
     
-    <filter>
+	<filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>
 			edu.uoc.pfc2012.edusalva.filter.EncodingFilter
 		</filter-class>
 	</filter>
-
-    <filter>
+	
+	<filter>
 		<filter-name>ServerActionFilter</filter-name>
 		<filter-class>
 			edu.uoc.pfc2012.edusalva.filter.ServerActionFilter

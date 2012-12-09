@@ -42,9 +42,6 @@ public class ControllerServlet extends HttpServlet {
 	private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
 
-	/**
-	 * This is the javadoc for the service() method.
-	 */
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		processRequest(req, res);
