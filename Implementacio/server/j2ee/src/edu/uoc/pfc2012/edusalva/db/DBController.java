@@ -159,12 +159,28 @@ public class DBController {
 			col = getDBCollection();
 			DBObject search = new BasicDBObject("_id", new ObjectId(id));
 			DBObject found = col.findOne(search);
+
+			if(found == null) {
+				throw new IllegalArgumentException("No objects found with ID " + id);
+			}
 			
 			k = new KoncepteParaula();
 			k.setId(id);
 			k.setTextCatala(found.get("text_catala").toString());
 			k.setTextJapones(found.get("text_japones").toString());
+			
+			String locationAudioCA = found.get("audio_catala").toString();
+			String locationAudioJP = found.get("audio_japones").toString();
+			
+			if (locationAudioCA != null) {
+				k.setAudioCatala(PFCUtils.getBase64FromFile(locationAudioCA));
+			}
+			
+			if (locationAudioJP != null) {
+				k.setAudioJapones(PFCUtils.getBase64FromFile(locationAudioJP));
+			}
 		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
 			logger.info("Not found!");
 		} catch (Exception e) {
 			e.printStackTrace();

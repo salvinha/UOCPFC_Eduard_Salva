@@ -35,23 +35,23 @@ public class SearchKonceptWorker extends AbstractWorker {
 		String idioma = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA)[0];
 		
 		KoncepteParaula k = DBController.getKoncept(text, idioma);
+		Writer w = null;
+		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
-			Writer w = getRes().getWriter();
-			ObjectMapper mapper = new ObjectMapper();
+			w = getRes().getWriter();
 			if (k != null) {
 				mapper.writeValue(w, k);				
 			} else {
-				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
+				throw new Exception("No results!");
 			}
-			w.flush();
-			w.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			try {
+				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
+				w.flush();
+				w.close();
+			} catch (IOException e1) {}
 		}
-		
-
 	}
 
 }

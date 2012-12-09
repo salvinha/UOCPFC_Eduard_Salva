@@ -71,22 +71,27 @@ public class CreateKonceptWorker extends AbstractWorker {
 				logger.info("Koncept created. ID = " +  id);
 				
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)) {
-					processAudio(getParams(), PFCConstants.LANG_JAP, koncept);
+					String pathJP = processAudio(getParams(), PFCConstants.LANG_JAP, koncept);
+					koncept.setAudioJapones(pathJP);
 				} 
 				
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)) {
-					processAudio(getParams(), PFCConstants.LANG_CAT, koncept);
+					String pathCA = processAudio(getParams(), PFCConstants.LANG_CAT, koncept);
+					koncept.setAudioCatala(pathCA);
 				}
 				
+				// Actualitzem valor audio.
+				DBController.update(koncept);
+				
 				ObjectMapper mapper = new ObjectMapper();
-				// Filtre per incloure nomes l'ID en la resposta. // TODO Check!
+				// Filtre per incloure nomes l'ID en la resposta.
 				FilterProvider filters = new SimpleFilterProvider().addFilter("id_only", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
 				mapper.setFilters(filters);
 				mapper.writeValue(w, koncept.getId());
 				
 				w.write(id);
 			} else {
-				w.write("Word already exists.");
+				w.write(PFCConstants.RESPONSE_WORD_ALREADY_EXISTS);
 				logger.warn("Already exists!");
 			}
 
@@ -98,8 +103,8 @@ public class CreateKonceptWorker extends AbstractWorker {
 		}
 	}
 	
-	private void processAudio(Map<String, String[]> params, String lang, KoncepteParaula k) throws IOException {
-		logger.info("Processing audio for '" + lang + " ...");
+	private String processAudio(Map<String, String[]> params, String lang, KoncepteParaula k) throws IOException {
+		logger.info("Processing audio for '" + lang + "' ...");
 		
 		Properties props;
 		try {
@@ -129,6 +134,8 @@ public class CreateKonceptWorker extends AbstractWorker {
 			e.printStackTrace();
 			throw new IOException("Cannot save in Base64!");
 		}
+		
+		return path;
 	}
 
 	public KoncepteParaula getKoncept() {

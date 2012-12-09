@@ -1,5 +1,6 @@
 package edu.uoc.pfc2012.edusalva.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
@@ -153,5 +154,31 @@ public abstract class PFCUtils {
 		out.write(bytes);
 		out.flush();
 		out.close();
+	}
+	
+	
+	public static String getBase64FromFile(String path) {
+		File f = new File(path);
+		if (!(f.exists())) {
+			return null;
+		}
+		
+		byte[] bytes = null;
+		
+		try {
+			bytes = org.apache.commons.io.FileUtils.readFileToByteArray(f);
+		} catch (IOException e) {
+			logger.error("Could not read file into byte array! (" + f.getName() + ")");
+			return null;
+		}
+
+		
+		if (bytes != null && bytes.length > 0) {
+			byte[] s = Base64.encodeBase64URLSafe(bytes);
+			return new String(s);
+		}
+		
+		return null;
+
 	}
 }

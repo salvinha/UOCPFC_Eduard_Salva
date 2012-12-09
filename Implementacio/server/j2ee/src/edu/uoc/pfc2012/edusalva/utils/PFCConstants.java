@@ -8,6 +8,7 @@ public interface PFCConstants {
 	public static final String RESPONSE_WRONG_PARAMETERS = "-1";
 	public static final String RESPONSE_SEARCH_FOUND_NOTHING = "-2";
 	public static final String RESPONSE_NO_AUDIO = "-3";
+	public static final String RESPONSE_WORD_ALREADY_EXISTS = "-1";
 	
 	public static final String HTTP_REQUEST_PARAM_TEXT_CA = "text_catala";
 	public static final String HTTP_REQUEST_PARAM_TEXT_JP = "text_japones";

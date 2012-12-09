@@ -61,7 +61,7 @@
 	
 	<target name="compile" depends="init">
 	    <echo message="SRC = ${src}"/>
-		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs"/>
+		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs" debug="true"/>
 		<echo message="Copying properties files ..."/>
 		<copy file="${log4j_file}.${environment}" 				tofile="${build}/${log4j}"/>
 		<copy file="${dbconfig_file}.${environment}" 			tofile="${build}/${dbconfig}"/>
