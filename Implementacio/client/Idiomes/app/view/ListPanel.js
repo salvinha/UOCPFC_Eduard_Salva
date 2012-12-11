@@ -58,20 +58,15 @@ Ext.define('IdiomesApp.view.ListPanel', {
         IdiomesApp.titol="Paraula";
         IdiomesApp.titolAux="Paraula";
 
-        //console.log('onParaulesListItemTap');
-
         var tarjeta = Ext.getCmp('DetallParaula');
 
         if (tarjeta) {
-            Ext.getCmp('diccionari').setActiveItem(tarjeta);
-        } else {
-            /*console.log(record.get('id'));
-            console.log(record);*/
-            Ext.getCmp('diccionari').setActiveItem({
-                xclass: 'IdiomesApp.view.DetallParaula'
-            });
-
+            Ext.getCmp('DetallParaula').destroy();
         }
+
+        Ext.getCmp('diccionari').setActiveItem({
+            xclass: 'IdiomesApp.view.DetallParaula'
+        });
 
         Ext.getCmp('paraulaTarjeta').setRecord(record);
 

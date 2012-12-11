@@ -26,9 +26,19 @@
             "codeClass": null,
             "userConfig": {
                 "layout|flex": 0,
+                "container|animation": "pop",
                 "designer|userClassName": "MyContainer4",
                 "designer|displayName": "ParaulaTarjeta",
-                "id": "paraulaTarjeta"
+                "cls": [
+                    "card3"
+                ],
+                "height": "100%",
+                "id": "paraulaTarjeta",
+                "minHeight": 500,
+                "ui": "light",
+                "width": "100%",
+                "layout": "card",
+                "scrollable": null
             },
             "designerId": "5210aaa6-0254-4b79-83c8-026a1a63583b",
             "cn": [
@@ -43,10 +53,9 @@
                         "designer|userClassName": "tpl",
                         "implHandler": [
                             "<div>",
-                            "    <p><h1>{textcat}</h1></p>",
-                            "    <hr/>",
-                            "    <p><h1>{textjap}</h1></p>",
-                            "    <p><h2>{pronjap}</h2></p>",
+                            "    <p>{textcat}</p>",
+                            "    <h1>{textjap}</h1>",
+                            "    <p>{pronjap}</p>",
                             "</div>"
                         ],
                         "designer|displayName": "tpl"

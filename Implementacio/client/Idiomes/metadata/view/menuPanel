@@ -189,62 +189,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|userClassName": "MyButton10",
-                        "docked": "right",
-                        "id": "novaParaula",
-                        "itemId": "mybutton10",
-                        "right": "5px",
-                        "style": [
-                            "font-size:12px"
-                        ],
-                        "top": "5px",
-                        "ui": "confirm-round",
-                        "iconAlign": "center",
-                        "iconCls": "add",
-                        "iconMask": true,
-                        "text": null
-                    },
-                    "configAlternates": {
-                        "style": "object"
-                    },
-                    "designerId": "444ea9c0-3d56-42bd-acf7-c804cc35efa3",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|userClassName": "onMybutton10Tap",
-                                "fn": "onMybutton10Tap",
-                                "implHandler": [
-                                    "Ext.getCmp('novaParaula').setHidden(true);",
-                                    "Ext.getCmp('listPanel').setHidden(true);",
-                                    "Ext.getCmp('enrere').setHidden(false);",
-                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
-                                    "IdiomesApp.titol=\"Nova paraula\";",
-                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
-                                    "",
-                                    "Ext.getCmp('diccionari').setActiveItem({",
-                                    "    xclass: 'IdiomesApp.view.addParaula'",
-                                    "});"
-                                ],
-                                "name": "tap"
-                            },
-                            "designerId": "6aa04785-2ee1-4d31-aa4d-621bd180fcbd"
-                        }
-                    ]
-                },
-                {
-                    "type": "button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
                         "designer|userClassName": "MyButton1",
                         "designer|displayName": "NovaLlista",
                         "docked": "right",
@@ -340,6 +284,112 @@
                             "designerId": "50047ede-a301-4402-932e-eba9dd5c4115"
                         }
                     ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton10",
+                        "hidden": true,
+                        "id": "nouJoc",
+                        "itemId": "mybutton10",
+                        "style": [
+                            "font-size:12px"
+                        ],
+                        "ui": "confirm-round",
+                        "text": "Nou joc"
+                    },
+                    "configAlternates": {
+                        "style": "object"
+                    },
+                    "designerId": "99087cac-3de8-4da2-a9a3-0ac5d383aeee",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNouJocTap",
+                                "fn": "onNouJocTap",
+                                "implHandler": [
+                                    "//Ext.getCmp('carruselParaules').destroy();",
+                                    "Ext.getCmp('game').destroy();",
+                                    "IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                                    "Ext.getCmp('listPanel3').setHidden(false);",
+                                    "Ext.getCmp('novaLlista').setHidden(true);",
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "",
+                                    "Ext.getCmp('enrere').setHidden(true);",
+                                    "Ext.getCmp('nouJoc').setHidden(true);",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "729190e6-6cf0-425c-8212-b77205571ab4"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton9",
+                        "designer|displayName": "Nova paraula",
+                        "id": "novaParaula",
+                        "itemId": "novaParaula",
+                        "right": 5,
+                        "top": 5,
+                        "ui": "confirm-round",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": null
+                    },
+                    "designerId": "29470b2e-9107-4251-85c8-72c4e88047ac",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaParaulaTap",
+                                "fn": "onNovaParaulaTap",
+                                "implHandler": [
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "Ext.getCmp('listPanel').setHidden(true);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
+                                    "IdiomesApp.titol=\"Nova paraula\";",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "",
+                                    "var formadd = Ext.getCmp('addParaula');",
+                                    "",
+                                    "if (formadd) {",
+                                    "    Ext.getCmp('addParaula').destroy();",
+                                    "}",
+                                    "",
+                                    "Ext.getCmp('diccionari').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addParaula'",
+                                    "});"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "bbf46aca-439f-4b1d-bd7e-316babf064f2"
+                        }
+                    ]
                 }
             ]
         },
@@ -358,25 +408,51 @@
                     "IdiomesApp.titol=value.config.title;",
                     "IdiomesApp.titolAux=value.config.title;",
                     "",
-                    "if (value.config.id == 'llistesdestudi'){",
-                    "    Ext.getCmp('listPanel2').setHidden(false);",
-                    "    Ext.getCmp('novaParaula').setHidden(true);",
-                    "    Ext.getCmp('novaLlista').setHidden(false);",
+                    "//Secció anterior",
+                    "/*if (oldValue.config.id == 'diccionari'){",
+                    "Ext.getCmp('listPanel').destroy();",
                     "}",
+                    "if (oldValue.config.id == 'llistesdestudi'){",
+                    "Ext.getCmp('listPanel2').destroy();",
+                    "}",
+                    "if (oldValue.config.id == 'flashcards'){",
+                    "Ext.getCmp('game').destroy();",
+                    "}*/",
                     "",
+                    "//Secció nova",
                     "if (value.config.id == 'diccionari'){",
+                    "    if (Ext.getCmp('DetallParaula')){",
+                    "        Ext.getCmp('DetallParaula').setHidden(true);",
+                    "    }",
+                    "    if (Ext.getCmp('addParaula')){",
+                    "        Ext.getCmp('addParaula').setHidden(true);",
+                    "    }",
+                    "    if (Ext.getCmp('editParaula')){",
+                    "        Ext.getCmp('editParaula').setHidden(true);",
+                    "    }",
                     "    Ext.getCmp('listPanel').setHidden(false);",
                     "    Ext.getCmp('novaLlista').setHidden(true);",
                     "    Ext.getCmp('novaParaula').setHidden(false);",
                     "}",
-                    "",
-                    "if (value.config.id == 'flashcards'){",
+                    "if (value.config.id == 'llistesdestudi'){",
+                    "    Ext.getCmp('editarParaula').setHidden(true);",
+                    "    Ext.getCmp('listPanel2').setHidden(false);",
+                    "    Ext.getCmp('novaParaula').setHidden(true);",
+                    "    Ext.getCmp('novaLlista').setHidden(false);",
+                    "}",
+                    "if (value.config.id == 'flashcards'){ ",
+                    "    if (Ext.getCmp('game')){",
+                    "        Ext.getCmp('game').setHidden(true);",
+                    "    }",
+                    "    Ext.getCmp('editarParaula').setHidden(true);",
                     "    IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                    "    Ext.getCmp('listPanel3').setHidden(false);",
                     "    Ext.getCmp('novaLlista').setHidden(true);",
                     "    Ext.getCmp('novaParaula').setHidden(true);",
                     "}",
                     "",
                     "Ext.getCmp('enrere').setHidden(true);",
+                    "Ext.getCmp('nouJoc').setHidden(true);",
                     "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
                 ],
                 "name": "activeitemchange"

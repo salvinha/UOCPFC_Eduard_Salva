@@ -35,7 +35,8 @@ Ext.application({
         'editParaula',
         'ListPanel2',
         'addLlista',
-        'ListPanel3'
+        'ListPanel3',
+        'Game'
     ],
     name: 'IdiomesApp',
     controllers: [

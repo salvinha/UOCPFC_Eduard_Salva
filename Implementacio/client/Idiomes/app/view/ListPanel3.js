@@ -39,7 +39,34 @@ Ext.define('IdiomesApp.view.ListPanel3', {
                 onItemDisclosure: false,
                 indexBar: true
             }
+        ],
+        listeners: [
+            {
+                fn: 'onLlistesestudiListFlashcardsItemTap',
+                event: 'itemtap',
+                delegate: '#llistesestudiListFlashcards'
+            }
         ]
+    },
+
+    onLlistesestudiListFlashcardsItemTap: function(dataview, index, target, record, e, options) {
+        Ext.getCmp('listPanel3').setHidden(true);
+        IdiomesApp.titol="Aprenent: " + record.get('nom');
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+        Ext.getCmp('nouJoc').setHidden(false);
+
+        var carrusel = Ext.getCmp('carruselParaules');
+
+        if (carrusel) {
+            Ext.getCmp('game').destroy();
+        }
+
+        //console.log(record.get('id'));
+        Ext.getCmp('flashcards').setActiveItem({
+            xclass: 'IdiomesApp.view.Game'
+        });
+
+        Ext.getCmp('pregunta').setRecord(record);
     }
 
 });

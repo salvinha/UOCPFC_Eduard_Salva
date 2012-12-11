@@ -1,0 +1,199 @@
+{
+    "type": "container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Game",
+        "id": "game",
+        "style": [
+            "background-color: #ccc;"
+        ]
+    },
+    "configAlternates": {
+        "style": "object"
+    },
+    "id": "ExtBox1-ext-gen4826",
+    "designerId": "d24b60d4-cbb7-415b-8421-a18a6983680e",
+    "cn": [
+        {
+            "type": "carousel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "CarruselParaules",
+                "height": 300,
+                "id": "carruselParaules",
+                "itemId": "carruselParaules"
+            },
+            "designerId": "d4ab5193-1a94-425d-9504-a2476c342306",
+            "cn": [
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "flip",
+                        "designer|userClassName": "MyContainer2",
+                        "designer|displayName": "Pregunta",
+                        "border": 1,
+                        "cls": [
+                            "card2"
+                        ],
+                        "docked": null,
+                        "height": 300,
+                        "html": "",
+                        "id": "pregunta",
+                        "ui": null,
+                        "width": null,
+                        "layout": "card"
+                    },
+                    "designerId": "5fe0d73c-4c13-44fb-87d8-3f07e217388b",
+                    "cn": [
+                        {
+                            "type": "template",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "tpl",
+                                "implHandler": [
+                                    "<div style=\"height:300px;\">",
+                                    "    <p>{nom}</p>",
+                                    "</div>"
+                                ],
+                                "designer|displayName": "tpl"
+                            },
+                            "designerId": "e954c5dd-f2c9-4a65-8eb6-08ce5934a1f8"
+                        }
+                    ]
+                },
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "flip",
+                        "designer|userClassName": "MyContainer2",
+                        "designer|displayName": "Resposta",
+                        "border": 1,
+                        "cls": [
+                            "card3"
+                        ],
+                        "docked": null,
+                        "height": 300,
+                        "html": null,
+                        "id": "resposta",
+                        "ui": "",
+                        "width": null,
+                        "layout": "card"
+                    },
+                    "designerId": "83582a33-22db-4203-9c65-97cc78da923f",
+                    "cn": [
+                        {
+                            "type": "template",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "tpl",
+                                "implHandler": [
+                                    "<div style=\"height:300px;\">",
+                                    "    <p>{id}</p>",
+                                    "</div>"
+                                ],
+                                "designer|displayName": "tpl"
+                            },
+                            "designerId": "c3ae1773-bcf5-48c0-a971-b6c63735f0c5"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onCarruselParaulesActiveItemChange",
+                        "fn": "onCarruselParaulesActiveItemChange",
+                        "implHandler": [
+                            "if(value.config.id == 'pregunta'){",
+                            "    Ext.getCmp('fallada').setHidden(true);",
+                            "    Ext.getCmp('encert').setHidden(true);",
+                            "}else{",
+                            "    Ext.getCmp('fallada').setHidden(false);",
+                            "    Ext.getCmp('encert').setHidden(false);",
+                            "}"
+                        ],
+                        "name": "activeitemchange"
+                    },
+                    "designerId": "2cd05255-62fd-4de5-a9e7-c7b3adc66926"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton11",
+                "docked": "left",
+                "height": 50,
+                "hidden": true,
+                "id": "fallada",
+                "left": 15,
+                "top": 315,
+                "ui": "decline-round",
+                "width": 140,
+                "iconCls": "delete",
+                "iconMask": true,
+                "text": "Fallada"
+            },
+            "designerId": "af426910-e06a-470b-9a51-8cb91ef89c17"
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton12",
+                "docked": "right",
+                "height": 50,
+                "hidden": true,
+                "id": "encert",
+                "right": 15,
+                "top": 315,
+                "ui": "confirm-round",
+                "width": 140,
+                "iconAlign": "right",
+                "iconCls": "favorites",
+                "iconMask": true,
+                "text": "Encert"
+            },
+            "designerId": "97425bde-da30-4068-b9a6-6e1343ba671c"
+        }
+    ]
+}

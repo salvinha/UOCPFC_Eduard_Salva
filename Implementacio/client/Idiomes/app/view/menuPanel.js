@@ -109,19 +109,6 @@ Ext.define('IdiomesApp.view.menuPanel', {
                     {
                         xtype: 'button',
                         docked: 'right',
-                        id: 'novaParaula',
-                        itemId: 'mybutton10',
-                        right: '5px',
-                        style: 'font-size:12px',
-                        top: '5px',
-                        ui: 'confirm-round',
-                        iconAlign: 'center',
-                        iconCls: 'add',
-                        iconMask: true
-                    },
-                    {
-                        xtype: 'button',
-                        docked: 'right',
                         hidden: true,
                         id: 'novaLlista',
                         itemId: 'mybutton1',
@@ -147,16 +134,30 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         iconCls: 'more',
                         iconMask: true,
                         text: ''
+                    },
+                    {
+                        xtype: 'button',
+                        hidden: true,
+                        id: 'nouJoc',
+                        itemId: 'mybutton10',
+                        style: 'font-size:12px',
+                        ui: 'confirm-round',
+                        text: 'Nou joc'
+                    },
+                    {
+                        xtype: 'button',
+                        id: 'novaParaula',
+                        itemId: 'novaParaula',
+                        right: 5,
+                        top: 5,
+                        ui: 'confirm-round',
+                        iconCls: 'add',
+                        iconMask: true
                     }
                 ]
             }
         ],
         listeners: [
-            {
-                fn: 'onMybutton10Tap',
-                event: 'tap',
-                delegate: '#novaParaula'
-            },
             {
                 fn: 'onNovaLlista',
                 event: 'tap',
@@ -168,23 +169,20 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 delegate: '#editarParaula'
             },
             {
+                fn: 'onNouJocTap',
+                event: 'tap',
+                delegate: '#nouJoc'
+            },
+            {
+                fn: 'onNovaParaulaTap',
+                event: 'tap',
+                delegate: '#novaParaula'
+            },
+            {
                 fn: 'onMenuPanelActiveItemChange',
                 event: 'activeitemchange'
             }
         ]
-    },
-
-    onMybutton10Tap: function(button, e, options) {
-        Ext.getCmp('novaParaula').setHidden(true);
-        Ext.getCmp('listPanel').setHidden(true);
-        Ext.getCmp('enrere').setHidden(false);
-        IdiomesApp.titolAux=IdiomesApp.titol;
-        IdiomesApp.titol="Nova paraula";
-        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-
-        Ext.getCmp('diccionari').setActiveItem({
-            xclass: 'IdiomesApp.view.addParaula'
-        });
     },
 
     onNovaLlista: function(button, e, options) {
@@ -212,30 +210,88 @@ Ext.define('IdiomesApp.view.menuPanel', {
         sheet.show();
     },
 
+    onNouJocTap: function(button, e, options) {
+        //Ext.getCmp('carruselParaules').destroy();
+        Ext.getCmp('game').destroy();
+        IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
+        Ext.getCmp('listPanel3').setHidden(false);
+        Ext.getCmp('novaLlista').setHidden(true);
+        Ext.getCmp('novaParaula').setHidden(true);
+
+        Ext.getCmp('enrere').setHidden(true);
+        Ext.getCmp('nouJoc').setHidden(true);
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+    },
+
+    onNovaParaulaTap: function(button, e, options) {
+        Ext.getCmp('novaParaula').setHidden(true);
+        Ext.getCmp('listPanel').setHidden(true);
+        Ext.getCmp('enrere').setHidden(false);
+        IdiomesApp.titolAux=IdiomesApp.titol;
+        IdiomesApp.titol="Nova paraula";
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+        var formadd = Ext.getCmp('addParaula');
+
+        if (formadd) {
+            Ext.getCmp('addParaula').destroy();
+        }
+
+        Ext.getCmp('diccionari').setActiveItem({
+            xclass: 'IdiomesApp.view.addParaula'
+        });
+    },
+
     onMenuPanelActiveItemChange: function(container, value, oldValue, options) {
         //Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.id);
         IdiomesApp.titol=value.config.title;
         IdiomesApp.titolAux=value.config.title;
 
-        if (value.config.id == 'llistesdestudi'){
-            Ext.getCmp('listPanel2').setHidden(false);
-            Ext.getCmp('novaParaula').setHidden(true);
-            Ext.getCmp('novaLlista').setHidden(false);
+        //Secció anterior
+        /*if (oldValue.config.id == 'diccionari'){
+        Ext.getCmp('listPanel').destroy();
         }
+        if (oldValue.config.id == 'llistesdestudi'){
+        Ext.getCmp('listPanel2').destroy();
+        }
+        if (oldValue.config.id == 'flashcards'){
+        Ext.getCmp('game').destroy();
+        }*/
 
+        //Secció nova
         if (value.config.id == 'diccionari'){
+            if (Ext.getCmp('DetallParaula')){
+                Ext.getCmp('DetallParaula').setHidden(true);
+            }
+            if (Ext.getCmp('addParaula')){
+                Ext.getCmp('addParaula').setHidden(true);
+            }
+            if (Ext.getCmp('editParaula')){
+                Ext.getCmp('editParaula').setHidden(true);
+            }
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
         }
-
-        if (value.config.id == 'flashcards'){
+        if (value.config.id == 'llistesdestudi'){
+            Ext.getCmp('editarParaula').setHidden(true);
+            Ext.getCmp('listPanel2').setHidden(false);
+            Ext.getCmp('novaParaula').setHidden(true);
+            Ext.getCmp('novaLlista').setHidden(false);
+        }
+        if (value.config.id == 'flashcards'){ 
+            if (Ext.getCmp('game')){
+                Ext.getCmp('game').setHidden(true);
+            }
+            Ext.getCmp('editarParaula').setHidden(true);
             IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
+            Ext.getCmp('listPanel3').setHidden(false);
             Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(true);
         }
 
         Ext.getCmp('enrere').setHidden(true);
+        Ext.getCmp('nouJoc').setHidden(true);
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
     }
 

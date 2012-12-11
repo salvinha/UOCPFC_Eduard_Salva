@@ -95,6 +95,12 @@ Ext.define('IdiomesApp.view.OpcionsParaula', {
         IdiomesApp.titol="Edició de paraula";
         Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
 
+        var formedita = Ext.getCmp('editParaula');
+
+        if (formedita) {
+            Ext.getCmp('editParaula').destroy();
+        }
+
         Ext.getCmp('diccionari').setActiveItem({
             xclass: 'IdiomesApp.view.editParaula'
         });

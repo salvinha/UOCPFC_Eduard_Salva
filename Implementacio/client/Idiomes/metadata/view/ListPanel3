@@ -64,6 +64,39 @@
                         "designer|userClassName": "MyIndexBar"
                     },
                     "designerId": "749c3b2e-0afb-4a36-bd69-c819e1b4ce57"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onLlistesestudiListFlashcardsItemTap",
+                        "fn": "onLlistesestudiListFlashcardsItemTap",
+                        "implHandler": [
+                            "Ext.getCmp('listPanel3').setHidden(true);",
+                            "IdiomesApp.titol=\"Aprenent: \" + record.get('nom');",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "Ext.getCmp('nouJoc').setHidden(false);",
+                            "",
+                            "var carrusel = Ext.getCmp('carruselParaules');",
+                            "",
+                            "if (carrusel) {",
+                            "    Ext.getCmp('game').destroy();",
+                            "}",
+                            "",
+                            "//console.log(record.get('id'));",
+                            "Ext.getCmp('flashcards').setActiveItem({",
+                            "    xclass: 'IdiomesApp.view.Game'",
+                            "});",
+                            "",
+                            "Ext.getCmp('pregunta').setRecord(record);"
+                        ],
+                        "name": "itemtap"
+                    },
+                    "designerId": "1d47658d-789c-495c-9fe5-56db09cdf459"
                 }
             ]
         }

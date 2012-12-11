@@ -29,15 +29,25 @@ Ext.define('IdiomesApp.view.DetallParaula', {
             {
                 xtype: 'container',
                 flex: 0,
+                cls: [
+                    'card3'
+                ],
+                height: '100%',
                 id: 'paraulaTarjeta',
+                minHeight: 500,
                 tpl: [
                     '<div>',
-                    '    <p><h1>{textcat}</h1></p>',
-                    '    <hr/>',
-                    '    <p><h1>{textjap}</h1></p>',
-                    '    <p><h2>{pronjap}</h2></p>',
+                    '    <p>{textcat}</p>',
+                    '    <h1>{textjap}</h1>',
+                    '    <p>{pronjap}</p>',
                     '</div>'
-                ]
+                ],
+                ui: 'light',
+                width: '100%',
+                layout: {
+                    animation: 'pop',
+                    type: 'card'
+                }
             }
         ]
     }
