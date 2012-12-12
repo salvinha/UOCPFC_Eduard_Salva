@@ -29,7 +29,7 @@ Ext.define('IdiomesApp.view.ListPanel3', {
                 itemId: 'mylist3',
                 itemTpl: [
                     '<div>',
-                    '    <p>{nom}</p>',
+                    '    <h3>{nom}</h3>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',
@@ -67,6 +67,7 @@ Ext.define('IdiomesApp.view.ListPanel3', {
         });
 
         Ext.getCmp('pregunta').setRecord(record);
+        Ext.getCmp('resposta').setRecord(record);
     }
 
 });

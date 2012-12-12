@@ -46,7 +46,7 @@
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
                             "<div>",
-                            "    <p>{nom}</p>",
+                            "    <h3>{nom}</h3>",
                             "</div>"
                         ],
                         "designer|displayName": "itemTpl"
@@ -92,7 +92,8 @@
                             "    xclass: 'IdiomesApp.view.Game'",
                             "});",
                             "",
-                            "Ext.getCmp('pregunta').setRecord(record);"
+                            "Ext.getCmp('pregunta').setRecord(record);",
+                            "Ext.getCmp('resposta').setRecord(record);"
                         ],
                         "name": "itemtap"
                     },

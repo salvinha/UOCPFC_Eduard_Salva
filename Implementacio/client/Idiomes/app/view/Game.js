@@ -30,14 +30,16 @@ Ext.define('IdiomesApp.view.Game', {
                         xtype: 'container',
                         border: 1,
                         cls: [
-                            'card2'
+                            'card1'
                         ],
                         height: 300,
                         html: '',
                         id: 'pregunta',
                         tpl: [
                             '<div style="height:300px;">',
-                            '    <p>{nom}</p>',
+                            '    <h3>Quin és el símbol Kanji de la següent paraula?</h3>',
+                            '    <h1>{nom}</h1>',
+                            '    <p>(Desplaça la targeta per veure la resposta)</p>',
                             '</div>'
                         ],
                         layout: {
@@ -49,13 +51,13 @@ Ext.define('IdiomesApp.view.Game', {
                         xtype: 'container',
                         border: 1,
                         cls: [
-                            'card3'
+                            'card1'
                         ],
                         height: 300,
                         id: 'resposta',
                         tpl: [
                             '<div style="height:300px;">',
-                            '    <p>{id}</p>',
+                            '    <h2>{nom}</h2>',
                             '</div>'
                         ],
                         ui: '',
@@ -75,10 +77,10 @@ Ext.define('IdiomesApp.view.Game', {
                 left: 15,
                 top: 315,
                 ui: 'decline-round',
-                width: 140,
+                width: 150,
                 iconCls: 'delete',
                 iconMask: true,
-                text: 'Fallada'
+                text: 'He fallat'
             },
             {
                 xtype: 'button',
@@ -89,11 +91,11 @@ Ext.define('IdiomesApp.view.Game', {
                 right: 15,
                 top: 315,
                 ui: 'confirm-round',
-                width: 140,
+                width: 150,
                 iconAlign: 'right',
                 iconCls: 'favorites',
                 iconMask: true,
-                text: 'Encert'
+                text: 'He encertat'
             }
         ],
         listeners: [

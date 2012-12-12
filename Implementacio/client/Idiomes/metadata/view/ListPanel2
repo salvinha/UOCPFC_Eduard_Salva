@@ -46,7 +46,7 @@
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
                             "<div class=\"deleteplaceholder\">",
-                            "    <p>{nom}</p>",
+                            "    <h3>{nom}</h3>",
                             "</div>"
                         ],
                         "designer|displayName": "itemTpl"

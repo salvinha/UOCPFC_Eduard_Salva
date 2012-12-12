@@ -29,9 +29,9 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 itemId: 'mylist',
                 itemTpl: [
                     '<div style="height:85px;">',
-                    '    <p>{textcat}</p>',
-                    '    <p>{textjap}</p>',
-                    '    <p>{pronjap}</p>',
+                    '    <h3>{textcat}</h3>',
+                    '    <h4>{textjap}</h4>',
+                    '    <p>({pronjap})</p>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',

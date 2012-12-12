@@ -29,7 +29,7 @@ Ext.define('IdiomesApp.view.ListPanel2', {
                 itemId: 'mylist2',
                 itemTpl: [
                     '<div class="deleteplaceholder">',
-                    '    <p>{nom}</p>',
+                    '    <h3>{nom}</h3>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',

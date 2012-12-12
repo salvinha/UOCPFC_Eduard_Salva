@@ -46,7 +46,7 @@
                         "designer|displayName": "Pregunta",
                         "border": 1,
                         "cls": [
-                            "card2"
+                            "card1"
                         ],
                         "docked": null,
                         "height": 300,
@@ -69,7 +69,9 @@
                                 "designer|userClassName": "tpl",
                                 "implHandler": [
                                     "<div style=\"height:300px;\">",
-                                    "    <p>{nom}</p>",
+                                    "    <h3>Quin és el símbol Kanji de la següent paraula?</h3>",
+                                    "    <h1>{nom}</h1>",
+                                    "    <p>(Desplaça la targeta per veure la resposta)</p>",
                                     "</div>"
                                 ],
                                 "designer|displayName": "tpl"
@@ -91,7 +93,7 @@
                         "designer|displayName": "Resposta",
                         "border": 1,
                         "cls": [
-                            "card3"
+                            "card1"
                         ],
                         "docked": null,
                         "height": 300,
@@ -114,7 +116,7 @@
                                 "designer|userClassName": "tpl",
                                 "implHandler": [
                                     "<div style=\"height:300px;\">",
-                                    "    <p>{id}</p>",
+                                    "    <h2>{nom}</h2>",
                                     "</div>"
                                 ],
                                 "designer|displayName": "tpl"
@@ -164,10 +166,10 @@
                 "left": 15,
                 "top": 315,
                 "ui": "decline-round",
-                "width": 140,
+                "width": 150,
                 "iconCls": "delete",
                 "iconMask": true,
-                "text": "Fallada"
+                "text": "He fallat"
             },
             "designerId": "af426910-e06a-470b-9a51-8cb91ef89c17"
         },
@@ -187,11 +189,11 @@
                 "right": 15,
                 "top": 315,
                 "ui": "confirm-round",
-                "width": 140,
+                "width": 150,
                 "iconAlign": "right",
                 "iconCls": "favorites",
                 "iconMask": true,
-                "text": "Encert"
+                "text": "He encertat"
             },
             "designerId": "97425bde-da30-4068-b9a6-6e1343ba671c"
         }

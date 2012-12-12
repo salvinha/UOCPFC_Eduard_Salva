@@ -10,8 +10,8 @@
         "designer|userClassName": "DetallParaula",
         "id": "DetallParaula",
         "itemId": "DetallParaula",
-        "minHeight": 500,
-        "style": "overflow: hidden;",
+        "minHeight": null,
+        "style": "background-color: #ccc;",
         "layout": "vbox"
     },
     "id": "ExtBox1-ext-gen5352",
@@ -26,18 +26,17 @@
             "codeClass": null,
             "userConfig": {
                 "layout|flex": 0,
-                "container|animation": "pop",
                 "designer|userClassName": "MyContainer4",
                 "designer|displayName": "ParaulaTarjeta",
                 "cls": [
-                    "card3"
+                    "card1"
                 ],
-                "height": "100%",
+                "height": null,
                 "id": "paraulaTarjeta",
                 "minHeight": 500,
                 "ui": "light",
                 "width": "100%",
-                "layout": "card",
+                "layout": "fit",
                 "scrollable": null
             },
             "designerId": "5210aaa6-0254-4b79-83c8-026a1a63583b",
@@ -53,9 +52,9 @@
                         "designer|userClassName": "tpl",
                         "implHandler": [
                             "<div>",
-                            "    <p>{textcat}</p>",
-                            "    <h1>{textjap}</h1>",
-                            "    <p>{pronjap}</p>",
+                            "    <h1>{textcat}</h1>",
+                            "    <h2>{textjap}</h2>",
+                            "    <p>({pronjap})</p>",
                             "</div>"
                         ],
                         "designer|displayName": "tpl"
