@@ -53,7 +53,7 @@ Ext.define('IdiomesApp.view.ListPanel2', {
         if (e.direction == "left") {
             var del = Ext.create("Ext.Button", {
                 ui: "decline",
-                text: "Delete",
+                text: "Esborra",
                 style: "position:relative;width:100px;",
                 handler: function() {
                     Ext.Msg.confirm("Alerta", "Estàs segur que vols esborrar aquesta llista d'estudi?", 

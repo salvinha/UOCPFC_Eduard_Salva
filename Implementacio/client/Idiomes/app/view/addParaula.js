@@ -37,19 +37,22 @@ Ext.define('IdiomesApp.view.addParaula', {
                         label: 'Català',
                         name: 'textcat',
                         required: true,
-                        autoCapitalize: true
+                        autoCapitalize: true,
+                        placeHolder: 'Texte en català de la nova paraula'
                     },
                     {
                         xtype: 'textfield',
                         label: 'Kanji',
                         name: 'textjap',
-                        required: true
+                        required: true,
+                        placeHolder: 'Símbol Kanji de la nova paraula'
                     },
                     {
                         xtype: 'textfield',
-                        label: 'Pronunciació (Jap)',
+                        label: 'Pronunciació',
                         name: 'pronjap',
-                        required: true
+                        required: true,
+                        placeHolder: 'Pronunciació en japonès de la nova paraula'
                     },
                     {
                         xtype: 'selectfield',
@@ -57,7 +60,7 @@ Ext.define('IdiomesApp.view.addParaula', {
                         itemId: 'selectFieldLlista',
                         label: 'Llista',
                         name: 'llista',
-                        placeHolder: 'Llista d\'estudi',
+                        placeHolder: 'Abans ha de tenir llistes d\'estudi creades',
                         displayField: 'nom',
                         store: 'llistaJson',
                         valueField: 'id'
@@ -87,31 +90,39 @@ Ext.define('IdiomesApp.view.addParaula', {
             store = Ext.getCmp('paraulesList').getStore(),
             paraulaRecord = form.getValues();
 
-        if (!IdiomesApp.idNovaParaula){
-            IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;
+        if (paraulaRecord.textcat!=="" & paraulaRecord.textjap!=="" & paraulaRecord.pronjap!=="" & paraulaRecord.llista!==null){
+
+            if (!IdiomesApp.idNovaParaula){
+                IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;
+            }else{
+                IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;
+            }
+
+            //Nou registre en l'emmagatzematge local
+            paraulaRecord.id=IdiomesApp.idNovaParaula;
+            store.add(paraulaRecord);
+
+            //Confirmation
+            form.reset();
+            Ext.getCmp('paraulesList').deselectAll();
+
+            IdiomesApp.titol=IdiomesApp.titolAux;
+
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('diccionari').remove(form,true);
+
+            Ext.getCmp('listPanel').setHidden(false);
+            Ext.getCmp('novaParaula').setHidden(false);
+
+            Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+            Ext.getCmp('diccionari').removeAt(1);
+
         }else{
-            IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;
+
+            Ext.Msg.alert('Error',"Tots els camps són obligatoris");
+
         }
-
-        //Nou registre en l'emmagatzematge local
-        paraulaRecord.id=IdiomesApp.idNovaParaula;
-        store.add(paraulaRecord);
-
-        //Confirmation
-        form.reset();
-        Ext.getCmp('paraulesList').deselectAll();
-
-        IdiomesApp.titol=IdiomesApp.titolAux;
-
-        Ext.getCmp('enrere').setHidden(true);
-        Ext.getCmp('diccionari').remove(form,true);
-
-        Ext.getCmp('listPanel').setHidden(false);
-        Ext.getCmp('novaParaula').setHidden(false);
-
-        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-
-        Ext.getCmp('diccionari').removeAt(1);
     }
 
 });
