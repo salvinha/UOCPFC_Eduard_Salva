@@ -27,6 +27,7 @@ Ext.define('IdiomesApp.view.ListPanel2', {
                 xtype: 'list',
                 id: 'llistesestudiList',
                 itemId: 'mylist2',
+                emptyText: '<h1>No existeixen llistes</h1>',
                 itemTpl: [
                     '<div class="deleteplaceholder">',
                     '    <h3>{nom}</h3>',

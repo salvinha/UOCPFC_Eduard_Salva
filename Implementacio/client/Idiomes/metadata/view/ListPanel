@@ -27,6 +27,7 @@
                 "id": "paraulesList",
                 "itemId": "mylist",
                 "style": null,
+                "emptyText": "<h1>Diccionari buit</h1>",
                 "loadingText": "Carregant...",
                 "store": "paraulaJson",
                 "grouped": true,
@@ -44,10 +45,9 @@
                     "userConfig": {
                         "designer|userClassName": "itemTpl",
                         "implHandler": [
-                            "<div style=\"height:85px;\">",
+                            "<div style=\"height:60px;\">",
                             "    <h3>{textcat}</h3>",
                             "    <h4>{textjap}</h4>",
-                            "    <p>({pronjap})</p>",
                             "</div>"
                         ],
                         "designer|displayName": "itemTpl"

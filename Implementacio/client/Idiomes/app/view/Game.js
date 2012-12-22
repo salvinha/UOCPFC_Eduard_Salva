@@ -22,7 +22,7 @@ Ext.define('IdiomesApp.view.Game', {
         items: [
             {
                 xtype: 'carousel',
-                height: 300,
+                height: 200,
                 id: 'carruselParaules',
                 itemId: 'carruselParaules',
                 items: [
@@ -32,7 +32,7 @@ Ext.define('IdiomesApp.view.Game', {
                         cls: [
                             'card1'
                         ],
-                        height: 300,
+                        height: 200,
                         html: '',
                         id: 'pregunta',
                         tpl: [
@@ -53,7 +53,7 @@ Ext.define('IdiomesApp.view.Game', {
                         cls: [
                             'card1'
                         ],
-                        height: 300,
+                        height: 200,
                         id: 'resposta',
                         tpl: [
                             '<div style="height:300px;">',
@@ -69,33 +69,90 @@ Ext.define('IdiomesApp.view.Game', {
                 ]
             },
             {
+                xtype: 'container',
+                docked: 'bottom',
+                ui: 'light',
+                layout: {
+                    type: 'fit'
+                },
+                items: [
+                    {
+                        xtype: 'toolbar',
+                        docked: 'bottom',
+                        ui: 'light',
+                        title: '',
+                        layout: {
+                            align: 'center',
+                            pack: 'center',
+                            type: 'hbox'
+                        },
+                        items: [
+                            {
+                                xtype: 'button',
+                                disabled: true,
+                                id: 'pendents',
+                                itemId: 'mybutton13',
+                                iconCls: 'time',
+                                iconMask: true,
+                                text: 'Pendents',
+                                listeners: [
+                                    {
+                                        fn: function(component, options) {
+                                            //var comptadorPendents = this.getCount();
+                                            var comptadorPendents = 10;
+                                            Ext.getCmp('pendents').setBadgeText(comptadorPendents);
+                                        },
+                                        event: 'initialize'
+                                    }
+                                ]
+                            },
+                            {
+                                xtype: 'button',
+                                disabled: true,
+                                id: 'encerts',
+                                itemId: 'mybutton14',
+                                badgeText: '0',
+                                iconAlign: 'right',
+                                iconCls: 'star',
+                                iconMask: true,
+                                text: 'Encerts'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                xtype: 'label',
+                centered: true,
+                hidden: true,
+                html: '<p>Has encertat?</p>',
+                id: 'hasencertat'
+            },
+            {
                 xtype: 'button',
-                docked: 'left',
                 height: 50,
                 hidden: true,
                 id: 'fallada',
                 left: 15,
-                top: 315,
+                top: 230,
                 ui: 'decline-round',
-                width: 150,
                 iconCls: 'delete',
                 iconMask: true,
-                text: 'He fallat'
+                text: 'No'
             },
             {
                 xtype: 'button',
-                docked: 'right',
                 height: 50,
                 hidden: true,
                 id: 'encert',
+                itemId: 'mybutton1',
                 right: 15,
-                top: 315,
+                top: 230,
                 ui: 'confirm-round',
-                width: 150,
                 iconAlign: 'right',
                 iconCls: 'favorites',
                 iconMask: true,
-                text: 'He encertat'
+                text: 'Sí'
             }
         ],
         listeners: [
@@ -103,17 +160,46 @@ Ext.define('IdiomesApp.view.Game', {
                 fn: 'onCarruselParaulesActiveItemChange',
                 event: 'activeitemchange',
                 delegate: '#carruselParaules'
+            },
+            {
+                fn: 'onEncertTap',
+                event: 'tap',
+                delegate: '#encert'
             }
         ]
     },
 
     onCarruselParaulesActiveItemChange: function(container, value, oldValue, options) {
         if(value.config.id == 'pregunta'){
+            Ext.getCmp('hasencertat').setHidden(true);
             Ext.getCmp('fallada').setHidden(true);
             Ext.getCmp('encert').setHidden(true);
         }else{
+            Ext.getCmp('hasencertat').setHidden(false);
             Ext.getCmp('fallada').setHidden(false);
             Ext.getCmp('encert').setHidden(false);
+        }
+    },
+
+    onEncertTap: function(button, e, options) {
+        var comptadorEncerts = Ext.getCmp('encerts')._badgeText;
+        var comptadorPendents = Ext.getCmp('pendents')._badgeText;
+        //Incrementa el comptador de targetes (paraules de la llista d'estudi) encertades
+        Ext.getCmp('encerts').setBadgeText(parseInt(comptadorEncerts)+parseInt(1));
+        //Decreix el nombre de targetes (paraules de la llista d'estudi) pendents de resoldre
+        Ext.getCmp('pendents').setBadgeText(parseInt(comptadorPendents)-parseInt(1));
+
+        if(Ext.getCmp('pendents')._badgeText === 0){
+            Ext.Msg.alert('Felicitats','Ho has fet molt bé!');
+            Ext.getCmp('game').destroy();
+            IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
+            Ext.getCmp('listPanel3').setHidden(false);
+            Ext.getCmp('novaLlista').setHidden(true);
+            Ext.getCmp('novaParaula').setHidden(true);
+
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('nouJoc').setHidden(true);
+            Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
         }
     }
 

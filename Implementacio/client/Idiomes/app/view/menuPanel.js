@@ -51,6 +51,15 @@ Ext.define('IdiomesApp.view.menuPanel', {
                         xtype: 'listpanel',
                         itemId: 'listPanel',
                         width: '100%'
+                    },
+                    {
+                        xtype: 'panel',
+                        hidden: true,
+                        html: 'Comenci per donar d\'alta noves paraules',
+                        id: 'avisDiccionariBuit',
+                        padding: 10,
+                        right: 0,
+                        top: 15
                     }
                 ]
             },
@@ -247,17 +256,6 @@ Ext.define('IdiomesApp.view.menuPanel', {
         IdiomesApp.titol=value.config.title;
         IdiomesApp.titolAux=value.config.title;
 
-        //Secció anterior
-        /*if (oldValue.config.id == 'diccionari'){
-        Ext.getCmp('listPanel').destroy();
-        }
-        if (oldValue.config.id == 'llistesdestudi'){
-        Ext.getCmp('listPanel2').destroy();
-        }
-        if (oldValue.config.id == 'flashcards'){
-        Ext.getCmp('game').destroy();
-        }*/
-
         //Secció nova
         if (value.config.id == 'diccionari'){
             if (Ext.getCmp('DetallParaula')){
@@ -272,6 +270,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('paraulaJson').load();
         }
         if (value.config.id == 'llistesdestudi'){
             Ext.getCmp('editarParaula').setHidden(true);

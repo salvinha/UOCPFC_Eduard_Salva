@@ -27,6 +27,7 @@
                 "id": "llistesestudiListFlashcards",
                 "itemId": "mylist3",
                 "style": null,
+                "emptyText": "<h1>No existeixen llistes</h1>",
                 "loadingText": "Carregant...",
                 "store": "llistaJson",
                 "disableSelection": false,

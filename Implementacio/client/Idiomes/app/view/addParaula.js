@@ -35,7 +35,7 @@ Ext.define('IdiomesApp.view.addParaula', {
                     {
                         xtype: 'textfield',
                         label: 'Català',
-                        name: 'textcat',
+                        name: 'text_catala',
                         required: true,
                         autoCapitalize: true,
                         placeHolder: 'Texte en català de la nova paraula'
@@ -43,14 +43,14 @@ Ext.define('IdiomesApp.view.addParaula', {
                     {
                         xtype: 'textfield',
                         label: 'Kanji',
-                        name: 'textjap',
+                        name: 'text_japones',
                         required: true,
                         placeHolder: 'Símbol Kanji de la nova paraula'
                     },
                     {
                         xtype: 'textfield',
                         label: 'Pronunciació',
-                        name: 'pronjap',
+                        name: 'pron_japones',
                         required: true,
                         placeHolder: 'Pronunciació en japonès de la nova paraula'
                     },
@@ -69,6 +69,27 @@ Ext.define('IdiomesApp.view.addParaula', {
             },
             {
                 xtype: 'button',
+                handler: function(button, event) {
+                    Ext.Ajax.request({
+                        method: 'POST',
+                        url: 'http://eduardcapell.com/pfc2012/crear_concepte_paraula',
+                        /*params:{
+                        text_catala:  paraulaRecord.textcat,
+                        text_japones: paraulaRecord.textjap
+                        },*/
+                        success: function (result, request){
+                            console.log(result);
+                            var jsonData = Ext.util.JSON.decode(result.responseText);
+                            Ext.Msg.alert('Success', 'Data return from the server: '+ jsonData.msg); 
+                        },
+                        failure: function (result, request){ 
+                            Ext.Msg.alert('Failed', result.responseText); 
+                        } 
+                    });
+
+                    //Carrega de nou la petició de la llista per refrescar els elements
+                    Ext.getStore('paraulaJson').load();
+                },
                 itemId: 'submit',
                 ui: 'confirm',
                 iconCls: 'add',
@@ -90,7 +111,7 @@ Ext.define('IdiomesApp.view.addParaula', {
             store = Ext.getCmp('paraulesList').getStore(),
             paraulaRecord = form.getValues();
 
-        if (paraulaRecord.textcat!=="" & paraulaRecord.textjap!=="" & paraulaRecord.pronjap!=="" & paraulaRecord.llista!==null){
+        if (paraulaRecord.text_catala!=="" & paraulaRecord.text_japones!=="" & paraulaRecord.pron_japones!=="" & paraulaRecord.llista!==null){
 
             if (!IdiomesApp.idNovaParaula){
                 IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;
@@ -98,9 +119,11 @@ Ext.define('IdiomesApp.view.addParaula', {
                 IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;
             }
 
+            //SLORCA: comentam aquestes línies perquè estam usant un manejat que realitza
+            //la petició de guardar al servidor
             //Nou registre en l'emmagatzematge local
-            paraulaRecord.id=IdiomesApp.idNovaParaula;
-            store.add(paraulaRecord);
+            //paraulaRecord.id=IdiomesApp.idNovaParaula;
+            //store.add(paraulaRecord);
 
             //Confirmation
             form.reset();

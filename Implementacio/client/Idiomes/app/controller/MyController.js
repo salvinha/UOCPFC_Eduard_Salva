@@ -46,6 +46,14 @@ Ext.define('IdiomesApp.controller.MyController', {
             Ext.getCmp('novaParaula').setHidden(false);
             Ext.getCmp('editarParaula').setHidden(true);
             Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('paraulaJson').load();
+            /*if (Ext.getStore('paraulaJson').getCount() === 0){
+            Ext.getCmp('avisDiccionariBuit').setHidden(false);
+            Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));
+            }else{
+            Ext.getCmp('avisDiccionariBuit').setHidden(true);
+            }*/
         }else if (IdiomesApp.titol=="Nova paraula" || IdiomesApp.titol=="Edició de paraula"){
             if (IdiomesApp.titol=="Edició de paraula"){
                 Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);
@@ -56,7 +64,15 @@ Ext.define('IdiomesApp.controller.MyController', {
             IdiomesApp.titol="Diccionari";
             Ext.getCmp('listPanel').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
-            Ext.getCmp('novaParaula').setHidden(false);    
+            Ext.getCmp('novaParaula').setHidden(false);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('paraulaJson').load();
+            /*if (Ext.getStore('paraulaJson').getCount() === 0){
+            Ext.getCmp('avisDiccionariBuit').setHidden(false);
+            Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));
+            }else{
+            Ext.getCmp('avisDiccionariBuit').setHidden(true);
+            }*/
         }else if (IdiomesApp.titol=="Nova llista d'estudi" || IdiomesApp.titol=="Edició de llista d'estudi"){
             if (IdiomesApp.titol=="Edició de llista d'estudi"){
                 Ext.getCmp('llistesdestudi').remove(Ext.getCmp('editLlista'),true);
@@ -67,7 +83,9 @@ Ext.define('IdiomesApp.controller.MyController', {
             IdiomesApp.titol="Llistes d'estudi";
             Ext.getCmp('listPanel2').setHidden(false);
             Ext.getCmp('enrere').setHidden(true);
-            Ext.getCmp('novaLlista').setHidden(false);  
+            Ext.getCmp('novaLlista').setHidden(false);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('llistaJson').load();
         }else{
             console.log('Cas no contemplat mentre es prem el botó Enrere');
         }

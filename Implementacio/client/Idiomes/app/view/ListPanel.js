@@ -27,11 +27,11 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 xtype: 'list',
                 id: 'paraulesList',
                 itemId: 'mylist',
+                emptyText: '<h1>Diccionari buit</h1>',
                 itemTpl: [
-                    '<div style="height:85px;">',
+                    '<div style="height:60px;">',
                     '    <h3>{textcat}</h3>',
                     '    <h4>{textjap}</h4>',
-                    '    <p>({pronjap})</p>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',

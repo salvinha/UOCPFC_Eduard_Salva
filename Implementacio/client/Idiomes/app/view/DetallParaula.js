@@ -20,31 +20,34 @@ Ext.define('IdiomesApp.view.DetallParaula', {
         id: 'DetallParaula',
         itemId: 'DetallParaula',
         style: 'background-color: #ccc;',
+        ui: 'light',
+        width: '100%',
         layout: {
-            align: 'start',
-            type: 'vbox'
+            type: 'fit'
         },
+        scrollable: false,
         items: [
             {
                 xtype: 'container',
-                flex: 0,
                 cls: [
                     'card1'
                 ],
+                docked: 'top',
                 id: 'paraulaTarjeta',
                 minHeight: 500,
                 tpl: [
                     '<div>',
                     '    <h1>{textcat}</h1>',
                     '    <h2>{textjap}</h2>',
-                    '    <p>({pronjap})</p>',
+                    '    <p>{pronjap}</p>',
                     '</div>'
                 ],
                 ui: 'light',
                 width: '100%',
                 layout: {
                     type: 'fit'
-                }
+                },
+                scrollable: 'vertical'
             }
         ]
     }

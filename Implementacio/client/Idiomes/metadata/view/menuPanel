@@ -68,6 +68,25 @@
                     },
                     "designerId": "5e895623-f3b9-4bb5-b0af-54e132be8065",
                     "masterInstanceId": "ExtBox1-ext-gen16364"
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel3",
+                        "hidden": true,
+                        "html": "Comenci per donar d'alta noves paraules",
+                        "id": "avisDiccionariBuit",
+                        "left": null,
+                        "padding": 10,
+                        "right": 0,
+                        "top": 15
+                    },
+                    "designerId": "855818e7-32df-4471-96d9-7ebcb1424315"
                 }
             ]
         },
@@ -408,17 +427,6 @@
                     "IdiomesApp.titol=value.config.title;",
                     "IdiomesApp.titolAux=value.config.title;",
                     "",
-                    "//Secció anterior",
-                    "/*if (oldValue.config.id == 'diccionari'){",
-                    "Ext.getCmp('listPanel').destroy();",
-                    "}",
-                    "if (oldValue.config.id == 'llistesdestudi'){",
-                    "Ext.getCmp('listPanel2').destroy();",
-                    "}",
-                    "if (oldValue.config.id == 'flashcards'){",
-                    "Ext.getCmp('game').destroy();",
-                    "}*/",
-                    "",
                     "//Secció nova",
                     "if (value.config.id == 'diccionari'){",
                     "    if (Ext.getCmp('DetallParaula')){",
@@ -433,6 +441,8 @@
                     "    Ext.getCmp('listPanel').setHidden(false);",
                     "    Ext.getCmp('novaLlista').setHidden(true);",
                     "    Ext.getCmp('novaParaula').setHidden(false);",
+                    "    //Carrega de nou la petició de la llista per refrescar els elements",
+                    "    Ext.getStore('paraulaJson').load();",
                     "}",
                     "if (value.config.id == 'llistesdestudi'){",
                     "    Ext.getCmp('editarParaula').setHidden(true);",

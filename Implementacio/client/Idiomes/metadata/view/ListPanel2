@@ -27,6 +27,7 @@
                 "id": "llistesestudiList",
                 "itemId": "mylist2",
                 "style": null,
+                "emptyText": "<h1>No existeixen llistes</h1>",
                 "loadingText": "Carregant...",
                 "store": "llistaJson",
                 "disableSelection": false,
