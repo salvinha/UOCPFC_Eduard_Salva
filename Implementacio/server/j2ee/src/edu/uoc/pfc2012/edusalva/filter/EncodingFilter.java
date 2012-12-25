@@ -8,6 +8,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -22,6 +24,9 @@ public class EncodingFilter implements Filter {
 		// Tomcat Connector configuration to accept UTF-8 requests: URIEncoding="UTF-8"
 		res.setCharacterEncoding(PFCConstants.HTTP_RESPONSE_ENCODING);
 		res.setContentType(PFCConstants.HTTP_RESPONSE_CONTENT_TYPE);
+
+		HttpServletResponse hr = (HttpServletResponse) res;
+		hr.addHeader("Access-Control-Allow-Origin", "*");
 		
 		// At this point, the request may be forwarded.
 		chain.doFilter(req, res);

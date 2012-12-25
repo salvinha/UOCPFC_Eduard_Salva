@@ -2,7 +2,9 @@ package edu.uoc.pfc2012.edusalva.db;
 
 import java.io.InvalidObjectException;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Properties;
+import java.util.Vector;
 
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
@@ -14,6 +16,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
+import com.mongodb.WriteResult;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
@@ -136,8 +139,8 @@ public class DBController {
 				k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
 				k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
 				k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
-				k.setAudioCatala(null);
-				k.setAudioJapones(null);
+				k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
+				k.setAudioJapones(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_JP).toString()));
 
 				return k;
 			}
@@ -222,6 +225,62 @@ public class DBController {
 		} finally {
 			closeDB();
 		}
+	}
+
+	public static boolean deleteKoncept(String id) {
+		DBCollection coll = null;
+		try {
+			coll = getDBCollection();
+			DBObject search = new BasicDBObject("_id", new ObjectId(id));
+			DBObject found = coll.findOne(search);
+			if (found != null) {
+				WriteResult res =  coll.remove(found);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeDB();
+		}
+	}
+
+	public static List<KoncepteParaula> getWordList(int maxResults) {
+		DBCollection coll = null;
+		try {
+			coll = getDBCollection();
+			List<KoncepteParaula> list = new Vector<KoncepteParaula>();
+			
+			BasicDBObject query = new BasicDBObject();
+			DBCursor cursor = coll.find(query).batchSize(maxResults);
+			if (cursor != null) {
+				while (cursor.hasNext()) {
+					DBObject dbo = cursor.next();
+					KoncepteParaula k = new KoncepteParaula();
+					
+					k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
+					k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
+					k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+					if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
+						k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
+					}
+					if (dbo.get(PFCConstants.DB_FIELD_AUDIO_JP) != null) {
+						k.setAudioJapones(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_JP).toString()));
+					}
+					
+					list.add(k);
+				}
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return null;
 	}
 
 }

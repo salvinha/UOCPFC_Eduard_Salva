@@ -8,6 +8,36 @@ public class KoncepteParaula {
 	private String audioCatala;
 	private String audioJapones;
 	
+	/**
+	 * Per compatibilitat amb app client.
+	 * @return
+	 */
+	public String getTextcat() {
+		return getTextCatala();
+	}
+	
+	
+	/**
+	 * Per compatibilitat amb app client.
+	 * @return
+	 */
+	public String getTextjap() {
+		return getTextJapones();
+	}
+	
+	
+	/**
+	 * Per compatibilitat amb app client.
+	 * @return
+	 */
+	public String getPronjap() {
+		return "";
+	}
+	
+	public String getLlista() {
+		return "1";
+	}
+	
 	public KoncepteParaula() {}
 
 	public String getId() {

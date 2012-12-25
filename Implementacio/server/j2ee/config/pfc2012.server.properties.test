@@ -1,1 +1,3 @@
 server.mp3.root = /Users/edu/Documents/programacio/pfc2012/mp3
+
+server.list.maxResults = 10

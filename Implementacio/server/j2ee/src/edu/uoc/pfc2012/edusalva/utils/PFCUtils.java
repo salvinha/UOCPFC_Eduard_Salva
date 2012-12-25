@@ -37,12 +37,16 @@ public abstract class PFCUtils {
 		PFC2012Request rSearch = new PFC2012Request(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA);
 		PFC2012Request rGet = new PFC2012Request(PFCConstants.PATH_GET_CONCEPTE_PARAULA);
 		PFC2012Request rGetSound = new PFC2012Request(PFCConstants.PATH_GET_SOUND);
+		PFC2012Request rGetWordList = new PFC2012Request(PFCConstants.PATH_LIST_WORDS);
+		PFC2012Request rDeleteWord = new PFC2012Request(PFCConstants.PATH_DELETE_WORD);
 		
 		requests.put(PFCConstants.PATH_CREATE_CONCEPTE_PARAULA, rCreate);
 		requests.put(PFCConstants.PATH_EDIT_CONCEPTE_PARAULA, rEdit);
 		requests.put(PFCConstants.PATH_SEARCH_CONCEPTE_PARAULA, rSearch);
 		requests.put(PFCConstants.PATH_GET_CONCEPTE_PARAULA, rGet);
 		requests.put(PFCConstants.PATH_GET_SOUND, rGetSound);
+		requests.put(PFCConstants.PATH_LIST_WORDS, rGetWordList);
+		requests.put(PFCConstants.PATH_DELETE_WORD, rDeleteWord);
 	}
 	
 	
@@ -89,6 +93,10 @@ public abstract class PFCUtils {
 			return;
 		} else if (path.equals(PFCConstants.PATH_GET_SOUND)) {
 			return;
+		} else if (path.equals(PFCConstants.PATH_LIST_WORDS)) {
+			return;
+		} else if (path.equals(PFCConstants.PATH_DELETE_WORD)) {
+			return;
 		}
 		
 		throw new WrongPathException("Path is not valid: '" + path + "'");
@@ -96,6 +104,9 @@ public abstract class PFCUtils {
 	
 	
 	public static final void checkRequestMethod(HttpServletRequest req) throws WrongMethodException {
+		if (true)
+			return;
+		
 		if (req == null) {
 			throw new WrongMethodException("Request is null!");
 		}
@@ -111,7 +122,11 @@ public abstract class PFCUtils {
 	}
 
 	public static void checkRequestParameters(HttpServletRequest hr) throws WrongRequestParametersException {
+		if (true) {
+			return; // TODO Not checking params.
+		}
 		Enumeration<String> names = hr.getParameterNames();
+		
 		String path = hr.getPathInfo();
 		PFC2012Request r = requests.get(path);
 		
@@ -119,6 +134,7 @@ public abstract class PFCUtils {
 		Set<String> optional = r.getOptional();
 		
 		int nMandatory = mandatory.size();
+		logger.info("We have " + nMandatory + " mandatory parameters.");
 		int foundOptional = 0;
 		
 		while (names.hasMoreElements()) {

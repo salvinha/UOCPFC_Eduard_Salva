@@ -28,12 +28,27 @@ public abstract class WorkerFactory {
 			return getKoncept(req, res, path, params);
 		} else if (PFCConstants.PATH_GET_SOUND.equals(path)) {
 			return getSound(req, res, path, params);
+		} else if (PFCConstants.PATH_LIST_WORDS.equals(path)) {
+			return getWordList(req, res, path, params);
+		} else if (PFCConstants.PATH_DELETE_WORD.equals(path)) {
+			return deleteWord(req, res, path, params);
 		}
 		
 		// TODO throw Exception
 		return null;
 	}
 	
+	private static AbstractWorker deleteWord(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
+		// TODO Auto-generated method stub
+		DeleteWordWorker w = new DeleteWordWorker(req, res, path, params);
+		return w;
+	}
+
+	private static GetWordListWorker getWordList(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
+		GetWordListWorker w = new GetWordListWorker(req, res, path, params);
+		return w;
+	}
+
 	private static CreateKonceptWorker createKoncept(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		CreateKonceptWorker w = new CreateKonceptWorker(req, res, path, params);
 		return w;

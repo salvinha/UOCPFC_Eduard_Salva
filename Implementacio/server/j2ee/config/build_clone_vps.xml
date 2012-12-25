@@ -79,7 +79,7 @@
 
 	<target name="deploy" depends="dist">
 	    <echo message="Deploying on pre-production instance..."/>
-	    <scp file="${dist}/${warfile}" todir="edu:29uce3do@clone.vps:/home/edu"/>
+	    <scp file="${dist}/${warfile}" todir="edu:edu@clone.vps:/home/edu"/>
 	</target>
 
 </project>

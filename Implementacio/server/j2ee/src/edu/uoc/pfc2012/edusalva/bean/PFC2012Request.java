@@ -44,7 +44,14 @@ public class PFC2012Request {
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_ID);
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA);
 			setMinimumOptional(0);
+		} else if (PFCConstants.PATH_LIST_WORDS.equals(getPath())) {
+			optional.add(PFCConstants.HTTP_REQUEST_PARAM_MAX_RESULTS);
+			setMinimumOptional(0);
 		}
+		
+		optional.add("false");
+		optional.add("_dc");
+		optional.add("callback");
 	}
 
 	@Override
