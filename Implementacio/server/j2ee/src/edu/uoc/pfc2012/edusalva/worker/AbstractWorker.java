@@ -1,18 +1,47 @@
 package edu.uoc.pfc2012.edusalva.worker;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public abstract class AbstractWorker {
+import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
+
+public abstract class AbstractWorker {
+	private static final Logger logger = Logger.getLogger(AbstractWorker.class.getName());
+	
+	
 	private Map<String, String[]> params;
 	private String path;
 	private HttpServletRequest req;
 	private HttpServletResponse res;
 
 	public abstract void processRequest();
+	
+	public void writeResponse(ResponseBean rb) {
+		if (rb == null) {
+			return;
+		}
+		
+		ObjectMapper m = new ObjectMapper();
+		try {
+			Writer w = getRes().getWriter();
+			m.writeValue(w, rb);
+			w.flush();
+			w.close();
+		} catch (IOException e) {
+			logger.error("Error writing response...");
+		}
+	}
 
 	public Map<String, String[]> getParams() {
 		return params;

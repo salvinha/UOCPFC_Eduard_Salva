@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.KonceptResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
@@ -35,10 +38,9 @@ public class EditKonceptWorker extends AbstractWorker {
 		String id = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_ID)[0];
 		
 		KoncepteParaula k = null;
-
+		ResponseBean rb = null;
+		
 		try {
-			Writer w = getRes().getWriter();
-			ObjectMapper mapper = new ObjectMapper();
 			k = DBController.findById(id);
 			
 			if (k != null) {
@@ -64,14 +66,12 @@ public class EditKonceptWorker extends AbstractWorker {
 				// Values replaced. We will now save to DB.
 				DBController.update(k);
 				
-				
-				mapper.writeValue(w, k);		
+				rb = new KonceptResponseBean(k);
 			} else {
-				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
+				rb = new ErrorResponseBean("No es troba la paraula a modificar.");
 			}
-
-			w.flush();
-			w.close();
+			
+			writeResponse(rb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -15,6 +15,9 @@ import org.apache.tomcat.util.bcel.classfile.Constant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.WordListResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
@@ -51,20 +54,12 @@ public class GetWordListWorker extends AbstractWorker {
 		}
 		
 		List<KoncepteParaula> list = DBController.getWordList(maxResults);
-		logger.info("Got " + (list != null ?  list.size() : 0) + " results.");
+		
+		ResponseBean rb = null;
 		
 		try {
-			Writer w = getRes().getWriter();
-			ObjectMapper mapper = new ObjectMapper();
-			
-			if (list != null) {
-				mapper.writeValue(w, list);
-			} else {
-				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
-			}
-			
-			w.flush();
-			w.close();
+			rb = (list == null || list.size() == 0) ? new ErrorResponseBean("No s'ha trobat cap paraula.") : new WordListResponseBean(list);
+			writeResponse(rb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

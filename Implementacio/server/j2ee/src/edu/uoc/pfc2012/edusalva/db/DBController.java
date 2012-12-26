@@ -124,7 +124,7 @@ public class DBController {
 			String fieldText = null;
 			if (PFCConstants.LANG_CAT.equals(idioma)) {
 				fieldText = PFCConstants.DB_FIELD_TEXT_CA;
-			} else if (PFCConstants.LANG_CAT.equals(idioma)) {
+			} else if (PFCConstants.LANG_JAP.equals(idioma)) {
 				fieldText = PFCConstants.DB_FIELD_TEXT_JP;
 			} else {
 				return null;
@@ -139,13 +139,20 @@ public class DBController {
 				k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
 				k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
 				k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
-				k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
-				k.setAudioJapones(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_JP).toString()));
-
+				
+				if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
+					k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
+				}
+				
+				if (dbo.get(PFCConstants.DB_FIELD_AUDIO_JP) != null) {
+					k.setAudioJapones(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_JP).toString()));
+				}
+				
 				return k;
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			closeDB();
 		}

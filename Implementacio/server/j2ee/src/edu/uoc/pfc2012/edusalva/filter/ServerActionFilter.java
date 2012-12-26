@@ -28,7 +28,6 @@ public class ServerActionFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hr = null;
 		
-		logger.info("Hola.");
 		// 1 - Request has to be HTTP.
 		try {
 			// Casting request to HttpServletRequest and checking the path.

@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.KonceptResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
@@ -28,30 +31,14 @@ public class SearchKonceptWorker extends AbstractWorker {
 
 	@Override
 	public void processRequest() {
-		logger.debug("Searching!");
-		
-		// Arriba una petició de cerca d'una paraula, cal saber text i idioma.
 		String text = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_SEARCH)[0];
 		String idioma = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_IDIOMA)[0];
 		
+		logger.info("Searching for '" + text + "' in lang '" + idioma + "' ...");
 		KoncepteParaula k = DBController.getKoncept(text, idioma);
-		Writer w = null;
-		ObjectMapper mapper = new ObjectMapper();
 		
-		try {
-			w = getRes().getWriter();
-			if (k != null) {
-				mapper.writeValue(w, k);				
-			} else {
-				throw new Exception("No results!");
-			}
-		} catch (Exception e) {
-			try {
-				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
-				w.flush();
-				w.close();
-			} catch (IOException e1) {}
-		}
+		ResponseBean rb = (k == null) ? new ErrorResponseBean("No s'ha trobat cap paraula"): new KonceptResponseBean(k);
+		writeResponse(rb);
 	}
 
 }

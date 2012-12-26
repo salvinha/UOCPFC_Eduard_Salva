@@ -20,6 +20,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.KonceptIdResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
@@ -62,8 +65,6 @@ public class CreateKonceptWorker extends AbstractWorker {
 			boolean b = DBController.konceptExists(koncept);
 			String id = null;
 			
-			Writer w = getRes().getWriter();
-			
 			if (!b) {
 				id = DBController.createKoncept(koncept);
 				koncept.setId(id);
@@ -83,20 +84,12 @@ public class CreateKonceptWorker extends AbstractWorker {
 				// Actualitzem valor audio.
 				DBController.update(koncept);
 				
-				ObjectMapper mapper = new ObjectMapper();
-				// Filtre per incloure nomes l'ID en la resposta.
-				FilterProvider filters = new SimpleFilterProvider().addFilter("id_only", SimpleBeanPropertyFilter.filterOutAllExcept("id"));
-				mapper.setFilters(filters);
-				mapper.writeValue(w, koncept.getId());
-				
-				w.write(id);
+				KonceptIdResponseBean rb = new KonceptIdResponseBean(koncept.getId());
+				writeResponse(rb);
 			} else {
-				w.write(PFCConstants.RESPONSE_WORD_ALREADY_EXISTS);
-				logger.warn("Already exists!");
+				ResponseBean rb = new ErrorResponseBean("La paraula ja existeix");
+				writeResponse(rb);
 			}
-
-			w.flush();
-			w.close();
 		} catch (Exception e) {
 			logger.error("Error processing request!");
 			e.printStackTrace();

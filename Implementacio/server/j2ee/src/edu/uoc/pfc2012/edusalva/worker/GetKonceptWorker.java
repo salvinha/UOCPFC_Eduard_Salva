@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
+import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.KonceptResponseBean;
+import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
@@ -32,23 +35,16 @@ public class GetKonceptWorker extends AbstractWorker {
 	@Override
 	public void processRequest() {
 		String id = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_ID)[0];
+		ResponseBean rb = null;
 		
 		try {
-			Writer w = getRes().getWriter();
-			ObjectMapper mapper = new ObjectMapper();
-			
 			KoncepteParaula k = DBController.findById(id);
-			if (k != null) {
-				mapper.writeValue(w, k);
-			} else {
-				mapper.writeValue(w, PFCConstants.RESPONSE_SEARCH_FOUND_NOTHING);
-			}
-			
-			w.flush();
-			w.close();
+			rb = (k == null) ? rb = new ErrorResponseBean("No s'ha trobat la paraula."): new KonceptResponseBean(k);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		writeResponse(rb);
 	}
 	
 }
