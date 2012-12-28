@@ -140,6 +140,7 @@ public class DBController {
 				k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
 				k.setTextcat(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
 				k.setTextjap(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+				k.setPronjap(dbo.get(PFCConstants.DB_FIELD_PRON_JAP).toString());
 				
 				if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
 					k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
@@ -179,6 +180,7 @@ public class DBController {
 			k.setId(id);
 			k.setTextcat(found.get("text_catala").toString());
 			k.setTextjap(found.get("text_japones").toString());
+			k.setPronjap(found.get("pronjap").toString());
 			
 			String locationAudioCA = found.get("audio_catala").toString();
 			String locationAudioJP = found.get("audio_japones").toString();
@@ -279,6 +281,8 @@ public class DBController {
 					k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
 					k.setTextcat(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
 					k.setTextjap(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+					k.setPronjap(dbo.get(PFCConstants.DB_FIELD_PRON_JAP).toString());
+					
 					if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
 						k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
 					}

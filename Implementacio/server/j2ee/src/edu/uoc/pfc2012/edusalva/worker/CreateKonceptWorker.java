@@ -60,9 +60,14 @@ public class CreateKonceptWorker extends AbstractWorker {
 		try {
 			koncept.setTextcat(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA)[0]);
 			koncept.setTextjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);
-			koncept.setIdLlista(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI)[0]);
-			koncept.setPronjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP)[0]);
-
+			if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI)) {
+				koncept.setIdLlista(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI)[0]);
+			}
+			
+			if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP)) {
+				koncept.setPronjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP)[0]);
+			}
+			
 			// TODO Gestionar amb excepcions.
 			boolean b = DBController.konceptExists(koncept);
 			String id = null;
