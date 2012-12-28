@@ -73,18 +73,24 @@ Ext.define('IdiomesApp.view.addParaula', {
                     Ext.Ajax.request({
                         method: 'POST',
                         url: 'http://eduardcapell.com/pfc2012/crear_concepte_paraula',
-                        /*params:{
-                        text_catala:  paraulaRecord.textcat,
-                        text_japones: paraulaRecord.textjap
-                        },*/
-                        success: function (result, request){
-                            console.log(result);
-                            var jsonData = Ext.util.JSON.decode(result.responseText);
-                            Ext.Msg.alert('Success', 'Data return from the server: '+ jsonData.msg); 
+                        params:{
+                            text_catala:  paraulaRecord.text_catala,
+                            text_japones: paraulaRecord.text_japones,
+                            pronjap: paraulaRecord.pron_japones,
+                            llista: paraulaRecord.llista
                         },
-                        failure: function (result, request){ 
-                            Ext.Msg.alert('Failed', result.responseText); 
-                        } 
+                        success: function(response, opts){
+                            var obj = Ext.decode(response.responseText);
+                            if(obj.success !== true){
+                                //console.log(obj);
+                                //console.log(obj.errorMessage);
+                                Ext.Msg.alert("Informació", obj.errorMessage);
+                            }
+                        },
+                        failure: function(response){
+                            console.log('server-side failure with status code: ' + response.status);
+                            Ext.Msg.alert("No és possible guardar la paraula al diccionari");
+                        }
                     });
 
                     //Carrega de nou la petició de la llista per refrescar els elements
