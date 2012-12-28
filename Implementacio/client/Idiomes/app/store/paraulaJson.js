@@ -27,21 +27,6 @@ Ext.define('IdiomesApp.store.paraulaJson', {
         groupField: 'textcat',
         model: 'IdiomesApp.model.paraulaModel',
         storeId: 'paraulaJson',
-        proxy: {
-            type: 'ajax',
-            enablePagingParams: false,
-            filterParam: 'false',
-            groupParam: 'false',
-            limitParam: 'false',
-            pageParam: 'false',
-            sortParam: 'false',
-            startParam: 'false',
-            url: 'http://eduardcapell.com/pfc2012/get_words',
-            reader: {
-                type: 'json',
-                rootProperty: 'data'
-            }
-        },
         sorters: {
             id: 'ordenaParaula',
             property: 'textcat'
@@ -63,6 +48,15 @@ Ext.define('IdiomesApp.store.paraulaJson', {
         grouper: {
             groupFn: function(record) {
                 return record.get('textcat')[0];
+            }
+        },
+        proxy: {
+            type: 'ajax',
+            enablePagingParams: false,
+            url: 'http://eduardcapell.com/pfc2012/get_words',
+            reader: {
+                type: 'json',
+                rootProperty: 'list'
             }
         }
     },

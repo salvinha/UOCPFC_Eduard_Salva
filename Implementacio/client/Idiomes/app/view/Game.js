@@ -22,6 +22,7 @@ Ext.define('IdiomesApp.view.Game', {
         items: [
             {
                 xtype: 'carousel',
+                docked: 'top',
                 height: 200,
                 id: 'carruselParaules',
                 itemId: 'carruselParaules',
@@ -36,16 +37,17 @@ Ext.define('IdiomesApp.view.Game', {
                         html: '',
                         id: 'pregunta',
                         tpl: [
-                            '<div style="height:300px;">',
+                            '<div>',
                             '    <h3>Quin és el símbol Kanji de la següent paraula?</h3>',
                             '    <h1>{nom}</h1>',
                             '    <p>(Desplaça la targeta per veure la resposta)</p>',
                             '</div>'
                         ],
+                        ui: '',
                         layout: {
-                            animation: 'flip',
-                            type: 'card'
-                        }
+                            type: 'fit'
+                        },
+                        scrollable: false
                     },
                     {
                         xtype: 'container',
@@ -56,14 +58,13 @@ Ext.define('IdiomesApp.view.Game', {
                         height: 200,
                         id: 'resposta',
                         tpl: [
-                            '<div style="height:300px;">',
+                            '<div>',
                             '    <h2>{nom}</h2>',
                             '</div>'
                         ],
                         ui: '',
                         layout: {
-                            animation: 'flip',
-                            type: 'card'
+                            type: 'fit'
                         }
                     }
                 ]
@@ -133,6 +134,7 @@ Ext.define('IdiomesApp.view.Game', {
                 height: 50,
                 hidden: true,
                 id: 'fallada',
+                itemId: 'mybutton2',
                 left: 15,
                 top: 230,
                 ui: 'decline-round',
@@ -162,6 +164,11 @@ Ext.define('IdiomesApp.view.Game', {
                 delegate: '#carruselParaules'
             },
             {
+                fn: 'onFalladaTap',
+                event: 'tap',
+                delegate: '#fallada'
+            },
+            {
                 fn: 'onEncertTap',
                 event: 'tap',
                 delegate: '#encert'
@@ -179,6 +186,13 @@ Ext.define('IdiomesApp.view.Game', {
             Ext.getCmp('fallada').setHidden(false);
             Ext.getCmp('encert').setHidden(false);
         }
+    },
+
+    onFalladaTap: function(button, e, options) {
+        //Torna a la cara A (pregunta) de la targeta
+        Ext.getCmp('carruselParaules').previous();
+
+        //El servidor ens retorna la següent paraula de la llista de forma aleatòria
     },
 
     onEncertTap: function(button, e, options) {
@@ -200,6 +214,9 @@ Ext.define('IdiomesApp.view.Game', {
             Ext.getCmp('enrere').setHidden(true);
             Ext.getCmp('nouJoc').setHidden(true);
             Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+        }else{
+            //console.log("OK");
+            Ext.getCmp('carruselParaules').previous();
         }
     }
 

@@ -27,6 +27,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|userClassName": "CarruselParaules",
+                "docked": "top",
                 "height": 200,
                 "id": "carruselParaules",
                 "itemId": "carruselParaules"
@@ -41,10 +42,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "container|animation": "flip",
                         "designer|userClassName": "MyContainer2",
                         "designer|displayName": "Pregunta",
                         "border": 1,
+                        "bottom": null,
                         "cls": [
                             "card1"
                         ],
@@ -52,9 +53,11 @@
                         "height": 200,
                         "html": "",
                         "id": "pregunta",
-                        "ui": null,
+                        "top": null,
+                        "ui": "",
                         "width": null,
-                        "layout": "card"
+                        "layout": "fit",
+                        "scrollable": false
                     },
                     "designerId": "5fe0d73c-4c13-44fb-87d8-3f07e217388b",
                     "cn": [
@@ -68,7 +71,7 @@
                             "userConfig": {
                                 "designer|userClassName": "tpl",
                                 "implHandler": [
-                                    "<div style=\"height:300px;\">",
+                                    "<div>",
                                     "    <h3>Quin és el símbol Kanji de la següent paraula?</h3>",
                                     "    <h1>{nom}</h1>",
                                     "    <p>(Desplaça la targeta per veure la resposta)</p>",
@@ -88,7 +91,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "container|animation": "flip",
                         "designer|userClassName": "MyContainer2",
                         "designer|displayName": "Resposta",
                         "border": 1,
@@ -101,7 +103,7 @@
                         "id": "resposta",
                         "ui": "",
                         "width": null,
-                        "layout": "card"
+                        "layout": "fit"
                     },
                     "designerId": "83582a33-22db-4203-9c65-97cc78da923f",
                     "cn": [
@@ -115,7 +117,7 @@
                             "userConfig": {
                                 "designer|userClassName": "tpl",
                                 "implHandler": [
-                                    "<div style=\"height:300px;\">",
+                                    "<div>",
                                     "    <h2>{nom}</h2>",
                                     "</div>"
                                 ],
@@ -284,6 +286,7 @@
                 "height": 50,
                 "hidden": true,
                 "id": "fallada",
+                "itemId": "mybutton2",
                 "left": 15,
                 "top": 230,
                 "ui": "decline-round",
@@ -293,7 +296,29 @@
                 "iconMask": true,
                 "text": "No"
             },
-            "designerId": "af426910-e06a-470b-9a51-8cb91ef89c17"
+            "designerId": "af426910-e06a-470b-9a51-8cb91ef89c17",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onFalladaTap",
+                        "fn": "onFalladaTap",
+                        "implHandler": [
+                            "//Torna a la cara A (pregunta) de la targeta",
+                            "Ext.getCmp('carruselParaules').previous();",
+                            "",
+                            "//El servidor ens retorna la següent paraula de la llista de forma aleatòria"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "ec4b69f1-9bf8-4593-8bc0-7e1c8403b497"
+                }
+            ]
         },
         {
             "type": "button",
@@ -345,10 +370,13 @@
                             "    Ext.getCmp('listPanel3').setHidden(false);",
                             "    Ext.getCmp('novaLlista').setHidden(true);",
                             "    Ext.getCmp('novaParaula').setHidden(true);",
-                            "    ",
+                            "",
                             "    Ext.getCmp('enrere').setHidden(true);",
                             "    Ext.getCmp('nouJoc').setHidden(true);",
                             "    Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "}else{",
+                            "    //console.log(\"OK\");",
+                            "    Ext.getCmp('carruselParaules').previous();",
                             "}"
                         ],
                         "name": "tap"

@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userClassName": "paraulaJson",
         "autoLoad": true,
+        "autoSync": false,
         "groupDir": "ASC",
         "groupField": "textcat",
         "model": "paraulaModel",
@@ -134,19 +135,18 @@
             ]
         },
         {
-            "type": "jsonpproxy",
+            "type": "ajaxproxy",
             "reference": {
                 "name": "proxy",
                 "type": "object"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "MyJsonPProxy",
-                "extraParams": null,
-                "url": "http://eduardcapell.com/pfc2012/get_words",
-                "callbackKey": null
+                "designer|userClassName": "MyAjaxProxy1",
+                "enablePagingParams": false,
+                "url": "http://eduardcapell.com/pfc2012/get_words"
             },
-            "designerId": "a86608a4-598e-4274-af57-28f8405447f2",
+            "designerId": "82572bb0-ace0-468b-9acb-bdb91085c093",
             "cn": [
                 {
                     "type": "jsonreader",
@@ -157,9 +157,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|userClassName": "MyJsonReader",
-                        "rootProperty": "data"
+                        "rootProperty": "list"
                     },
-                    "designerId": "0704f657-1a9d-47a2-8bd3-73d089a9e11d"
+                    "designerId": "abd1fbcf-079f-433d-878d-3d80e506d648"
                 }
             ]
         }
