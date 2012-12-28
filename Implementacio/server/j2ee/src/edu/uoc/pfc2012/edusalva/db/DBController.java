@@ -64,8 +64,8 @@ public class DBController {
 		DBCollection col;
 		try {
 			BasicDBObject query = new BasicDBObject();
-			query.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextCatala());
-			query.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextJapones());
+			query.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextcat());
+			query.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextjap());
 			
 			col = getDBCollection();
 			
@@ -90,8 +90,9 @@ public class DBController {
 			coll = getDBCollection();
 			
 			BasicDBObject doc = new BasicDBObject();
-			doc.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextCatala());
-			doc.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextJapones());
+			doc.put(PFCConstants.DB_FIELD_TEXT_CA, k.getTextcat());
+			doc.put(PFCConstants.DB_FIELD_TEXT_JP, k.getTextjap());
+			doc.put(PFCConstants.DB_FIELD_LIST_ID, k.getIdLlista());
 
 			if (k.getAudioCatala() != null) {
 				doc.put(PFCConstants.DB_FIELD_AUDIO_CA, null);				
@@ -137,8 +138,8 @@ public class DBController {
 				DBObject dbo = cursor.next();
 				KoncepteParaula k = new KoncepteParaula();
 				k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
-				k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
-				k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+				k.setTextcat(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
+				k.setTextjap(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
 				
 				if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
 					k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
@@ -176,8 +177,8 @@ public class DBController {
 			
 			k = new KoncepteParaula();
 			k.setId(id);
-			k.setTextCatala(found.get("text_catala").toString());
-			k.setTextJapones(found.get("text_japones").toString());
+			k.setTextcat(found.get("text_catala").toString());
+			k.setTextjap(found.get("text_japones").toString());
 			
 			String locationAudioCA = found.get("audio_catala").toString();
 			String locationAudioJP = found.get("audio_japones").toString();
@@ -210,14 +211,22 @@ public class DBController {
 			col = getDBCollection();
 			BasicDBObject newDoc = new BasicDBObject();
 			newDoc.put("_id", new ObjectId(k.getId()));
-			if (k.getTextCatala() != null) {
-				newDoc.put("text_catala", k.getTextCatala());				
+			if (k.getTextcat() != null) {
+				newDoc.put("text_catala", k.getTextcat());				
 			}
 
-			if (k.getTextJapones() != null) {
-				newDoc.put("text_japones", k.getTextJapones());				
+			if (k.getTextjap() != null) {
+				newDoc.put("text_japones", k.getTextjap());				
 			}
 
+			if (k.getIdLlista() != null) {
+				newDoc.put("llista", k.getIdLlista());
+			}
+			
+			if (k.getPronjap() != null) {
+				newDoc.put("pronjap", k.getPronjap());
+			}
+			
 			if (k.getAudioCatala() != null) {
 				newDoc.put("audio_catala", k.getAudioCatala());				
 			}
@@ -268,8 +277,8 @@ public class DBController {
 					KoncepteParaula k = new KoncepteParaula();
 					
 					k.setId(dbo.get(PFCConstants.DB_FIELD_ID).toString());
-					k.setTextCatala(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
-					k.setTextJapones(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
+					k.setTextcat(dbo.get(PFCConstants.DB_FIELD_TEXT_CA).toString());
+					k.setTextjap(dbo.get(PFCConstants.DB_FIELD_TEXT_JP).toString());
 					if (dbo.get(PFCConstants.DB_FIELD_AUDIO_CA) != null) {
 						k.setAudioCatala(PFCUtils.getBase64FromFile(dbo.get(PFCConstants.DB_FIELD_AUDIO_CA).toString()));
 					}

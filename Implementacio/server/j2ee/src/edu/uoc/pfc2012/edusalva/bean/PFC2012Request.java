@@ -23,8 +23,11 @@ public class PFC2012Request {
 		if (PFCConstants.PATH_CREATE_CONCEPTE_PARAULA.equals(getPath())) {
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA);
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP);
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI);
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP);
 			optional.add(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA);
 			optional.add(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP);
+			optional.add(PFCConstants.HTTP_REQUEST_PARAM_PRON_CAT);
 			setMinimumOptional(0);
 		} else if (PFCConstants.PATH_EDIT_CONCEPTE_PARAULA.equals(getPath())) {
 			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_ID);

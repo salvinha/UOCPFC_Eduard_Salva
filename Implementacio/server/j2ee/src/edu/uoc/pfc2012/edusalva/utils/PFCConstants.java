@@ -20,6 +20,10 @@ public interface PFCConstants {
 	public static final String HTTP_REQUEST_PARAM_IDIOMA = "idioma";
 	public static final String HTTP_REQUEST_PARAM_ID = "id";
 	public static final String HTTP_REQUEST_PARAM_MAX_RESULTS = "max_results";
+	public static final String HTTP_REQUEST_PARAM_LLISTA_ESTUDI = "llista";
+	public static final String HTTP_REQUEST_PARAM_PRON_JAP = "pronjap";
+	public static final String HTTP_REQUEST_PARAM_PRON_CAT = "proncat";
+	
 	
 	public static final String LANG_CAT = "ca";
 	public static final String LANG_JAP = "jp";
@@ -45,6 +49,10 @@ public interface PFCConstants {
 	public static final String DB_FIELD_TEXT_JP = "text_japones";
 	public static final String DB_FIELD_AUDIO_CA = "audio_catala";
 	public static final String DB_FIELD_AUDIO_JP = "audio_japones";
+	public static final String DB_FIELD_PRON_CAT = "proncat";
+	public static final String DB_FIELD_PRON_JAP = "pronjap";
+	public static final String DB_FIELD_LIST_ID = "llista";
+	
 	public static final String DB_FIELD_ID = "_id";
 	
 	public static final String PATH_NO_PATH = "/";

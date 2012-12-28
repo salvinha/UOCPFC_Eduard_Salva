@@ -1,45 +1,28 @@
 package edu.uoc.pfc2012.edusalva.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class KoncepteParaula {
 	private String id;
+	private String idLlista;
+	
+	private String textcat;
+	private String textjap;
+	
+	@JsonIgnore
+	private String proncat;
+	
+	
+	private String pronjap;
 
-	private String textCatala;
-	private String textJapones;
+	@JsonIgnore
 	private String audioCatala;
+	
+	@JsonIgnore
 	private String audioJapones;
 	
-	/**
-	 * Per compatibilitat amb app client.
-	 * @return
-	 */
-	public String getTextcat() {
-		return getTextCatala();
-	}
-	
-	
-	/**
-	 * Per compatibilitat amb app client.
-	 * @return
-	 */
-	public String getTextjap() {
-		return getTextJapones();
-	}
-	
-	
-	/**
-	 * Per compatibilitat amb app client.
-	 * @return
-	 */
-	public String getPronjap() {
-		return "";
-	}
-	
-	public String getLlista() {
-		return "1";
-	}
-	
 	public KoncepteParaula() {}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -48,21 +31,39 @@ public class KoncepteParaula {
 		this.id = id;
 	}
 	
-	public String getTextCatala() {
-		return textCatala;
+	public String getIdLlista() {
+		return idLlista;
+	}
+	
+	public void setIdLlista(String idLlista) {
+		this.idLlista = idLlista;
+	}
+	
+	public String getTextcat() {
+		return textcat;
 	}
 
-	public void setTextCatala(String textCatala) {
-		this.textCatala = textCatala;
+	public void setTextcat(String textcat) {
+		this.textcat = textcat;
+	}
+	
+	public String getTextjap() {
+		return textjap;
 	}
 
-	public String getTextJapones() {
-		return textJapones;
+	public void setTextjap(String textJapones) {
+		this.textjap = textJapones;
 	}
-
-	public void setTextJapones(String textJapones) {
-		this.textJapones = textJapones;
+	
+	public String getPronjap() {
+		return this.pronjap;
 	}
+	
+	
+	public void setPronjap(String pronjap) {
+		this.pronjap = pronjap;
+	}
+	
 
 	public String getAudioCatala() {
 		return audioCatala;
@@ -82,8 +83,8 @@ public class KoncepteParaula {
 
 	@Override
 	public String toString() {
-		return "KoncepteParaula [textCatala=" + textCatala + ", textJapones="
-				+ textJapones + "]";
+		return "KoncepteParaula [textCatala=" + textcat + ", textJapones="
+				+ textjap + "]";
 	}
 
 	@Override
@@ -91,9 +92,9 @@ public class KoncepteParaula {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((textCatala == null) ? 0 : textCatala.hashCode());
+				+ ((textcat == null) ? 0 : textcat.hashCode());
 		result = prime * result
-				+ ((textJapones == null) ? 0 : textJapones.hashCode());
+				+ ((textjap == null) ? 0 : textjap.hashCode());
 		return result;
 	}
 
@@ -106,18 +107,24 @@ public class KoncepteParaula {
 		if (getClass() != obj.getClass())
 			return false;
 		KoncepteParaula other = (KoncepteParaula) obj;
-		if (textCatala == null) {
-			if (other.textCatala != null)
+		if (textcat == null) {
+			if (other.textcat != null)
 				return false;
-		} else if (!textCatala.equals(other.textCatala))
+		} else if (!textcat.equals(other.textcat))
 			return false;
-		if (textJapones == null) {
-			if (other.textJapones != null)
+		if (textjap == null) {
+			if (other.textjap != null)
 				return false;
-		} else if (!textJapones.equals(other.textJapones))
+		} else if (!textjap.equals(other.textjap))
 			return false;
 		return true;
 	}
-	
-	
+
+	public void setProncat(String proncat) {
+		this.proncat = proncat;
+	}
+
+	public String getProncat() {
+		return proncat;
+	}
 }

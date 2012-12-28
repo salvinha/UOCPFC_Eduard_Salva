@@ -47,11 +47,11 @@ public class EditKonceptWorker extends AbstractWorker {
 				// We have the existing koncept.
 				// Now we have to replace its values with the ones received in the request.
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA)) {
-					k.setTextCatala(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA)[0]);
+					k.setTextcat(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_CA)[0]);
 				}
 
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)) {
-					k.setTextJapones(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);	
+					k.setTextjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);	
 				}
 				
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)) {
