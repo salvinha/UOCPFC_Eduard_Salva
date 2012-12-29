@@ -1,8 +1,8 @@
-<project name="PFC2012 Build File - Production" default="dist" basedir="/Users/edu/Documents/programacio/pfc2012">
+<project name="PFC2012 Build File - Production" default="deploy" basedir="/Users/edu/Documents/programacio/pfc2012">
 	<description>
 		PFC2012 Production Ant Build File.
 	</description>
-	
+
 	<!-- Global properties. -->
 	<property name="appname"			value="pfc2012"/>
 	<property name="warfile"			value="${appname}.war"/>
@@ -16,8 +16,8 @@
 	<property name="log4j"				value="log4j.properties"/>
 	<property name="dbconfig"			value="db.properties"/>
 	<property name="server_config"		value="pfc2012.server.properties"/>
-			
-	
+
+
 	<!-- Global locations. -->
 	<property name="repository_home"	location="/Users/edu/github/git_pfc/UOCPFC_Eduard_Salva/Implementacio/server/j2ee"/>
 	<property name="src"				location="${repository_home}/src"/>
@@ -33,11 +33,11 @@
 	<property name="server_config_file"	location="${config_home}/${server_config}"/>
 	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
-	
+
 	<!-- Configure the custom Ant tasks for the Manager application -->
 	<taskdef name="deploy"		classname="org.apache.catalina.ant.DeployTask"/>
 	<taskdef name="undeploy"	classname="org.apache.catalina.ant.UndeployTask"/>
-	
+
 	<!-- Tomcat libraries. -->
 	<path id="compilation_libs">
 		<fileset dir="${tomcat_libs}">
@@ -47,8 +47,8 @@
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
-			
-			
+
+
 	<target name="clean">
 		<delete dir="${dist}"/>
 		<delete dir="${build}"/>
@@ -58,7 +58,7 @@
 		<mkdir dir="${dist}"/>
 		<mkdir dir="${build}"/>
 	</target>
-	
+
 	<target name="compile" depends="init">
 	    <echo message="SRC = ${src}"/>
 		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs" debug="true"/>
@@ -67,7 +67,7 @@
 		<copy file="${dbconfig_file}.${environment}" 			tofile="${build}/${dbconfig}"/>
 		<copy file="${server_config_file}.${environment}" 		tofile="${build}/${server_config}"/>
 	</target>
-		
+
 
 	<target name="dist" depends="compile">
 		<war destfile="${dist}/${warfile}" webxml="${webinf}/web.xml">
@@ -77,4 +77,8 @@
 		</war>
 	</target>
 
+	<target name="deploy" depends="dist">
+	    <echo message="Deploying on production instance..."/>
+	    <scp file="${dist}/${warfile}" todir="tomcat:QPq9mwdJq5X7@eduardcapell.com:/opt/apache-tomcat-7.0.26/webapps/" port="28443"/>
+	</target>
 </project>

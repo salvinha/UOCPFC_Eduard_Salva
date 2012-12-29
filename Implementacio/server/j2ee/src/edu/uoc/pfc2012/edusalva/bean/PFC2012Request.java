@@ -11,7 +11,7 @@ public class PFC2012Request {
 	private Set<String> mandatory;
 	private Set<String> optional;
 	private int minimumOptional;
-	
+
 	public PFC2012Request(String path) {
 		this.path = path;
 		this.mandatory = new HashSet<String>();
@@ -50,8 +50,11 @@ public class PFC2012Request {
 		} else if (PFCConstants.PATH_LIST_WORDS.equals(getPath())) {
 			optional.add(PFCConstants.HTTP_REQUEST_PARAM_MAX_RESULTS);
 			setMinimumOptional(0);
+		} else if (PFCConstants.PATH_GET_WORD_FROM_LIST.equals(getPath())) {
+			mandatory.add(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI);
+			setMinimumOptional(0);
 		}
-		
+
 		optional.add("false");
 		optional.add("_dc");
 		optional.add("callback");
@@ -111,7 +114,7 @@ public class PFC2012Request {
 	public void setOptional(Set<String> optional) {
 		this.optional = optional;
 	}
-	
+
 	public int getMinimumOptional() {
 		return minimumOptional;
 	}

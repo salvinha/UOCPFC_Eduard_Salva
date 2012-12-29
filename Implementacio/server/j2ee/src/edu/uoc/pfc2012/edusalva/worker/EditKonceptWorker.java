@@ -36,13 +36,13 @@ public class EditKonceptWorker extends AbstractWorker {
 	@Override
 	public void processRequest() {
 		String id = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_ID)[0];
-		
+
 		KoncepteParaula k = null;
 		ResponseBean rb = null;
-		
+
 		try {
 			k = DBController.findById(id);
-			
+
 			if (k != null) {
 				// We have the existing koncept.
 				// Now we have to replace its values with the ones received in the request.
@@ -51,31 +51,43 @@ public class EditKonceptWorker extends AbstractWorker {
 				}
 
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)) {
-					k.setTextjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);	
+					k.setTextjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_JP)[0]);
 				}
-				
+
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)) {
 					k.setAudioCatala(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)[0]);
 				}
-				
+
 				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)) {
 					k.setAudioJapones(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)[0]);
 				}
-				
-				
+
+				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI)) {
+					k.setIdLlista(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_LLISTA_ESTUDI)[0]);
+				}
+
+				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP)) {
+					k.setPronjap(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_PRON_JAP)[0]);
+				}
+
+				if (getParams().containsKey(PFCConstants.HTTP_REQUEST_PARAM_PRON_CAT)) {
+					k.setProncat(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_PRON_CAT)[0]);
+				}
+
+
 				// Values replaced. We will now save to DB.
 				DBController.update(k);
-				
+
 				rb = new KonceptResponseBean(k);
 			} else {
 				rb = new ErrorResponseBean("No es troba la paraula a modificar.");
 			}
-			
+
 			writeResponse(rb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

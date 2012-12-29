@@ -1,4 +1,4 @@
-log4j.rootLogger=WARN, PFC2012
+log4j.rootLogger=DEBUG, PFC2012
 
 # Define all the appenders
 log4j.appender.PFC2012=org.apache.log4j.DailyRollingFileAppender
