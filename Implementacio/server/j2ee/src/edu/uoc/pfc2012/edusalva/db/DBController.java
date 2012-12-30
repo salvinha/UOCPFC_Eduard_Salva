@@ -181,9 +181,11 @@ public class DBController {
 
 			k = new KoncepteParaula();
 			k.setId(id);
-			k.setTextcat(found.get("text_catala") != null ? found.get("text_catala").toString() : null);
-			k.setTextjap(found.get("text_japones") != null ? found.get("text_japones").toString() : null);
-			k.setPronjap(found.get("pronjap") != null ? found.get("pronjap").toString() : null);
+			k.setTextcat(found.get(PFCConstants.DB_FIELD_TEXT_CA) != null ? found.get(PFCConstants.DB_FIELD_TEXT_CA).toString() : null);
+			k.setTextjap(found.get(PFCConstants.DB_FIELD_TEXT_JP) != null ? found.get(PFCConstants.DB_FIELD_TEXT_JP).toString() : null);
+			k.setPronjap(found.get(PFCConstants.DB_FIELD_PRON_JAP) != null ? found.get(PFCConstants.DB_FIELD_PRON_JAP).toString() : null);
+			k.setIdLlista(found.get(PFCConstants.DB_FIELD_LIST_ID) != null ? found.get(PFCConstants.DB_FIELD_LIST_ID).toString() : null);
+
 
 			String locationAudioCA = found.get("audio_catala") != null ? found.get("audio_catala").toString() : null;
 			String locationAudioJP = found.get("audio_japones") != null ? found.get("audio_japones").toString() : null;
