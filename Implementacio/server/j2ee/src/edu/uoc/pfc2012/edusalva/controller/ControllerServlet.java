@@ -23,19 +23,22 @@ import edu.uoc.pfc2012.edusalva.worker.WorkerFactory;
  * <p>
  * All requests are encoded in UTF-8, this is ensured by the <code>EncodingFilter</code> Filter.
  * </p>
- * 
+ *
  * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
  * @author Salvador Lorca sans (<a href="mailto:salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
  * @see edu.uoc.pfc2012.edusalva.filter.ServerActionFilter
  * @see edu.uoc.pfc2012.edusalva.filter.EncodingFilter
  */
 public class ControllerServlet extends HttpServlet {
-	
+
 	/**
 	 * Long value with the servial version UID for this class.
 	 */
 	private static final long serialVersionUID = 1866281077747194045L;
-	
+
 	/**
 	 * Logger object.
 	 */
@@ -46,7 +49,7 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		processRequest(req, res);
 	}
-	
+
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse res) {
 		AbstractWorker worker = WorkerFactory.getWorker(req, res);

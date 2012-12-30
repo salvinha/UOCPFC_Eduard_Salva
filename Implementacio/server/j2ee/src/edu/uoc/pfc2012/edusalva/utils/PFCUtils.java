@@ -112,9 +112,6 @@ public abstract class PFCUtils {
 
 
 	public static final void checkRequestMethod(HttpServletRequest req) throws WrongMethodException {
-		if (true)
-			return;
-
 		if (req == null) {
 			throw new WrongMethodException("Request is null!");
 		}
@@ -124,15 +121,13 @@ public abstract class PFCUtils {
 		}
 
 		String method = req.getMethod();
-		if (!(PFCConstants.HTTP_REQUEST_POST.equalsIgnoreCase(method))) {
+		if (!(PFCConstants.HTTP_REQUEST_POST.equalsIgnoreCase(method) || PFCConstants.HTTP_REQUEST_GET.equalsIgnoreCase(method))) {
 			throw new WrongMethodException("Method not accepted: " + method);
 		}
 	}
 
 	public static void checkRequestParameters(HttpServletRequest hr) throws WrongRequestParametersException {
-		if (true) {
-			return; // TODO Not checking params.
-		}
+
 		Enumeration<String> names = hr.getParameterNames();
 
 		String path = hr.getPathInfo();
@@ -142,7 +137,6 @@ public abstract class PFCUtils {
 		Set<String> optional = r.getOptional();
 
 		int nMandatory = mandatory.size();
-		logger.info("We have " + nMandatory + " mandatory parameters.");
 		int foundOptional = 0;
 
 		while (names.hasMoreElements()) {
@@ -154,10 +148,12 @@ public abstract class PFCUtils {
 				foundOptional++;
 			} else {
 				// Not mandatory, not optional!
-				logger.error("Not mandatory, Not optional!!! (" + s + ")");
-				throw new WrongRequestParametersException("Parameter '" + s + "' is not specified by request " + path);
+				logger.error("Not mandatory, Not optional (" + s + ")");
+				// throw new WrongRequestParametersException("Parameter '" + s + "' is not specified by request " + path);
 			}
 		}
+
+		logger.info("nMandatory: " + nMandatory);
 
 		if (nMandatory > 0) {
 			// Not all mandatory parameters are in the request!

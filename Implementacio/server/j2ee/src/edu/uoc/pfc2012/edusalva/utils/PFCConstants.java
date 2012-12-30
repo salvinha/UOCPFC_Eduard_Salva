@@ -29,6 +29,7 @@ public interface PFCConstants {
 	public static final String LANG_JAP = "jp";
 
 	public static final String HTTP_REQUEST_POST = "POST";
+	public static final String HTTP_REQUEST_GET = "GET";
 
 	public static final int MAX_RESULTS_DEFAULT = 10;
 
@@ -65,5 +66,9 @@ public interface PFCConstants {
 	public static final String PATH_DELETE_WORD = "/delete_word";
 	public static final String PATH_GET_WORD_FROM_LIST = "/get_paraula";
 	public static final String PATH_RESET_GAME = "/reset_game";
+
+	public static final String SENCHA_TOUCH_HTTP_PARAM_FALSE = "false";
+	public static final String SENCHA_TOUCH_HTTP_PARAM_DC = "_dc";
+	public static final String SENCHA_TOUCH_HTTP_PARAM_CALLBACK = "callback";
 
 }

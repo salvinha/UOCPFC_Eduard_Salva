@@ -1,1 +1,8 @@
 edu.uoc.pfc2012.edusalva.bean
+edu.uoc.pfc2012.edusalva.bean.response
+edu.uoc.pfc2012.edusalva.controller
+edu.uoc.pfc2012.edusalva.controller.exception
+edu.uoc.pfc2012.edusalva.db
+edu.uoc.pfc2012.edusalva.filter
+edu.uoc.pfc2012.edusalva.utils
+edu.uoc.pfc2012.edusalva.worker
