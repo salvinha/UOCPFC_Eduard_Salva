@@ -34,10 +34,6 @@
 	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
 
-	<!-- Configure the custom Ant tasks for the Manager application -->
-	<taskdef name="deploy"		classname="org.apache.catalina.ant.DeployTask"/>
-	<taskdef name="undeploy"	classname="org.apache.catalina.ant.UndeployTask"/>
-
 	<!-- Tomcat libraries. -->
 	<path id="compilation_libs">
 		<fileset dir="${tomcat_libs}">

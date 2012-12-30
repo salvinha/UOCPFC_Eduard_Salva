@@ -1,19 +1,14 @@
 package edu.uoc.pfc2012.edusalva.worker;
 
-import java.io.Writer;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
@@ -23,6 +18,7 @@ import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 public class GetWordFromListWorker extends AbstractWorker {
+	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(GetWordFromListWorker.class.getName());
 
 	public GetWordFromListWorker() {

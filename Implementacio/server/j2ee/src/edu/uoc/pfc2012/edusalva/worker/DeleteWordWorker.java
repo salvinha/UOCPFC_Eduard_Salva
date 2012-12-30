@@ -14,12 +14,13 @@ import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 public class DeleteWordWorker extends AbstractWorker {
+	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(DeleteWordWorker.class.getName());
-	
+
 	public DeleteWordWorker() {
 		super();
 	}
-	
+
 	public DeleteWordWorker(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		this();
 		setReq(req);
@@ -27,12 +28,12 @@ public class DeleteWordWorker extends AbstractWorker {
 		setPath(path);
 		setParams(params);
 	}
-	
+
 	@Override
 	public void processRequest() {
 		String id = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_ID)[0];
 		boolean b = DBController.deleteKoncept(id);
-		ResponseBean rb = b ? new SuccessResponseBean(true) : new ErrorResponseBean("La paraula no s'ha trobat") ;
+		ResponseBean rb = b ? new SuccessResponseBean() : new ErrorResponseBean("La paraula no s'ha trobat") ;
 
 		try {
 			writeResponse(rb);
@@ -40,5 +41,5 @@ public class DeleteWordWorker extends AbstractWorker {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

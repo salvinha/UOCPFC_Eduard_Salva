@@ -1,14 +1,11 @@
 package edu.uoc.pfc2012.edusalva.worker;
 
-import java.io.Writer;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
@@ -19,6 +16,7 @@ import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 public class EditKonceptWorker extends AbstractWorker {
 
+	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(EditKonceptWorker.class.getName());
 
 	public EditKonceptWorker() {

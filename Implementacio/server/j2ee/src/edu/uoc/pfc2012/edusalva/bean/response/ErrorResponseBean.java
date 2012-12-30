@@ -1,7 +1,6 @@
 package edu.uoc.pfc2012.edusalva.bean.response;
 
 /**
- *
  * Classe gen&egrave;rica de resposta al client que indica que s'ha produ&iuml;t un error.
  *
  * <p>La classe accepta un par&agrave;metre que indica el missatge d'error que s'ha produ&iuml;t, permetent
@@ -9,6 +8,18 @@ package edu.uoc.pfc2012.edusalva.bean.response;
  *
  * <p>Es recomana utilitzar aquesta classe quan l'error que s'ha produ&iuml;t &eacute;s desconegut, o b&eacute;
  * quan l'error &eacute;s controlat, per&#242; no t&eacute; sentit enviar m&eacute;s informaci&oacute; sin&oacute; un missatge d'error.</p>
+ *
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
  *
  * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
  * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)

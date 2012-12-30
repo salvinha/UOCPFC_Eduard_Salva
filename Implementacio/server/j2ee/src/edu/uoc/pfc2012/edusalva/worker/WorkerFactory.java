@@ -11,6 +11,7 @@ import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 public abstract class WorkerFactory {
 
+	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(WorkerFactory.class.getName());
 
 	public static final AbstractWorker getWorker(HttpServletRequest req, HttpServletResponse res) {

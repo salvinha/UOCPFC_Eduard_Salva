@@ -1,22 +1,29 @@
 package edu.uoc.pfc2012.edusalva.bean.response;
 
 /**
-*
-* Classe que representa objectes de tipus resposta cap al client.
-*
-* <p>Aquestes respostes s&oacute;n enviades al client en format
-* <a href="http://www.json.org/">JSON</a>.</p>
-*
-* <p>Qualsevol resposta cap al client heretar&agrave; d'aquest objecte, que t&eacute; un
-* &uacute;nic atribut: <code>success</code>, per indicar si la petici&oacute; que s'ha
-* fet pr&egrave;viament ha tingut &egrave;xit o no.</p>
-*
-* @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
-* @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
-*
-* @version 1.0
-*
-*/
+ *
+ * Classe que representa objectes de tipus resposta cap al client.
+ *
+ * <p>Aquestes respostes s&oacute;n enviades al client en format
+ * <a href="http://www.json.org/">JSON</a>.</p>
+ *
+ * <p>Qualsevol resposta cap al client heretar&agrave; d'aquest objecte, que t&eacute; un
+ * &uacute;nic atribut: <code>success</code>, per indicar si la petici&oacute; que s'ha
+ * fet pr&egrave;viament ha tingut &egrave;xit o no.</p>
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ */
 public abstract class ResponseBean {
 
 	/**

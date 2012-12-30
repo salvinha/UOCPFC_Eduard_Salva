@@ -18,6 +18,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * una paraula en dos idiomes, i &eacute;s una manera de pronunciar-la en cada un
  * d'aquests dos idiomes).
  *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
  * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
  * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
  *

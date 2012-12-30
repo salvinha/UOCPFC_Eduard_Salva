@@ -3,8 +3,6 @@ package edu.uoc.pfc2012.edusalva.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.io.comparator.PathFileComparator;
-
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
 /**
@@ -12,6 +10,14 @@ import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
  * (<i>path</i>), par&agrave;metres obligatoris i par&agrave;metres opcionals.
  * La classe s'utilitza per encapsular peticions que arriben al servidor, i
  * per poder verificar que les peticions s'adapten a l'especificaci&oacute;.
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
  *
  * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
  * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)

@@ -1,13 +1,11 @@
 package edu.uoc.pfc2012.edusalva.db;
 
-import java.io.InvalidObjectException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
-import org.apache.commons.io.comparator.PathFileComparator;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 
@@ -17,20 +15,66 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
-import com.mongodb.QueryBuilder;
 import com.mongodb.WriteConcern;
-import com.mongodb.WriteResult;
-
 import edu.uoc.pfc2012.edusalva.bean.KoncepteParaula;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
+/**
+ * Classe que cont&eacute; m&egrave;todes est&agrave;tics per l'acc&eacute;s a la Base de Dades.
+ *
+ * <p>
+ * La base de dades que s'utilitza &eacute;s MongoDB:
+ * <a href="http://www.mongodb.org">http://www.mongodb.org</a>
+ * .
+ * </p>
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ */
 public class DBController {
 
+	/**
+	 * Objecte Logger.
+	 */
 	private static final Logger logger = Logger.getLogger(DBController.class.getName());
+
+	/**
+	 * Objecte de tipus
+	 * <code>java.util.Properties</code>
+	 * , que s'utilitza per tal d'obtenir la configuraci&oacute; per l'acc&eacute;s
+	 * a la base de dades.
+	 *
+	 * @see java.util.Properties
+	 */
 	private static Properties props = null;
+
+	/**
+	 * Objecte que representa la inst&agrave;ncia de la base de dades amb la qual
+	 * es connecta l'aplicaci&oacute;.
+	 * @see Mongo
+	 */
 	private static Mongo m = null;
 
+	/**
+	 * M&egrave;tode que serveix per establir una connexi&oacute; amb la base de dades.
+	 * @return Un objecte de tipus
+	 * <code>DBCollection</code>
+	 * que representa la connexi&oacute; amb la base de dades.
+	 * @throws Exception Si es produeix algun error en la connexió amb la
+	 * base de dades (no disponible, usuari/contrasenya erronis, etc.).
+	 */
 	private static DBCollection getDBCollection() throws Exception {
 		if (props == null) {
 			try {
@@ -59,10 +103,24 @@ public class DBController {
 	}
 
 
+	/**
+	 * M&egrave;tode que tanca la connexi&oacute; amb la base de dades.
+	 */
 	private static void closeDB() {
 		m.close();
 	}
 
+
+	/**
+	 * M&egrave;tode que verifica si una paraula (koncepte) existeix a la base de dades. Es
+	 * considera que un koncepte
+	 * <code>k</code>
+	 * ja existeix si i nom&eacute;s si tant la paraula en catal&agrave; com la paraula en
+	 * japon&egrave;s son simult&agrave;niament a un element de la base de dades.
+	 * @param k El koncepte a comprovar.
+	 * @return Cert si el koncepte existeix a la base de dades, fals en
+	 * cas contrari.
+	 */
 	public static final boolean konceptExists(KoncepteParaula k) {
 		DBCollection col;
 		try {
@@ -87,6 +145,12 @@ public class DBController {
 	}
 
 
+	/**
+	 * Mètode que crea un nou koncepte a la base de dades.
+	 * Un cop creat el koncepte, es retorna l'ID del document recent creat.
+	 * @param k Koncepte a introduir a la base de dades.
+	 * @return Cadena de caràcters, amb l'ID de la paraula introduïda.
+	 */
 	public static final String createKoncept(KoncepteParaula k) {
 		DBCollection coll;
 		try {
@@ -120,6 +184,17 @@ public class DBController {
 	}
 
 
+	/**
+	 * M&egrave;tode que obt&eacute; un koncepte, a partir de la seva representaci&oacute; escrita, i
+	 * de l'idioma en qu&egrave; est&agrave; aquesta representaci&oacute;.
+	 * @param text Cadena de car&agrave;cters que indica la paraula escrita.
+	 * @param idioma Idioma en qu&egrave; est&agrave; escrit el text.
+	 * @return Koncepte trobat a la base de dades que compleix les dues
+	 * condicions (text i idioma del text). Si no es troba cap resultat, es
+	 * retornar&agrave;
+	 * <code>null</code>
+	 * .
+	 */
 	public static KoncepteParaula getKoncept(String text, String idioma) {
 		DBCollection col;
 		try {
@@ -166,6 +241,15 @@ public class DBController {
 	}
 
 
+	/**
+	 * M&egrave;tode que fa una cerca de koncepte a partir de l'ID d'aquest.
+	 * @param id ID del koncepte que s'est&agrave; cercant.
+	 * @return Koncepte que t&eacute; l'ID especificat per par&agrave;metre. Si no se'n
+	 * troba cap, es retornar&agrave;
+	 * <code>null</code>
+	 * .
+	 * @throws Exception
+	 */
 	public static KoncepteParaula findById(String id) throws Exception {
 		DBCollection col = null;
 		KoncepteParaula k = null;
@@ -198,11 +282,10 @@ public class DBController {
 				k.setAudioJapones(PFCUtils.getBase64FromFile(locationAudioJP));
 			}
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
 			logger.info("Not found!");
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error searching for object with id '" + id + "'");
+			return null;
 		} finally {
 			closeDB();
 		}
@@ -211,6 +294,12 @@ public class DBController {
 	}
 
 
+
+	/**
+	 * M&egrave;tode que actualitza un koncepte amb els valors del nou objecte
+	 * rebut per par&agrave;metre.
+	 * @param k Koncepte que cont&eacute; els nous valors a escriure a la base de dades.
+	 */
 	public static void update(KoncepteParaula k) {
 		DBCollection col = null;
 
@@ -250,6 +339,13 @@ public class DBController {
 		}
 	}
 
+	/**
+	 * M&egrave;tode que esborra un koncepte de la base de dades. L'esborrat que es fa
+	 * &eacute;s f&iacute;sic, &eacute;s a dir, no es pot recuperar un registre un cop esborrat.
+	 * @param id ID del concepte a esborrar.
+	 * @return Cert si s'ha pogut esborrar el koncepte amb l'ID indicat. Fals
+	 * en cas contrari (normalment perqu&egrave; no hi ha cap koncepte amb l'ID).
+	 */
 	public static boolean deleteKoncept(String id) {
 		DBCollection coll = null;
 		try {
@@ -257,7 +353,7 @@ public class DBController {
 			DBObject search = new BasicDBObject(PFCConstants.DB_FIELD_ID, new ObjectId(id));
 			DBObject found = coll.findOne(search);
 			if (found != null) {
-				WriteResult res =  coll.remove(found);
+				coll.remove(found);
 				return true;
 			} else {
 				return false;
@@ -270,26 +366,37 @@ public class DBController {
 		}
 	}
 
+	/**
+	 * M&egrave;tode que cerca una paraula a l'atzar, d'entre les que compleixen la
+	 * condici&oacute; que pertanyen a una llista especificada per par&agrave;metre, i que no
+	 * estan entre un conjunt de paraules excloses de la cerca.
+	 * @param idList Llista a la qual han de pert&agrave;nyer les paraules que se cercaran.
+	 * @param forbidden Paraules excloses de la cerca.
+	 * @return Un koncepte que pertany a la llista indicada, i que no &eacute;s a les
+	 * excloses. Es retorna
+	 * <code>null</code>
+	 * si no es troba cap paraula que compleixi amb les condicions requerides.
+	 */
 	public static KoncepteParaula getNextWordFromList(String idList, Set<String> forbidden) {
 		DBCollection coll = null;
 
 		try {
 			coll = getDBCollection();
 
-			// Searching by list ...
+			// Criteri de pertanyer a la llista.
 			BasicDBObject query = new BasicDBObject();
 			query.append(PFCConstants.DB_FIELD_LIST_ID, idList);
 
-			// Excluding forbidden words ...
+			// Excloent les prohibides.
 			if (forbidden != null && forbidden.size() > 0) {
 				ObjectId[] forbiddenArray = new ObjectId[forbidden.size()];
 
 				int i = 0;
 				for(String s: forbidden) {
-					logger.info("Adding '" + s + "'");
 					forbiddenArray[i++] = new ObjectId(s);
 				}
 
+				// Clausula $nin (NOT IN).
 				query.put(PFCConstants.DB_FIELD_ID, new BasicDBObject("$nin", forbiddenArray));
 			}
 
@@ -324,7 +431,7 @@ public class DBController {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warn("Could not complete search for next word: " + e.getMessage());
 		} finally {
 			closeDB();
 		}
@@ -333,7 +440,14 @@ public class DBController {
 	}
 
 
-
+	/**
+	 * Mètode que retorna una llista de paraules a la base de dades, amb un límit en el nombre
+	 * de paraules a retornar.
+	 * @param maxResults Valor enter amb el nombre màxim de paraules a retornar.
+	 * @return Una llista de paraules (koncepte), que mai no tindrà una
+	 * cardinalitat superior a
+	 * <code>maxResults</code>.
+	 */
 	public static List<KoncepteParaula> getWordList(int maxResults) {
 		DBCollection coll = null;
 		try {
