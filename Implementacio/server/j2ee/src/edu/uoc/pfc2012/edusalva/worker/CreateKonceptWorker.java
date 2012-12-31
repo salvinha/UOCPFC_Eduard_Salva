@@ -87,6 +87,7 @@ public class CreateKonceptWorker extends AbstractWorker {
 	 * Mètode que executa la tasca de creació de la paraula i la seva alta
 	 * a la base de dades, i l'emmagatzematge dels fitxers d'àudio al sistema
 	 * de fitxers del servidor.
+	 *
 	 */
 	@Override
 	public void processRequest() {
