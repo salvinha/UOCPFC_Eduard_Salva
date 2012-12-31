@@ -22,13 +22,54 @@ import edu.uoc.pfc2012.edusalva.controller.exception.WrongPathException;
 import edu.uoc.pfc2012.edusalva.controller.exception.WrongRequestParametersException;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 
+/**
+ * Classe d'utilitats, que cont&eacute; m&egrave;todes i codi est&agrave;tics per realitzar funcions
+ * gen&egrave;riques que s&oacute;n cridades des de diversos punts de l'aplicaci&oacute;.
+ *
+ * <p>
+ * A m&eacute;s de m&egrave;todes est&agrave;tics, tamb&eacute; hi ha una part de codi est&agrave;tic, no lligat a
+ * cap m&egrave;tode. Aquest codi serveix per inicialitzar tots els tipus de peticions
+ * i posar-les en mem&#242;ria per tal que es puguin consultar r&agrave;pidament en el moment
+ * de l'execuci&oacute;.
+ * </p>
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ */
 public abstract class PFCUtils {
 
+	/**
+	 * Objecte Logger.
+	 */
 	private static final Logger logger = Logger.getLogger(PFCUtils.class.getName());
+
+	/**
+	 * Objecte de tipus
+	 * <i>java.util.Map<String, PFC2012Request></i>
+	 * amb les peticions possibles.
+	 * És una taula de parelles clau / valor, on la clau és una cadena de text
+	 * amb la ruta de la petició, i el valor és l'objecte
+	 * <i>PFC2012Request</i>
+	 * que conté la informació rellevant de la petició
+	 * (ruta, paràmetres).
+	 *
+	 * @see PFC2012Request
+	 */
 	private static Map<String, PFC2012Request> requests = null;
 
 	/*
-	 * Initialization of parameters for requests.
+	 * Inicialitzacio de les possibles peticions.
 	 */
 	static {
 		requests = new HashMap<String, PFC2012Request>();
@@ -55,6 +96,17 @@ public abstract class PFCUtils {
 	}
 
 
+	/**
+	 * M&egrave;tode que permet d'obtenir un fitxer de properties concret, en base
+	 * al seu ID. Els IDs dels fitxers de properties (valors enters) estan
+	 * codificats a la interf&iacute;cie
+	 * <i>PFCConstants</i>.
+	 *
+	 * @param i Valor enter amb el codi del fitxer de properties que es busca.
+	 * @return El fitxer de properties desitjat.
+	 * @throws Exception Si no es troba el fitxer, o hi ha problemes en el
+	 * seu acc&eacute;s (permisos).
+	 */
 	public static final Properties getProperties(int i) throws Exception {
 		Properties props = null;
 
@@ -82,6 +134,16 @@ public abstract class PFCUtils {
 		throw new Exception("Wrong properties file requested.");
 	}
 
+	/**
+	 * M&egrave;tode que comprova si la ruta
+	 * (<i>path</i>)
+	 * d'una petici&oacute; &eacute;s v&agrave;lida.
+	 * Si la petici&oacute; &eacute;s correcta, el m&egrave;tode acaba sense retornar res i sense
+	 * que es produeixi cap excepci&oacute;. Per contra, si la petici&oacute; &eacute;s incorrecta,
+	 * el m&egrave;tode llen&ccedil;ar&agrave; una excepci&oacute;.
+	 * @param req La petició HTTP del client.
+	 * @throws WrongPathException Si la ruta no és vàlida.
+	 */
 	public static final void checkPath(HttpServletRequest req) throws WrongPathException {
 		String path = req.getPathInfo();
 		if (path == null || path.equals(PFCConstants.PATH_NO_PATH)) {
@@ -112,6 +174,15 @@ public abstract class PFCUtils {
 	}
 
 
+	/**
+	 * M&egrave;tode que verifica si el HTTP Method de la petici&oacute; &eacute;s v&agrave;lid.
+	 * L'aplicaci&oacute; suporta els m&egrave;todes POST i GET.
+	 * Si la petici&oacute; &eacute;s correcta el m&egrave;tode acaba sense retornar res i sense que
+	 * es produeixi cap excepci&oacute;; per contra, si la petici&oacute; no &eacute;s correcta, es
+	 * genera una excepci&oacute;.
+	 * @param req Petició HTTP del client.
+	 * @throws WrongMethodException Si el M&egrave;tode HTTP de la petici&oacute; del client no est&agrave; suportat.
+	 */
 	public static final void checkRequestMethod(HttpServletRequest req) throws WrongMethodException {
 		if (req == null) {
 			throw new WrongMethodException("Request is null!");
@@ -127,6 +198,16 @@ public abstract class PFCUtils {
 		}
 	}
 
+
+	/**
+	 * Mètode que verifica els parametres de la petició del client.
+	 * Si falta algun dels paràmetres obligatoris, es generarà una excepció. Si
+	 * no hi ha cap error, el mètode finalitzarà sense retornar res.
+	 * @param hr La petició HTTP del client.
+	 * @throws WrongRequestParametersException Si hi ha errors en els par&agrave;metres de la petici&oacute;.
+	 *
+	 * @see PFC2012Request
+	 */
 	public static void checkRequestParameters(HttpServletRequest hr) throws WrongRequestParametersException {
 
 		Enumeration<String> names = hr.getParameterNames();
@@ -169,6 +250,13 @@ public abstract class PFCUtils {
 	}
 
 
+	/**
+	 * Mètode que desa una cadena de text codificada en Base64 a un fitxer. Primer es
+	 * descodifica el valor rebut, i a continuació s'escriu a un fitxer binari.
+	 * @param source La cadena de text amb el contingut en format Base64.
+	 * @param out <i>OutputStream</i> on s'escriur&agrave; (normalment un fitxer).
+	 * @throws Exception Si es produeix algun error (no es troba el fitxer on escriure, manca de permisos).
+	 */
 	public static final void saveBase64(String source, OutputStream out) throws Exception{
 		byte[] bytes = Base64.decodeBase64(source.getBytes());
 

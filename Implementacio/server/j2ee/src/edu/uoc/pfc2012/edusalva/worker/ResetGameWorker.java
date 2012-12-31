@@ -11,10 +11,34 @@ import edu.uoc.pfc2012.edusalva.bean.response.ErrorResponseBean;
 import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.bean.response.SuccessResponseBean;
 
+/**
+ * Classe que executa la tasca de reiniciar el comptador de la llista de paraules
+ * ja enviades al client.
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ */
 public class ResetGameWorker extends AbstractWorker {
+	/**
+	 * Objecte Logger.
+	 */
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ResetGameWorker.class.getName());
 
+	/**
+	 * Constructor per defecte, crida el de la superclasse.
+	 */
 	public ResetGameWorker() {
 		super();
 	}
@@ -37,6 +61,10 @@ public class ResetGameWorker extends AbstractWorker {
 	}
 
 
+	/**
+	 * M&egrave;tode que executa la tasca de restaurar la sessi&oacute; de joc de l'usuari. En realitat
+	 * el que es fa &eacute;s simplement invalidar la sessi&oacute; HTTP.
+	 */
 	@Override
 	public void processRequest() {
 		ResponseBean rb = null;

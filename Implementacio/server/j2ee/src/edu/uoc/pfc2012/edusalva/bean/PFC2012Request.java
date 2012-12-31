@@ -114,8 +114,8 @@ public class PFC2012Request {
 		}
 
 		/*
-		 * Additional default parameters, added for compatibility with
-		 * requests coming from Sencha Touch framework.
+		 * Parametres addicionals per defecte, afegits per compatibilitat
+		 * amb el framework Sencha Touch.
 		 */
 		addSenchaTouchDefaultParameters();
 	}

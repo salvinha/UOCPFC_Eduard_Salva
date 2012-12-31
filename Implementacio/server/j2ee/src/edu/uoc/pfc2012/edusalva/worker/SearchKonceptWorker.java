@@ -14,8 +14,30 @@ import edu.uoc.pfc2012.edusalva.bean.response.ResponseBean;
 import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 
+/**
+ *
+ * Classe que efectua la feina de cercar un koncepte, a partir d'un text i
+ * un idioma.
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ */
 public class SearchKonceptWorker extends AbstractWorker {
 
+	/**
+	 * Objecte Logger.
+	 */
 	private static final Logger logger = Logger.getLogger(SearchKonceptWorker.class.getName());
 
 	/**
@@ -34,6 +56,13 @@ public class SearchKonceptWorker extends AbstractWorker {
 		setParams(params);
 	}
 
+
+	/**
+	 * M&egrave;tode que efectua la cerca, es limita a passar els par&agrave;metres que ha enviat
+	 * el client al m&egrave;tode adequat de la classe
+	 * <i>DBController</i>
+	 * i respon al client amb els resultats obtinguts.
+	 */
 	@Override
 	public void processRequest() {
 		String text = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_TEXT_SEARCH)[0];
