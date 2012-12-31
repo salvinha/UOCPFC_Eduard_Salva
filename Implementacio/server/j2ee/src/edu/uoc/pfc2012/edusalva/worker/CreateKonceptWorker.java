@@ -20,16 +20,61 @@ import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
+/**
+ * Classe
+ * <i>worker</i>
+ * que executa la tasca de creaci&oacute; d'un nou Koncepte, afegint-lo a la base
+ * de dades.
+ *
+ * La creaci&oacute; consisteix en l'alta d'un nou document a la base de dades, i
+ * en la serialitzaci&oacute; de l'&agrave;udio (si s'ha rebut) a un nou fitxer al
+ * sistema de fitxers del servidor.
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ * @see KoncepteParaula
+ */
 public class CreateKonceptWorker extends AbstractWorker {
+
+	/**
+	 * Objecte Logger.
+	 */
 	private static final Logger logger = Logger.getLogger(CreateKonceptWorker.class.getName());
 
+	/**
+	 * Atribut que emmagatzema el Koncepte a desar a la base de dades.
+	 */
 	private KoncepteParaula koncept;
 
+	/**
+	 * Constructor per defecte, inicialitza el koncepte amb els valors en blanc.
+	 */
 	public CreateKonceptWorker() {
 		super();
 		this.koncept = new KoncepteParaula();
 	}
 
+	/**
+	 * Constructor amb els par&agrave;metres dels atributs del
+	 * <i>worker</i>
+	 * abstracte, per tal d'inicialitzar els atributs b&agrave;sics d'aquest.
+	 *
+	 * @param req La petici&oacute; HTTP del client.
+	 * @param res La resposta HTTP que s'enviar&agrave; al client.
+	 * @param path La ruta de la petici&oacute; del client.
+	 * @param params Els par&agrave;metres de la petici&oacute; del client.
+	 */
 	public CreateKonceptWorker(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		this();
 		setReq(req);
@@ -38,15 +83,10 @@ public class CreateKonceptWorker extends AbstractWorker {
 		setParams(params);
 	}
 
-
 	/**
-	 * Tipus de petició des del client:
-	 * var b64 = encodeURIComponent("alkjdsljdlkasjdlkdasjldjk"); // Fitxer MP3 en Base64.
-	 * 	$.ajax({
-		url: "http://localhost:8080/pfc2012/crear_concepte_paraula?text_catala=pepe&text_japones=製品を実際に試しながら&audio_japones=" + b64,
-		type: 'POST',
-		async: false,
-		dataType: "json",
+	 * Mètode que executa la tasca de creació de la paraula i la seva alta
+	 * a la base de dades, i l'emmagatzematge dels fitxers d'àudio al sistema
+	 * de fitxers del servidor.
 	 */
 	@Override
 	public void processRequest() {

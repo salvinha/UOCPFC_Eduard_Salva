@@ -47,6 +47,9 @@ public class EncodingFilter implements Filter {
 	 * @param req La petició del client.
 	 * @param res La resposta cap al client.
 	 * @param chain La cadena de filtres.
+	 * @throws ServletException Si la petici&oacute; no es pot tractar.
+	 * @throws IOException Si es produeix alguna excepci&oacute; de tipus I/O en el
+	 * processament de la petici&oacute;.
 	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

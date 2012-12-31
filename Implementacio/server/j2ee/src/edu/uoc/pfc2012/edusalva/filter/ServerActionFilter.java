@@ -69,6 +69,9 @@ public class ServerActionFilter implements Filter {
 	 * @param req Petició del client.
 	 * @param res Resposta al client.
 	 * @param chain Cadena de filtres.
+	 * @throws ServletException Si la petici&oacute; no es pot tractar.
+	 * @throws IOException Si es produeix alguna excepci&oacute; de tipus I/O en el
+	 * processament de la petici&oacute;.
 	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

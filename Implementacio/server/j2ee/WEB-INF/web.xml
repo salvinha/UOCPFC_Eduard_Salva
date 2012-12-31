@@ -5,18 +5,20 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
-<!-- 	<filter> -->
-<!-- 		<filter-name>CORS</filter-name> -->
-<!-- 		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class> -->
-<!-- 	</filter> -->
-    
+
+    <!--
+    	Encoding filter, per posar la codificacio correcta a les respostes.
+    -->
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>
 			edu.uoc.pfc2012.edusalva.filter.EncodingFilter
 		</filter-class>
 	</filter>
-	
+
+	<!--
+		ServerAction filter, per controlar que les peticions son correctes.
+	-->
 	<filter>
 		<filter-name>ServerActionFilter</filter-name>
 		<filter-class>
@@ -24,35 +26,45 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		</filter-class>
 	</filter>
 
-    
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>CORS</filter-name> -->
-<!-- 		<servlet-name>ControllerServlet</servlet-name> -->
-<!-- 	</filter-mapping> -->
-
-
+	<!--
+		Totes les peticions passen pel filtre de la codificacio.
+	-->
 	<filter-mapping>
 		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	
+
+
+	<!--
+		Totes les peticions passen pel filtre de la comprovacio d'accions.
+	-->
 	<filter-mapping>
 		<filter-name>ServerActionFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+
+	<!--
+		Servlet Controlador, unic punt d'entrada a l'aplicacio.
+	-->
 	<servlet>
 		<servlet-name>ControllerServlet</servlet-name>
 		<servlet-class>edu.uoc.pfc2012.edusalva.controller.ControllerServlet</servlet-class>
 	</servlet>
+
+	<!--
+		Totes les peticions que superen els filtres arriben al servlet
+		controlador.
+	-->
 	<servlet-mapping>
 		<servlet-name>ControllerServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-	
-	
-		
-	<!-- No resource definitions here, only JDBC resources allowed, which MongoDB is not. -->
 
+
+	<!--
+		No es defineixen aqui els recursos de dades, perque nomes es permet
+		la definicio de recursos JDBC. MongoDB no es JDBC, per la qual cosa
+		no es pot definir en aquest punt.
+	-->
 </web-app>
