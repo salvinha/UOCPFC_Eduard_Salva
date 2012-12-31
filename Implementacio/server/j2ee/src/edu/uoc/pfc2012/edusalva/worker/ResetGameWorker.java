@@ -19,6 +19,15 @@ public class ResetGameWorker extends AbstractWorker {
 		super();
 	}
 
+	/**
+	 * Constructor amb els par&agrave;metres dels atributs del
+	 * <i>worker</i>
+	 * abstracte, per tal d'inicialitzar els atributs b&agrave;sics d'aquest.
+	 * @param req La petici&oacute; HTTP del client.
+	 * @param res La resposta HTTP que s'enviar&agrave; al client.
+	 * @param path La ruta de la petici&oacute; del client.
+	 * @param params Els par&agrave;metres de la petici&oacute; del client.
+	 */
 	public ResetGameWorker(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		this();
 		setReq(req);

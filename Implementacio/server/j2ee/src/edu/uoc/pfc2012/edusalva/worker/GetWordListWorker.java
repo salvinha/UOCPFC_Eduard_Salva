@@ -17,14 +17,57 @@ import edu.uoc.pfc2012.edusalva.db.DBController;
 import edu.uoc.pfc2012.edusalva.utils.PFCConstants;
 import edu.uoc.pfc2012.edusalva.utils.PFCUtils;
 
+/**
+ *
+ * Classe que executa la tasca de retorna la llista de paraules que són al servidor.
+ *
+ * <p>
+ * El client pot indicar el paràmetre (opcional) que digui quin és el nombre màxim
+ * de paraules que vol que surtin. Si no n'especifica cap, s'utilitzarà el paràmetre
+ * per defecte (
+ * <i>PFCConstants.MAX_RESULTS_DEFAULT</i>
+ * )
+ * </p>
+ *
+ * <p>
+ * Projecte Final de Carrera - Desenvolupament d'aplicacions m&#242;bils en HTML5
+ * </p>
+ *
+ * <p>
+ * Data: Gener de 2013
+ * </p>
+ *
+ * @author Eduard Capell Brufau (<a href="mailto:ecapell@uoc.edu">ecapell@uoc.edu</a>)
+ * @author Salvador Lorca Sans (<a href="salvinha@uoc.edu">salvinha@uoc.edu</a>)
+ *
+ * @version 1.0
+ *
+ * @see PFCConstants#MAX_RESULTS_DEFAULT
+ */
 public class GetWordListWorker extends AbstractWorker {
+
+	/**
+	 * Objecte Logger.
+	 */
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(GetWordListWorker.class.getName());
 
+	/**
+	 * Constructor per defecte, crida el constructor de la superclasse.
+	 */
 	public GetWordListWorker() {
 		super();
 	}
 
+	/**
+	 * Constructor amb els par&agrave;metres dels atributs del
+	 * <i>worker</i>
+	 * abstracte, per tal d'inicialitzar els atributs b&agrave;sics d'aquest.
+	 * @param req La petici&oacute; HTTP del client.
+	 * @param res La resposta HTTP que s'enviar&agrave; al client.
+	 * @param path La ruta de la petici&oacute; del client.
+	 * @param params Els par&agrave;metres de la petici&oacute; del client.
+	 */
 	public GetWordListWorker(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		this();
 		setReq(req);
@@ -33,6 +76,16 @@ public class GetWordListWorker extends AbstractWorker {
 		setParams(params);
 	}
 
+
+	/**
+	 * M&egrave;tode que executa la funcionalitat d'aquesta classe, consistent a buscar
+	 * una llista de les paraules que s&oacute;n al servidor.
+	 * Utilitza el par&agrave;metre del client per saber el nombre m&agrave;xim de paraules a
+	 * retornar, per&#242; si aquest par&agrave;metre no arriba (&eacute;s opcional), utilitzar&agrave;
+	 * el valor per defecte.
+	 *
+	 * @see PFCConstants#MAX_RESULTS_DEFAULT
+	 */
 	@Override
 	public void processRequest() {
 		int maxResults = Integer.MIN_VALUE;
@@ -43,7 +96,7 @@ public class GetWordListWorker extends AbstractWorker {
 				maxResults = Integer.parseInt(getParams().get(PFCConstants.HTTP_REQUEST_PARAM_MAX_RESULTS)[0]);
 			} else {
 				props = PFCUtils.getProperties(PFCConstants.KEY_PROPERTIES_SERVER_FILE);
-				maxResults = Integer.parseInt(props.getProperty(""));
+				maxResults = Integer.parseInt(props.getProperty(PFCConstants.PROPERTY_LIST_MAX_RESULTS));
 			}
 		} catch (Exception e) {
 			maxResults = PFCConstants.MAX_RESULTS_DEFAULT;

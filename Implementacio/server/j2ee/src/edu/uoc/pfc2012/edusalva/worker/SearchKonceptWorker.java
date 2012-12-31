@@ -18,6 +18,15 @@ public class SearchKonceptWorker extends AbstractWorker {
 
 	private static final Logger logger = Logger.getLogger(SearchKonceptWorker.class.getName());
 
+	/**
+	 * Constructor amb els par&agrave;metres dels atributs del
+	 * <i>worker</i>
+	 * abstracte, per tal d'inicialitzar els atributs b&agrave;sics d'aquest.
+	 * @param req La petici&oacute; HTTP del client.
+	 * @param res La resposta HTTP que s'enviar&agrave; al client.
+	 * @param path La ruta de la petici&oacute; del client.
+	 * @param params Els par&agrave;metres de la petici&oacute; del client.
+	 */
 	public SearchKonceptWorker(HttpServletRequest req, HttpServletResponse res, String path, Map<String, String[]> params) {
 		setReq(req);
 		setRes(res);

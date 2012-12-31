@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import edu.uoc.pfc2012.edusalva.bean.PFC2012Request;
@@ -177,6 +178,13 @@ public abstract class PFCUtils {
 	}
 
 
+	/**
+	 * M&egrave;tode que converteix les dades d'un fitxer a una cadena de text en
+	 * format Base64. Aquest m&egrave;tode fa &uacute;s de la llibreria Commons Codec per tal
+	 * de fer la conversi&oacute;.
+	 * @param path La ruta del fitxer a llegir i convertir a Base64.
+	 * @return Cadena de text amb el fitxer codificat en format Base64.
+	 */
 	public static String getBase64FromFile(String path) {
 		File f = new File(path);
 		if (!(f.exists())) {
@@ -186,7 +194,7 @@ public abstract class PFCUtils {
 		byte[] bytes = null;
 
 		try {
-			bytes = org.apache.commons.io.FileUtils.readFileToByteArray(f);
+			bytes = FileUtils.readFileToByteArray(f);
 		} catch (IOException e) {
 			logger.error("Could not read file into byte array! (" + f.getName() + ")");
 			return null;

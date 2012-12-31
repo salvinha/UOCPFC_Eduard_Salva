@@ -84,10 +84,10 @@ public class CreateKonceptWorker extends AbstractWorker {
 	}
 
 	/**
-	 * Mètode que executa la tasca de creació de la paraula i la seva alta
-	 * a la base de dades, i l'emmagatzematge dels fitxers d'àudio al sistema
-	 * de fitxers del servidor.
-	 *
+	 * M&egrave;tode que executa la tasca de creaci&oacute; de la paraula i la seva alta
+	 * a la base de dades, i l'emmagatzematge dels fitxers d'&agrave;udio al sistema
+	 * de fitxers del servidor. Un cop finalitzada la tasca s'escriu la resposta apropiada
+	 * i s'envia al client.
 	 */
 	@Override
 	public void processRequest() {
@@ -137,9 +137,17 @@ public class CreateKonceptWorker extends AbstractWorker {
 		}
 	}
 
+	/**
+	 * M&egrave;tode que processa l'&agrave;udio rebut en l'idioma especificat pel par&agrave;metre.
+	 * La informaci&oacute; d'&agrave;udio que s'ha rebut &eacute;s en format Base64, que caldr&agrave; descodificar abans
+	 * d'escriure al sistema de fitxers.
+	 * @param params Els par&agrave;metres de la petici&oacute; del client.
+	 * @param lang L'idioma de la consulta.
+	 * @param k El Koncepte que estem creant.
+	 * @return La ruta on es desar&agrave; l'&agrave;udio rebut.
+	 * @throws IOException
+	 */
 	private String processAudio(Map<String, String[]> params, String lang, KoncepteParaula k) throws IOException {
-		logger.info("Processing audio for '" + lang + "' ...");
-
 		Properties props;
 		try {
 			props = PFCUtils.getProperties(PFCConstants.KEY_PROPERTIES_SERVER_FILE);
@@ -149,16 +157,12 @@ public class CreateKonceptWorker extends AbstractWorker {
 
 		String folder = props.getProperty(PFCConstants.PROPERTY_MP3_ROOT) + System.getProperty("file.separator") + lang;
 
-		logger.info("FOLDER = '" + folder + "'");
-
 		String audio = null;
 		if (lang.equals(PFCConstants.LANG_CAT)) {
 			audio = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_CA)[0];
 		} else if (lang.equals(PFCConstants.LANG_JAP)) {
 			audio = getParams().get(PFCConstants.HTTP_REQUEST_PARAM_AUDIO_JP)[0];
 		}
-
-		logger.info("audio.length() = " + audio.length());
 
 		String path = folder + System.getProperty("file.separator") + k.getId() + ".mp3";
 		OutputStream out = new FileOutputStream(new File(path));
@@ -172,10 +176,22 @@ public class CreateKonceptWorker extends AbstractWorker {
 		return path;
 	}
 
+	/**
+	 * Accessor de lectura de l'atribut
+	 * <code>koncept</code>.
+	 * @return Objecte KoncepteParaula associat a aquest
+	 * <i>worker</i>.
+	 */
 	public KoncepteParaula getKoncept() {
 		return koncept;
 	}
 
+	/**
+	 * Accessor d'escriptura de l'atribut
+	 * <code>koncept</code>.
+	 * @param koncept Nou valor pel KoncepteParaula associat a aquest
+	 * <i>worker</i>.
+	 */
 	public void setKoncept(KoncepteParaula koncept) {
 		this.koncept = koncept;
 	}

@@ -62,7 +62,7 @@ public interface PFCConstants {
 	public static final String PATH_EDIT_CONCEPTE_PARAULA = "/editar_camp_concepte_paraula";
 	public static final String PATH_GET_CONCEPTE_PARAULA = "/get_concepte_paraula";
 	public static final String PATH_GET_SOUND = "/get_sound";
-	public static final String PATH_LIST_WORDS = "/get_words"; // TODO Document!
+	public static final String PATH_LIST_WORDS = "/get_words";
 	public static final String PATH_DELETE_WORD = "/delete_word";
 	public static final String PATH_GET_WORD_FROM_LIST = "/get_paraula";
 	public static final String PATH_RESET_GAME = "/reset_game";

@@ -3,7 +3,7 @@
 		PFC2012 Production Ant Build File.
 	</description>
 
-	<!-- Global properties. -->
+	<!-- Propietats globals. -->
 	<property name="appname"			value="pfc2012"/>
 	<property name="warfile"			value="${appname}.war"/>
 	<property name="test_host"			value="localhost"/>
@@ -18,7 +18,7 @@
 	<property name="server_config"		value="pfc2012.server.properties"/>
 
 
-	<!-- Global locations. -->
+	<!-- Rutes globals. -->
 	<property name="repository_home"	location="/Users/edu/github/git_pfc/UOCPFC_Eduard_Salva/Implementacio/server/j2ee"/>
 	<property name="src"				location="${repository_home}/src"/>
 	<property name="config_home"		location="${repository_home}/config"/>
@@ -34,7 +34,7 @@
 	<property name="tomcat_home"		location="/opt/apache-tomcat-7.0.25"/>
 	<property name="tomcat_libs"		location="${tomcat_home}/lib"/>
 
-	<!-- Tomcat libraries. -->
+	<!-- Llibreries per poder compilar. -->
 	<path id="compilation_libs">
 		<fileset dir="${tomcat_libs}">
 			<include name="**/*.jar"/>
@@ -44,17 +44,19 @@
 		</fileset>
 	</path>
 
-
+	<!-- Esborat dels directoris de destinacio. -->
 	<target name="clean">
 		<delete dir="${dist}"/>
 		<delete dir="${build}"/>
 	</target>
 
+	<!-- Creacio dels directoris de destinacio. -->
 	<target name="init" depends="clean">
 		<mkdir dir="${dist}"/>
 		<mkdir dir="${build}"/>
 	</target>
 
+	<!-- Compilacio. -->
 	<target name="compile" depends="init">
 	    <echo message="SRC = ${src}"/>
 		<javac includeantruntime="no" srcdir="${src}" destdir="${build}" classpathref="compilation_libs" debug="true"/>
@@ -64,7 +66,7 @@
 		<copy file="${server_config_file}.${environment}" 		tofile="${build}/${server_config}"/>
 	</target>
 
-
+	<!-- Creacio del fitxer WAR. -->
 	<target name="dist" depends="compile">
 		<war destfile="${dist}/${warfile}" webxml="${webinf}/web.xml">
 			<classes dir="${build}"/>
@@ -73,6 +75,7 @@
 		</war>
 	</target>
 
+	<!-- Copiar a l'entorn de produccio. -->
 	<target name="deploy" depends="dist">
 	    <echo message="Deploying on production instance..."/>
 	    <scp file="${dist}/${warfile}" todir="tomcat:QPq9mwdJq5X7@eduardcapell.com:/opt/apache-tomcat-7.0.26/webapps/" port="28443"/>
