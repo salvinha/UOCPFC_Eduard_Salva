@@ -85,10 +85,10 @@
                 "fn": "onJsonstoreLoad",
                 "implHandler": [
                     "/*if (this.getCount() === 0){",
-                    "    Ext.getCmp('avisDiccionariBuit').setHidden(false);",
-                    "    Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(false);",
+                    "Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));",
                     "}else{",
-                    "    Ext.getCmp('avisDiccionariBuit').setHidden(true);",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(true);",
                     "}*/",
                     "",
                     "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",

@@ -15,7 +15,7 @@
 
 Ext.define('IdiomesApp.view.editParaula', {
     extend: 'Ext.form.Panel',
-    alias: 'widget.editparaula',
+    alias: 'widget.editParaula',
 
     config: {
         id: 'editParaula',
@@ -65,11 +65,16 @@ Ext.define('IdiomesApp.view.editParaula', {
                         id: 'llistaEdit',
                         itemId: 'llistaEdit',
                         label: 'Llista',
-                        name: 'llista',
+                        name: 'idLlista',
                         placeHolder: 'Abans ha de tenir llistes d\'estudi creades',
                         displayField: 'nom',
                         store: 'llistaJson',
                         valueField: 'id'
+                    },
+                    {
+                        xtype: 'hiddenfield',
+                        id: 'idEdit',
+                        name: 'id'
                     }
                 ],
                 listeners: [
@@ -80,22 +85,24 @@ Ext.define('IdiomesApp.view.editParaula', {
                                 textcat: IdiomesApp.paraulaTextCat,
                                 textjap: IdiomesApp.paraulaTextJap,
                                 pronjap: IdiomesApp.paraulaPronJap,
-                                llista: IdiomesApp.paraulaLlista
+                                idLlista: IdiomesApp.paraulaLlista
                             });
 
-                            console.log(Ext.getCmp('editParaula'));
+                            /*console.log(IdiomesApp.paraula);
+                            console.log("*** " + IdiomesApp.paraulaLlista + " ***");
+                            console.log(IdiomesApp.paraulaTextCat);*/
+
+                            //console.log(Ext.getCmp('editParaula'));
 
                             //No funciona
                             //Ext.getCmp('editParaula').setRecord(rec);
 
-                            //Carregarem les dades així:
+                            //Carregam les dades:
+                            Ext.getCmp('idEdit').setValue(rec.get('id'));
                             Ext.getCmp('textCatEdit').setValue(rec.get('textcat'));
                             Ext.getCmp('textJapEdit').setValue(rec.get('textjap'));
                             Ext.getCmp('pronJapEdit').setValue(rec.get('pronjap'));
-
-                            console.log(rec.get('llista'));
-
-                            Ext.getCmp('llistaEdit').setValue(rec.get('llista'));
+                            Ext.getCmp('llistaEdit').setValue(rec.get('idLlista'));
                         },
                         event: 'initialize'
                     }
@@ -104,10 +111,9 @@ Ext.define('IdiomesApp.view.editParaula', {
             {
                 xtype: 'button',
                 itemId: 'submit',
-                ui: 'confirm',
-                iconCls: 'add',
+                ui: 'action',
                 iconMask: true,
-                text: 'Guardar'
+                text: 'Editar'
             }
         ],
         listeners: [
@@ -122,48 +128,49 @@ Ext.define('IdiomesApp.view.editParaula', {
     onSubmitTap: function(button, e, options) {
         var form = Ext.getCmp('editParaula'),
             store = Ext.getCmp('paraulesList').getStore(),
-            paraulaRecord = form.getValues();
+            paraulaEditRecord = form.getValues();
 
-        //console.log('*****');
-        //console.log(paraulaRecord.textcat);
-        //console.log('*****');
+        if (paraulaEditRecord.textcat!=="" & paraulaEditRecord.textjap!=="" & paraulaEditRecord.pronjap!==""  & paraulaEditRecord.idLlista!==null){
 
-        if (paraulaRecord.textcat!=="" & paraulaRecord.textjap!=="" & paraulaRecord.pronjap!==""  & paraulaRecord.llista!==null){
+            Ext.Ajax.request({
+                method: 'POST',
+                url: 'http://eduardcapell.com/pfc2012/editar_camp_concepte_paraula',
+                params:{
+                    id: paraulaEditRecord.id,
+                    text_catala: paraulaEditRecord.textcat,
+                    text_japones: paraulaEditRecord.textjap,
+                    pronjap: paraulaEditRecord.pronjap,
+                    llista: paraulaEditRecord.idLlista
+                },
+                success: function(response, opts){
+                    var obj = Ext.decode(response.responseText);
+                    if(obj.success !== true){
+                        //console.log(obj);
+                        //console.log(obj.errorMessage);
+                        Ext.Msg.alert("Error", obj.errorMessage);
+                    }else{
+                        Ext.Msg.alert("Informació","Paraula editada correctament");
+                    }
+                },
+                failure: function(response){
+                    console.log('server-side failure with status code: ' + response.status);
+                    Ext.Msg.alert("No és possible editar la paraula del diccionari");
+                }
+            });
 
-            //Primer eliminam el registre antic
-            Ext.getStore('paraulaJson').removeAt(Ext.getStore('paraulaJson').find('id',IdiomesApp.paraula)); 
 
-            //Guardam el registre nou
-            //get the record 
-            var record = form.getRecord();
-            //get the form values
-            var values = form.getValues();
-            //if a new record
-            if(!record){
-                var newRecord = new IdiomesApp.model.paraulaModel(values);
-                Ext.getStore('paraulaJson').add(newRecord);
-            }else{
-                //existing record
-                record.set(values);
-            }
-            Ext.getStore('paraulaJson').sync();
-
-
-            Ext.getCmp('diccionari').remove(Ext.getCmp('editParaula'),true);
-            Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
-
-            //Confirmation
             form.reset();
             Ext.getCmp('paraulesList').deselectAll();
-
-            IdiomesApp.titol="Diccionari";
-
+            IdiomesApp.titol=IdiomesApp.titolAux;
+            Ext.getCmp('enrere').setHidden(true);
             Ext.getCmp('listPanel').setHidden(false);
-            Ext.getCmp('novaParaula').setHidden(false);
-
             Ext.getCmp('diccionari').remove(form,true);
-
+            Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('paraulaJson').load();
+            Ext.getCmp('novaParaula').setHidden(false);
             Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+            Ext.getCmp('diccionari').removeAt(1);
 
         }else{
 

@@ -21,6 +21,7 @@
             "userConfig": {
                 "designer|userClassName": "field",
                 "name": "id",
+                "allowNull": false,
                 "type": "auto"
             },
             "designerId": "46bef29e-8456-4ade-8711-7e219b1131ae"
@@ -35,6 +36,7 @@
             "userConfig": {
                 "designer|userClassName": "field1",
                 "name": "textcat",
+                "allowNull": false,
                 "type": "string"
             },
             "designerId": "23ad08ee-eaec-4f5f-9e29-d35ae08eed76"
@@ -49,6 +51,7 @@
             "userConfig": {
                 "designer|userClassName": "field2",
                 "name": "textjap",
+                "allowNull": false,
                 "type": "string"
             },
             "designerId": "64c37d51-5186-4fce-b8fe-52d1c491a897"
@@ -63,6 +66,7 @@
             "userConfig": {
                 "designer|userClassName": "field3",
                 "name": "pronjap",
+                "allowNull": false,
                 "type": "string"
             },
             "designerId": "54cb6177-d14b-4b1f-8c22-cf53a2769533"
@@ -76,7 +80,8 @@
             "codeClass": null,
             "userConfig": {
                 "designer|userClassName": "field4",
-                "name": "llista",
+                "name": "idLlista",
+                "allowNull": false,
                 "defaultValue": null,
                 "type": "int"
             },

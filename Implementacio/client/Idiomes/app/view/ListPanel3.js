@@ -51,10 +51,11 @@ Ext.define('IdiomesApp.view.ListPanel3', {
     },
 
     onLlistesestudiListFlashcardsItemTap: function(dataview, index, target, record, e, options) {
-        Ext.getCmp('listPanel3').setHidden(true);
-        IdiomesApp.titol="Aprenent: " + record.get('nom');
-        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-        Ext.getCmp('nouJoc').setHidden(false);
+        //Guardam en aquesta variable l'Id de la llista d'estudi cada vegada que comencem un nou joc
+        IdiomesApp.llistaFlashcards = record.get('id');
+        IdiomesApp.registre = record;
+        IdiomesApp.numPendents = 3;
+        IdiomesApp.numEncerts = 0;
 
         var carrusel = Ext.getCmp('carruselParaules');
 
@@ -67,8 +68,72 @@ Ext.define('IdiomesApp.view.ListPanel3', {
             xclass: 'IdiomesApp.view.Game'
         });
 
-        Ext.getCmp('pregunta').setRecord(record);
-        Ext.getCmp('resposta').setRecord(record);
+        //Posam a 0 el comptador del servidor de les paraules que hagin aparegut a l'exercici de Flashcards
+        Ext.Ajax.request({
+            method: 'POST',
+            url: 'http://eduardcapell.com/pfc2012/reset_game',
+            success: function(response, opts){
+                var obj = Ext.decode(response.responseText);
+                if(obj.success !== true){
+                    console.log(obj);
+                    console.log(obj.errorMessage);
+                }
+            },
+            failure: function(response){
+                console.log('server-side failure with status code: ' + response.status);
+            }
+        });
+
+        //Obtenim la primera paraula de l'exercici
+        Ext.Ajax.request({
+            url: 'http://eduardcapell.com/pfc2012/get_paraula',
+            params: {
+                llista: record.get('id')
+            },
+            success: function(response, opts){
+                var obj = Ext.decode(response.responseText);
+                if(obj.success !== true){
+                    //console.log(obj);
+                    //console.log(obj.errorMessage);
+                    Ext.Msg.alert("Informació", obj.errorMessage);
+                }else{
+                    //Enviam la paraula obtinguda al carrusel de l'exercici
+                    console.log(obj.koncept);
+                    //console.log(record);
+
+                    //Construïm una plantilla (template) pel contenidor de l'exercici
+                    var tplPregunta = new Ext.XTemplate(
+                    '<div>',
+                    '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',
+                    '<h1>' + obj.koncept.textcat + '</h1>',
+                    '<p>(Desplaça la targeta per veure la resposta)</p>',
+                    '</div>'
+                    );
+                    var tplResposta = new Ext.XTemplate(
+                    '<div>',
+                    '<h2>' + obj.koncept.textjap + '</h2>',
+                    '<p>' + obj.koncept.pronjap + '</p>',
+                    '</div>'
+                    );
+                    console.log(tplPregunta);
+                    console.log(tplResposta);
+                    Ext.getCmp('pregunta').setTpl(tplPregunta);
+                    Ext.getCmp('resposta').setTpl(tplResposta);
+                    Ext.getCmp('pregunta').setRecord(record);
+                    Ext.getCmp('resposta').setRecord(record);
+                }
+            },
+            failure: function(response){
+                console.log('server-side failure with status code: ' + response.status);
+                Ext.Msg.alert("No és possible obtenir una paraula de la llista");
+            }
+        });
+
+        //Ocultem el llistat de selecció de Llistes d'Estudi i comença l'exercici
+        Ext.getCmp('listPanel3').setHidden(true);
+        IdiomesApp.titol="Aprenent: " + record.get('nom');
+        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+        Ext.getCmp('nouJoc').setHidden(false);
     }
 
 });

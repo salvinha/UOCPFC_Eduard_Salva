@@ -75,7 +75,8 @@ Ext.define('IdiomesApp.view.ListPanel', {
         IdiomesApp.paraulaTextCat=record.get("textcat");
         IdiomesApp.paraulaTextJap=record.get("textjap");
         IdiomesApp.paraulaPronJap=record.get("pronjap");
-        IdiomesApp.paraulaLlista=record.get("llista");
+        IdiomesApp.paraulaLlista=record.get("idLlista");
+        //console.log(record);
     }
 
 });

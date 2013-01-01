@@ -39,7 +39,7 @@ Ext.define('IdiomesApp.view.Game', {
                         tpl: [
                             '<div>',
                             '    <h3>Quin és el símbol Kanji de la següent paraula?</h3>',
-                            '    <h1>{nom}</h1>',
+                            '    <h1>{textcat}</h1>',
                             '    <p>(Desplaça la targeta per veure la resposta)</p>',
                             '</div>'
                         ],
@@ -59,7 +59,8 @@ Ext.define('IdiomesApp.view.Game', {
                         id: 'resposta',
                         tpl: [
                             '<div>',
-                            '    <h2>{nom}</h2>',
+                            '    <h2>{textjap}</h2>',
+                            '    <p>{pronjap}</p>',
                             '</div>'
                         ],
                         ui: '',
@@ -99,9 +100,7 @@ Ext.define('IdiomesApp.view.Game', {
                                 listeners: [
                                     {
                                         fn: function(component, options) {
-                                            //var comptadorPendents = this.getCount();
-                                            var comptadorPendents = 10;
-                                            Ext.getCmp('pendents').setBadgeText(comptadorPendents);
+                                            Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);
                                         },
                                         event: 'initialize'
                                     }
@@ -196,14 +195,7 @@ Ext.define('IdiomesApp.view.Game', {
     },
 
     onEncertTap: function(button, e, options) {
-        var comptadorEncerts = Ext.getCmp('encerts')._badgeText;
-        var comptadorPendents = Ext.getCmp('pendents')._badgeText;
-        //Incrementa el comptador de targetes (paraules de la llista d'estudi) encertades
-        Ext.getCmp('encerts').setBadgeText(parseInt(comptadorEncerts)+parseInt(1));
-        //Decreix el nombre de targetes (paraules de la llista d'estudi) pendents de resoldre
-        Ext.getCmp('pendents').setBadgeText(parseInt(comptadorPendents)-parseInt(1));
-
-        if(Ext.getCmp('pendents')._badgeText === 0){
+        if(IdiomesApp.numPendents === 1){
             Ext.Msg.alert('Felicitats','Ho has fet molt bé!');
             Ext.getCmp('game').destroy();
             IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
@@ -216,6 +208,72 @@ Ext.define('IdiomesApp.view.Game', {
             Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
         }else{
             //console.log("OK");
+
+            var carrusel = Ext.getCmp('carruselParaules');
+
+            if (carrusel) {
+                Ext.getCmp('game').destroy();
+            }
+
+            //console.log(record.get('id'));
+            Ext.getCmp('flashcards').setActiveItem({
+                xclass: 'IdiomesApp.view.Game'
+            });
+
+            //Actualitzam els comptadors de targetes pendents i targetes encertades
+            IdiomesApp.numEncerts = parseInt(IdiomesApp.numEncerts)+parseInt(1);
+            IdiomesApp.numPendents = parseInt(IdiomesApp.numPendents)-parseInt(1);
+            //Incrementa el comptador de targetes (paraules de la llista d'estudi) encertades
+            Ext.getCmp('encerts').setBadgeText(IdiomesApp.numEncerts);
+            //Decreix el nombre de targetes (paraules de la llista d'estudi) pendents de resoldre
+            Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);
+
+            //Obtenim la següent paraula de l'exercici
+            Ext.Ajax.request({
+                url: 'http://eduardcapell.com/pfc2012/get_paraula',
+                params: {
+                    llista: IdiomesApp.llistaFlashcards
+                },
+                success: function(response, opts){
+                    var obj = Ext.decode(response.responseText);
+                    if(obj.success !== true){
+                        //console.log(obj);
+                        //console.log(obj.errorMessage);
+                        Ext.Msg.alert("Informació", obj.errorMessage);
+                    }else{
+                        //Enviam la paraula obtinguda al carrusel de l'exercici
+                        console.log("*** SEGÜENT PARAULA ***");
+                        console.log(obj.koncept);
+                        //console.log(record);
+
+                        //Construïm una plantilla (template) pel contenidor de l'exercici
+                        var tplPregunta = new Ext.XTemplate(
+                        '<div>',
+                        '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',
+                        '<h1>' + obj.koncept.textcat + '</h1>',
+                        '<p>(Desplaça la targeta per veure la resposta)</p>',
+                        '</div>'
+                        );
+                        var tplResposta = new Ext.XTemplate(
+                        '<div>',
+                        '<h2>' + obj.koncept.textjap + '</h2>',
+                        '<p>' + obj.koncept.pronjap + '</p>',
+                        '</div>'
+                        );
+                        console.log(tplPregunta);
+                        console.log(tplResposta);
+                        Ext.getCmp('pregunta').setTpl(tplPregunta);
+                        Ext.getCmp('resposta').setTpl(tplResposta);
+                        Ext.getCmp('pregunta').setRecord(IdiomesApp.registre);
+                        Ext.getCmp('resposta').setRecord(IdiomesApp.registre);
+                    }
+                },
+                failure: function(response){
+                    console.log('server-side failure with status code: ' + response.status);
+                    Ext.Msg.alert("No és possible obtenir una paraula de la llista");
+                }
+            });
+            //Mostram la pregunta nova de la targeta
             Ext.getCmp('carruselParaules').previous();
         }
     }

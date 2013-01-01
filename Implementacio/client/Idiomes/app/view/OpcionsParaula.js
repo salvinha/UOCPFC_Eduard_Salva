@@ -94,16 +94,17 @@ Ext.define('IdiomesApp.view.OpcionsParaula', {
                     }
                 });
 
-                IdiomesApp.titol="Diccionari";
-                Ext.getCmp('editarParaula').setHidden(true);
+                Ext.getCmp('paraulesList').deselectAll();
+                IdiomesApp.titol=IdiomesApp.titolAux;
+                Ext.getCmp('enrere').setHidden(true);
                 Ext.getCmp('listPanel').setHidden(false);
                 Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);
-                IdiomesApp.paraula=-1;
-                Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-                Ext.getCmp('novaParaula').setHidden(false);
                 //Carrega de nou la petició de la llista per refrescar els elements
                 Ext.getStore('paraulaJson').load();
-            } 
+                Ext.getCmp('novaParaula').setHidden(false);
+                Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+                Ext.getCmp('diccionari').removeAt(1);
+            }
         }
         );
     },

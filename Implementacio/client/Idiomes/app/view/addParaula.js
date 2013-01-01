@@ -34,6 +34,7 @@ Ext.define('IdiomesApp.view.addParaula', {
                 items: [
                     {
                         xtype: 'textfield',
+                        id: 'text_catala',
                         label: 'Català',
                         name: 'text_catala',
                         required: true,
@@ -42,6 +43,7 @@ Ext.define('IdiomesApp.view.addParaula', {
                     },
                     {
                         xtype: 'textfield',
+                        id: 'text_japones',
                         label: 'Kanji',
                         name: 'text_japones',
                         required: true,
@@ -49,17 +51,18 @@ Ext.define('IdiomesApp.view.addParaula', {
                     },
                     {
                         xtype: 'textfield',
-                        label: 'Pronunciació',
+                        id: 'pron_japones',
+                        label: 'Pronunciació (kun\'yomi)',
                         name: 'pron_japones',
                         required: true,
-                        placeHolder: 'Pronunciació en japonès de la nova paraula'
+                        placeHolder: 'Pronunciació en japonès (kun\'yomi) de la nova paraula'
                     },
                     {
                         xtype: 'selectfield',
-                        id: 'selectFieldLlista',
-                        itemId: 'selectFieldLlista',
+                        id: 'llista_estudi',
+                        itemId: 'llista_estudi',
                         label: 'Llista',
-                        name: 'llista',
+                        name: 'llista_estudi',
                         placeHolder: 'Abans ha de tenir llistes d\'estudi creades',
                         displayField: 'nom',
                         store: 'llistaJson',
@@ -69,33 +72,6 @@ Ext.define('IdiomesApp.view.addParaula', {
             },
             {
                 xtype: 'button',
-                handler: function(button, event) {
-                    Ext.Ajax.request({
-                        method: 'POST',
-                        url: 'http://eduardcapell.com/pfc2012/crear_concepte_paraula',
-                        params:{
-                            text_catala:  paraulaRecord.text_catala,
-                            text_japones: paraulaRecord.text_japones,
-                            pronjap: paraulaRecord.pron_japones,
-                            llista: paraulaRecord.llista
-                        },
-                        success: function(response, opts){
-                            var obj = Ext.decode(response.responseText);
-                            if(obj.success !== true){
-                                //console.log(obj);
-                                //console.log(obj.errorMessage);
-                                Ext.Msg.alert("Informació", obj.errorMessage);
-                            }
-                        },
-                        failure: function(response){
-                            console.log('server-side failure with status code: ' + response.status);
-                            Ext.Msg.alert("No és possible guardar la paraula al diccionari");
-                        }
-                    });
-
-                    //Carrega de nou la petició de la llista per refrescar els elements
-                    Ext.getStore('paraulaJson').load();
-                },
                 itemId: 'submit',
                 ui: 'confirm',
                 iconCls: 'add',
@@ -117,13 +93,7 @@ Ext.define('IdiomesApp.view.addParaula', {
             store = Ext.getCmp('paraulesList').getStore(),
             paraulaRecord = form.getValues();
 
-        if (paraulaRecord.text_catala!=="" & paraulaRecord.text_japones!=="" & paraulaRecord.pron_japones!=="" & paraulaRecord.llista!==null){
-
-            if (!IdiomesApp.idNovaParaula){
-                IdiomesApp.idNovaParaula=Ext.getStore('paraulaJson').max('id')+1;
-            }else{
-                IdiomesApp.idNovaParaula=IdiomesApp.idNovaParaula+1;
-            }
+        if (paraulaRecord.text_catala!=="" & paraulaRecord.text_japones!=="" & paraulaRecord.pron_japones!=="" & paraulaRecord.idLlista!==null){
 
             //SLORCA: comentam aquestes línies perquè estam usant un manejat que realitza
             //la petició de guardar al servidor
@@ -131,20 +101,44 @@ Ext.define('IdiomesApp.view.addParaula', {
             //paraulaRecord.id=IdiomesApp.idNovaParaula;
             //store.add(paraulaRecord);
 
-            //Confirmation
+            console.log(paraulaRecord);
+
+            Ext.Ajax.request({
+                method: 'POST',
+                url: 'http://eduardcapell.com/pfc2012/crear_concepte_paraula',
+                params:{
+                    text_catala: paraulaRecord.text_catala,
+                    text_japones: paraulaRecord.text_japones,
+                    pronjap: paraulaRecord.pron_japones,
+                    llista: paraulaRecord.llista_estudi
+                },
+                success: function(response, opts){
+                    var obj = Ext.decode(response.responseText);
+                    if(obj.success !== true){
+                        //console.log(obj);
+                        //console.log(obj.errorMessage);
+                        Ext.Msg.alert("Error", obj.errorMessage);
+                    }else{
+                        Ext.Msg.alert("Informació","Paraula guardada correctament");
+                    }
+                },
+                failure: function(response){
+                    console.log('server-side failure with status code: ' + response.status);
+                    Ext.Msg.alert("No és possible guardar la paraula al diccionari");
+                }
+            });
+
+
             form.reset();
             Ext.getCmp('paraulesList').deselectAll();
-
             IdiomesApp.titol=IdiomesApp.titolAux;
-
             Ext.getCmp('enrere').setHidden(true);
-            Ext.getCmp('diccionari').remove(form,true);
-
             Ext.getCmp('listPanel').setHidden(false);
+            Ext.getCmp('diccionari').remove(form,true);
+            //Carrega de nou la petició de la llista per refrescar els elements
+            Ext.getStore('paraulaJson').load();
             Ext.getCmp('novaParaula').setHidden(false);
-
             Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-
             Ext.getCmp('diccionari').removeAt(1);
 
         }else{
