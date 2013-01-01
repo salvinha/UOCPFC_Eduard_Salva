@@ -42,7 +42,7 @@ public abstract class ResponseBean {
 	/**
 	 * Accessor de lectura de l'atribut <code>success</code>, per saber quin
 	 * resultat ha tingut la petici&oacute; (<code>True / False</code>).
-	 * @return
+	 * @return Cert si la petici&oacute; ha tingut &egrave;xit, fals en cas contrari.
 	 */
 	public boolean isSuccess() {
 		return success;
