@@ -286,7 +286,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
                 Ext.getCmp('editParaula').setHidden(true);
             }
             Ext.getCmp('listPanel').setHidden(false);
-            Ext.getCmp('novaLlista').setHidden(true);
+            //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local
+            //Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(false);
             //Carrega de nou la petició de la llista per refrescar els elements
             Ext.getStore('paraulaJson').load();
@@ -295,7 +296,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
             Ext.getCmp('editarParaula').setHidden(true);
             Ext.getCmp('listPanel2').setHidden(false);
             Ext.getCmp('novaParaula').setHidden(true);
-            Ext.getCmp('novaLlista').setHidden(false);
+            //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local
+            //Ext.getCmp('novaLlista').setHidden(false);
         }
         if (value.config.id == 'flashcards'){ 
             if (Ext.getCmp('game')){
@@ -304,7 +306,8 @@ Ext.define('IdiomesApp.view.menuPanel', {
             Ext.getCmp('editarParaula').setHidden(true);
             IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
             Ext.getCmp('listPanel3').setHidden(false);
-            Ext.getCmp('novaLlista').setHidden(true);
+            //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local
+            //Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(true);
         }
 

@@ -57,14 +57,15 @@ Ext.define('IdiomesApp.view.ListPanel2', {
                 text: "Esborra",
                 style: "position:relative;width:100px;",
                 handler: function() {
-                    Ext.Msg.confirm("Alerta", "Estàs segur que vols esborrar aquesta llista d'estudi?", 
+                    //De moment l'esborrat de llistes no es permet fins que no estigui implementat en el servidor
+                    Ext.Msg.alert("Informació", "No està permès esborrar llistes d'estudi");
+                    /*Ext.Msg.confirm("Alerta", "Estàs segur que vols esborrar aquesta llista d'estudi?", 
                     function ( answer ) { 
-                        if ( answer == 'yes') {
-                            record.stores[0].remove(record);
-                            //record.stores[0].sync();
-                        } 
+                    if ( answer == 'yes') {
+                    record.stores[0].remove(record);
                     }
-                    );
+                    }
+                    );*/
                 }
             });
             var removeDeleteButton = function() {

@@ -188,10 +188,68 @@ Ext.define('IdiomesApp.view.Game', {
     },
 
     onFalladaTap: function(button, e, options) {
+        var carrusel = Ext.getCmp('carruselParaules');
+
+        if (carrusel) {
+            Ext.getCmp('game').destroy();
+        }
+
+        //console.log(record.get('id'));
+        Ext.getCmp('flashcards').setActiveItem({
+            xclass: 'IdiomesApp.view.Game'
+        });
+
+        Ext.getCmp('encerts').setBadgeText(IdiomesApp.numEncerts);
+        Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);
+
+        //Obtenim la següent paraula de l'exercici
+        Ext.Ajax.request({
+            url: 'http://eduardcapell.com/pfc2012/get_paraula',
+            params: {
+                llista: IdiomesApp.llistaFlashcards
+            },
+            success: function(response, opts){
+                var obj = Ext.decode(response.responseText);
+                if(obj.success !== true){
+                    //console.log(obj);
+                    //console.log(obj.errorMessage);
+                    Ext.Msg.alert("Informació", obj.errorMessage);
+                }else{
+                    //Enviam la paraula obtinguda al carrusel de l'exercici
+                    //console.log("*** SEGÜENT PARAULA ***");
+                    //console.log(obj.koncept);
+                    //console.log(record);
+
+                    //Construïm una plantilla (template) pel contenidor de l'exercici
+                    var tplPregunta = new Ext.XTemplate(
+                    '<div>',
+                    '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',
+                    '<h1>' + obj.koncept.textcat + '</h1>',
+                    '<p>(Desplaça la targeta per veure la resposta)</p>',
+                    '</div>'
+                    );
+                    var tplResposta = new Ext.XTemplate(
+                    '<div>',
+                    '<h2>' + obj.koncept.textjap + '</h2>',
+                    '<p>' + obj.koncept.pronjap + '</p>',
+                    '</div>'
+                    );
+                    //console.log(tplPregunta);
+                    //console.log(tplResposta);
+                    Ext.getCmp('pregunta').setTpl(tplPregunta);
+                    Ext.getCmp('resposta').setTpl(tplResposta);
+                    Ext.getCmp('pregunta').setRecord(IdiomesApp.registre);
+                    Ext.getCmp('resposta').setRecord(IdiomesApp.registre);
+                }
+            },
+            failure: function(response){
+                console.log('server-side failure with status code: ' + response.status);
+                Ext.Msg.alert("No és possible obtenir una paraula de la llista");
+            }
+        });
+
         //Torna a la cara A (pregunta) de la targeta
         Ext.getCmp('carruselParaules').previous();
-
-        //El servidor ens retorna la següent paraula de la llista de forma aleatòria
     },
 
     onEncertTap: function(button, e, options) {
@@ -200,7 +258,7 @@ Ext.define('IdiomesApp.view.Game', {
             Ext.getCmp('game').destroy();
             IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
             Ext.getCmp('listPanel3').setHidden(false);
-            Ext.getCmp('novaLlista').setHidden(true);
+            //Ext.getCmp('novaLlista').setHidden(true);
             Ext.getCmp('novaParaula').setHidden(true);
 
             Ext.getCmp('enrere').setHidden(true);
@@ -242,8 +300,8 @@ Ext.define('IdiomesApp.view.Game', {
                         Ext.Msg.alert("Informació", obj.errorMessage);
                     }else{
                         //Enviam la paraula obtinguda al carrusel de l'exercici
-                        console.log("*** SEGÜENT PARAULA ***");
-                        console.log(obj.koncept);
+                        //console.log("*** SEGÜENT PARAULA ***");
+                        //console.log(obj.koncept);
                         //console.log(record);
 
                         //Construïm una plantilla (template) pel contenidor de l'exercici
@@ -260,8 +318,8 @@ Ext.define('IdiomesApp.view.Game', {
                         '<p>' + obj.koncept.pronjap + '</p>',
                         '</div>'
                         );
-                        console.log(tplPregunta);
-                        console.log(tplResposta);
+                        //console.log(tplPregunta);
+                        //console.log(tplResposta);
                         Ext.getCmp('pregunta').setTpl(tplPregunta);
                         Ext.getCmp('resposta').setTpl(tplResposta);
                         Ext.getCmp('pregunta').setRecord(IdiomesApp.registre);

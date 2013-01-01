@@ -75,7 +75,7 @@ Ext.define('IdiomesApp.view.ListPanel3', {
             success: function(response, opts){
                 var obj = Ext.decode(response.responseText);
                 if(obj.success !== true){
-                    console.log(obj);
+                    //console.log(obj);
                     console.log(obj.errorMessage);
                 }
             },
@@ -96,9 +96,19 @@ Ext.define('IdiomesApp.view.ListPanel3', {
                     //console.log(obj);
                     //console.log(obj.errorMessage);
                     Ext.Msg.alert("Informació", obj.errorMessage);
+                    //Mostram el llistat de Llistes d'Estudi a l'usuari per a una nova selecció
+                    Ext.getCmp('game').destroy();
+                    IdiomesApp.titol="Seleccioni una Llista d\'Estudi";
+                    Ext.getCmp('listPanel3').setHidden(false);
+                    //Ext.getCmp('novaLlista').setHidden(true);
+                    Ext.getCmp('novaParaula').setHidden(true);
+
+                    Ext.getCmp('enrere').setHidden(true);
+                    Ext.getCmp('nouJoc').setHidden(true);
+                    Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
                 }else{
                     //Enviam la paraula obtinguda al carrusel de l'exercici
-                    console.log(obj.koncept);
+                    //console.log(obj.koncept);
                     //console.log(record);
 
                     //Construïm una plantilla (template) pel contenidor de l'exercici
@@ -115,8 +125,8 @@ Ext.define('IdiomesApp.view.ListPanel3', {
                     '<p>' + obj.koncept.pronjap + '</p>',
                     '</div>'
                     );
-                    console.log(tplPregunta);
-                    console.log(tplResposta);
+                    //console.log(tplPregunta);
+                    //console.log(tplResposta);
                     Ext.getCmp('pregunta').setTpl(tplPregunta);
                     Ext.getCmp('resposta').setTpl(tplResposta);
                     Ext.getCmp('pregunta').setRecord(record);
