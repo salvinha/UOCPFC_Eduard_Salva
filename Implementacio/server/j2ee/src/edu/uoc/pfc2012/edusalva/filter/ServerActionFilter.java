@@ -90,7 +90,6 @@ public class ServerActionFilter implements Filter {
 		try {
 			PFCUtils.checkRequestMethod(hr);
 		} catch (WrongMethodException e) {
-			// TODO Handle.
 			logger.error(e.getMessage());
 			return;
 		}
@@ -100,15 +99,12 @@ public class ServerActionFilter implements Filter {
 		try{
 			PFCUtils.checkPath(hr);
 		}catch (NoPathException e) {
-			// TODO Handle.
 			logger.error("No path!");
 			return;
 		} catch (WrongPathException e) {
-			// TODO Handle.
 			logger.error("Wrong path!");
 			return;
 		} catch (Exception e) {
-			// TODO Handle.
 			logger.error("Unknown!!!");
 			return;
 		}

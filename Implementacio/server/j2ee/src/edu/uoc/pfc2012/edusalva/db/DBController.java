@@ -169,6 +169,14 @@ public class DBController {
 				doc.put(PFCConstants.DB_FIELD_AUDIO_JP, null);
 			}
 
+			if (k.getPronjap() != null) {
+				doc.put(PFCConstants.DB_FIELD_PRON_JAP, k.getPronjap());
+			}
+
+			if (k.getProncat() != null) {
+				doc.put(PFCConstants.DB_FIELD_PRON_CAT, k.getProncat());
+			}
+
 			coll.insert(doc);
 			ObjectId id = (ObjectId)doc.get(PFCConstants.DB_FIELD_ID);
 
