@@ -82,7 +82,8 @@ public class ControllerServlet extends HttpServlet {
 	 * @see #processRequest(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void service(HttpServletRequest req,
+		HttpServletResponse res) throws ServletException, IOException {
 		processRequest(req, res);
 	}
 
@@ -110,7 +111,8 @@ public class ControllerServlet extends HttpServlet {
 	 * @see WorkerFactory
 	 *
 	 */
-	private void processRequest(HttpServletRequest req, HttpServletResponse res) {
+	private void processRequest(HttpServletRequest req,
+		HttpServletResponse res) {
 		AbstractWorker worker = WorkerFactory.getWorker(req, res);
 		worker.processRequest();
 	}
