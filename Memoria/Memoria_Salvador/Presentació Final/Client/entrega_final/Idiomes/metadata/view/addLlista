@@ -1,0 +1,131 @@
+{
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|pack": "center",
+        "designer|userClassName": "addLlista",
+        "designer|userAlias": "addllista",
+        "id": "addLlista",
+        "itemId": "addLlista",
+        "ui": null,
+        "layout": "vbox",
+        "scrollable": [
+            "vertical",
+            ""
+        ]
+    },
+    "id": "ExtBox1-ext-gen5064",
+    "designerId": "8b17ad66-4fa9-4bc4-b450-86661c676075",
+    "cn": [
+        {
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyFieldSet",
+                "id": "formLlista",
+                "itemId": "fieldsetllista",
+                "title": "Nova llista d'estudi"
+            },
+            "designerId": "04d55ec2-beea-4acd-8c40-2a414f0a133d",
+            "cn": [
+                {
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyTextField",
+                        "label": "Nom",
+                        "name": "nom",
+                        "required": true,
+                        "autoCapitalize": true,
+                        "placeHolder": "Introdueixi el nom de la nova Llista d'Estudi"
+                    },
+                    "designerId": "58cbbc3e-0afe-47de-bf24-d2c439052027"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton2",
+                "itemId": "submit",
+                "ui": "confirm",
+                "iconCls": "add",
+                "iconMask": true,
+                "text": "Guardar"
+            },
+            "designerId": "ba035367-951b-47b4-af01-0ce5152c22e8",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onSubmitTap",
+                        "fn": "onSubmitTap",
+                        "implHandler": [
+                            "var form = Ext.getCmp('addLlista'),",
+                            "    store = Ext.getCmp('llistesestudiList').getStore(),",
+                            "    llistaRecord = form.getValues();",
+                            "",
+                            "if (llistaRecord.nom!==\"\"){",
+                            "",
+                            "    if (!IdiomesApp.idNovaLlista){",
+                            "        IdiomesApp.idNovaLlista=Ext.getStore('llistaJson').max('id')+1;",
+                            "    }else{",
+                            "        IdiomesApp.idNovaLlista=IdiomesApp.idNovaLlista+1;",
+                            "    }",
+                            "",
+                            "    //Nou registre en l'emmagatzematge local",
+                            "    llistaRecord.id=IdiomesApp.idNovaLlista;",
+                            "    store.add(llistaRecord);",
+                            "",
+                            "    //Confirmation",
+                            "    form.reset();",
+                            "    Ext.getCmp('llistesestudiList').deselectAll();",
+                            "",
+                            "    IdiomesApp.titol=IdiomesApp.titolAux;",
+                            "",
+                            "    Ext.getCmp('enrere').setHidden(true);",
+                            "    Ext.getCmp('llistesdestudi').remove(form,true);",
+                            "",
+                            "    Ext.getCmp('listPanel2').setHidden(false);",
+                            "    Ext.getCmp('novaLlista').setHidden(false);",
+                            "",
+                            "    Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "",
+                            "    Ext.getCmp('llistesdestudi').removeAt(1);",
+                            "",
+                            "}else{",
+                            "",
+                            "    Ext.Msg.alert('Error',\"El nom de la Llista d'Estudi és obligatori\");",
+                            "",
+                            "}"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "578797ba-2a9a-4a1b-8747-1d66cdb2839e"
+                }
+            ]
+        }
+    ]
+}

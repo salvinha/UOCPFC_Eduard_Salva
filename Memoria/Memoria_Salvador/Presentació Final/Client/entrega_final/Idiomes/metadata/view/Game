@@ -1,0 +1,505 @@
+{
+    "type": "container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Game",
+        "id": "game",
+        "style": [
+            "background-color: #ccc;"
+        ]
+    },
+    "configAlternates": {
+        "style": "object"
+    },
+    "id": "ExtBox1-ext-gen4826",
+    "designerId": "d24b60d4-cbb7-415b-8421-a18a6983680e",
+    "cn": [
+        {
+            "type": "carousel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "CarruselParaules",
+                "docked": "top",
+                "height": 200,
+                "id": "carruselParaules",
+                "itemId": "carruselParaules"
+            },
+            "designerId": "d4ab5193-1a94-425d-9504-a2476c342306",
+            "cn": [
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyContainer2",
+                        "designer|displayName": "Pregunta",
+                        "border": 1,
+                        "bottom": null,
+                        "cls": [
+                            "card1"
+                        ],
+                        "docked": null,
+                        "height": 200,
+                        "html": "",
+                        "id": "pregunta",
+                        "top": null,
+                        "ui": "",
+                        "width": null,
+                        "layout": "fit",
+                        "scrollable": false
+                    },
+                    "designerId": "5fe0d73c-4c13-44fb-87d8-3f07e217388b",
+                    "cn": [
+                        {
+                            "type": "template",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "tpl",
+                                "implHandler": [
+                                    "<div>",
+                                    "    <h3>Quin és el símbol Kanji de la següent paraula?</h3>",
+                                    "    <h1>{textcat}</h1>",
+                                    "    <p>(Desplaça la targeta per veure la resposta)</p>",
+                                    "</div>"
+                                ],
+                                "designer|displayName": "tpl"
+                            },
+                            "designerId": "e954c5dd-f2c9-4a65-8eb6-08ce5934a1f8"
+                        }
+                    ]
+                },
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyContainer2",
+                        "designer|displayName": "Resposta",
+                        "border": 1,
+                        "cls": [
+                            "card1"
+                        ],
+                        "docked": null,
+                        "height": 200,
+                        "html": null,
+                        "id": "resposta",
+                        "ui": "",
+                        "width": null,
+                        "layout": "fit"
+                    },
+                    "designerId": "83582a33-22db-4203-9c65-97cc78da923f",
+                    "cn": [
+                        {
+                            "type": "template",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "tpl",
+                                "implHandler": [
+                                    "<div>",
+                                    "    <h2>{textjap}</h2>",
+                                    "    <p>{pronjap}</p>",
+                                    "</div>"
+                                ],
+                                "designer|displayName": "tpl"
+                            },
+                            "designerId": "c3ae1773-bcf5-48c0-a971-b6c63735f0c5"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onCarruselParaulesActiveItemChange",
+                        "fn": "onCarruselParaulesActiveItemChange",
+                        "implHandler": [
+                            "if(value.config.id == 'pregunta'){",
+                            "    Ext.getCmp('hasencertat').setHidden(true);",
+                            "    Ext.getCmp('fallada').setHidden(true);",
+                            "    Ext.getCmp('encert').setHidden(true);",
+                            "}else{",
+                            "    Ext.getCmp('hasencertat').setHidden(false);",
+                            "    Ext.getCmp('fallada').setHidden(false);",
+                            "    Ext.getCmp('encert').setHidden(false);",
+                            "}"
+                        ],
+                        "name": "activeitemchange"
+                    },
+                    "designerId": "2cd05255-62fd-4de5-a9e7-c7b3adc66926"
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyContainer8",
+                "designer|displayName": "Safates",
+                "bottom": null,
+                "docked": "bottom",
+                "height": null,
+                "ui": "light",
+                "width": null,
+                "layout": "fit",
+                "scrollable": null
+            },
+            "designerId": "feac56cf-1633-49ce-b348-431ca4b7e15c",
+            "cn": [
+                {
+                    "type": "toolbar",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "center",
+                        "container|pack": "center",
+                        "designer|userClassName": "MyToolbar1",
+                        "docked": "bottom",
+                        "ui": "light",
+                        "title": ""
+                    },
+                    "designerId": "d709235f-77f6-4336-b632-e45da927ce99",
+                    "cn": [
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton13",
+                                "designer|displayName": "Pendents",
+                                "disabled": true,
+                                "id": "pendents",
+                                "itemId": "mybutton13",
+                                "iconCls": "time",
+                                "iconMask": true,
+                                "text": "Pendents"
+                            },
+                            "designerId": "5aa31112-60ab-4616-bd1c-5a1910c4d1f1",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onPendentsInitialize",
+                                        "fn": "onPendentsInitialize",
+                                        "implHandler": [
+                                            "Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);"
+                                        ],
+                                        "name": "initialize"
+                                    },
+                                    "designerId": "d28cf982-c147-4ac9-b003-eeb811aea7b2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton14",
+                                "designer|displayName": "Encerts",
+                                "disabled": true,
+                                "id": "encerts",
+                                "itemId": "mybutton14",
+                                "badgeText": "0",
+                                "icon": null,
+                                "iconAlign": "right",
+                                "iconCls": "star",
+                                "iconMask": true,
+                                "text": "Encerts"
+                            },
+                            "designerId": "262264c9-bf58-4d11-892d-939474b4d659"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyLabel",
+                "centered": true,
+                "hidden": true,
+                "html": "<p>Has encertat?</p>",
+                "id": "hasencertat"
+            },
+            "designerId": "8715adf4-422d-4efa-8e09-1892003c72c9"
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton11",
+                "docked": null,
+                "height": 50,
+                "hidden": true,
+                "id": "fallada",
+                "itemId": "mybutton2",
+                "left": 15,
+                "top": 230,
+                "ui": "decline-round",
+                "width": null,
+                "zIndex": null,
+                "iconCls": "delete",
+                "iconMask": true,
+                "text": "No"
+            },
+            "designerId": "af426910-e06a-470b-9a51-8cb91ef89c17",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onFalladaTap",
+                        "fn": "onFalladaTap",
+                        "implHandler": [
+                            "var carrusel = Ext.getCmp('carruselParaules');",
+                            "",
+                            "if (carrusel) {",
+                            "    Ext.getCmp('game').destroy();",
+                            "}",
+                            "",
+                            "//console.log(record.get('id'));",
+                            "Ext.getCmp('flashcards').setActiveItem({",
+                            "    xclass: 'IdiomesApp.view.Game'",
+                            "});",
+                            "",
+                            "Ext.getCmp('encerts').setBadgeText(IdiomesApp.numEncerts);",
+                            "Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);",
+                            "",
+                            "//Obtenim la següent paraula de l'exercici",
+                            "Ext.Ajax.request({",
+                            "    url: 'http://eduardcapell.com/pfc2012/get_paraula',",
+                            "    params: {",
+                            "        llista: IdiomesApp.llistaFlashcards",
+                            "    },",
+                            "    success: function(response, opts){",
+                            "        var obj = Ext.decode(response.responseText);",
+                            "        if(obj.success !== true){",
+                            "            //console.log(obj);",
+                            "            //console.log(obj.errorMessage);",
+                            "            Ext.Msg.alert(\"Informació\", obj.errorMessage);",
+                            "        }else{",
+                            "            //Enviam la paraula obtinguda al carrusel de l'exercici",
+                            "            //console.log(\"*** SEGÜENT PARAULA ***\");",
+                            "            //console.log(obj.koncept);",
+                            "            //console.log(record);",
+                            "            ",
+                            "            //Construïm una plantilla (template) pel contenidor de l'exercici",
+                            "            var tplPregunta = new Ext.XTemplate(",
+                            "                '<div>',",
+                            "                    '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',",
+                            "                    '<h1>' + obj.koncept.textcat + '</h1>',",
+                            "                    '<p>(Desplaça la targeta per veure la resposta)</p>',",
+                            "                '</div>'",
+                            "            );",
+                            "            var tplResposta = new Ext.XTemplate(",
+                            "                '<div>',",
+                            "                    '<h2>' + obj.koncept.textjap + '</h2>',",
+                            "                    '<p>' + obj.koncept.pronjap + '</p>',",
+                            "                '</div>'",
+                            "            );",
+                            "            //console.log(tplPregunta);",
+                            "            //console.log(tplResposta);",
+                            "            Ext.getCmp('pregunta').setTpl(tplPregunta);",
+                            "            Ext.getCmp('resposta').setTpl(tplResposta);",
+                            "            Ext.getCmp('pregunta').setRecord(IdiomesApp.registre);",
+                            "            Ext.getCmp('resposta').setRecord(IdiomesApp.registre);",
+                            "        }",
+                            "    },",
+                            "    failure: function(response){",
+                            "        console.log('server-side failure with status code: ' + response.status);",
+                            "        Ext.Msg.alert(\"No és possible obtenir una paraula de la llista\");",
+                            "    }",
+                            "});",
+                            "",
+                            "//Torna a la cara A (pregunta) de la targeta",
+                            "Ext.getCmp('carruselParaules').previous();"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "ec4b69f1-9bf8-4593-8bc0-7e1c8403b497"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton12",
+                "docked": null,
+                "height": 50,
+                "hidden": true,
+                "id": "encert",
+                "itemId": "mybutton1",
+                "right": 15,
+                "top": 230,
+                "ui": "confirm-round",
+                "width": null,
+                "iconAlign": "right",
+                "iconCls": "favorites",
+                "iconMask": true,
+                "text": "Sí"
+            },
+            "designerId": "97425bde-da30-4068-b9a6-6e1343ba671c",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onEncertTap",
+                        "fn": "onEncertTap",
+                        "implHandler": [
+                            "if(IdiomesApp.numPendents === 1){",
+                            "    Ext.Msg.alert('Felicitats','Ho has fet molt bé!');",
+                            "    Ext.getCmp('game').destroy();",
+                            "    IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                            "    Ext.getCmp('listPanel3').setHidden(false);",
+                            "    //Ext.getCmp('novaLlista').setHidden(true);",
+                            "    Ext.getCmp('novaParaula').setHidden(true);",
+                            "",
+                            "    Ext.getCmp('enrere').setHidden(true);",
+                            "    Ext.getCmp('nouJoc').setHidden(true);",
+                            "    Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "}else{",
+                            "    //console.log(\"OK\");",
+                            "    ",
+                            "    var carrusel = Ext.getCmp('carruselParaules');",
+                            "",
+                            "    if (carrusel) {",
+                            "        Ext.getCmp('game').destroy();",
+                            "    }",
+                            "    ",
+                            "    //console.log(record.get('id'));",
+                            "    Ext.getCmp('flashcards').setActiveItem({",
+                            "        xclass: 'IdiomesApp.view.Game'",
+                            "    });",
+                            "    ",
+                            "    //Actualitzam els comptadors de targetes pendents i targetes encertades",
+                            "    IdiomesApp.numEncerts = parseInt(IdiomesApp.numEncerts)+parseInt(1);",
+                            "    IdiomesApp.numPendents = parseInt(IdiomesApp.numPendents)-parseInt(1);",
+                            "    //Incrementa el comptador de targetes (paraules de la llista d'estudi) encertades",
+                            "    Ext.getCmp('encerts').setBadgeText(IdiomesApp.numEncerts);",
+                            "    //Decreix el nombre de targetes (paraules de la llista d'estudi) pendents de resoldre",
+                            "    Ext.getCmp('pendents').setBadgeText(IdiomesApp.numPendents);",
+                            "    ",
+                            "    //Obtenim la següent paraula de l'exercici",
+                            "    Ext.Ajax.request({",
+                            "        url: 'http://eduardcapell.com/pfc2012/get_paraula',",
+                            "        params: {",
+                            "            llista: IdiomesApp.llistaFlashcards",
+                            "        },",
+                            "        success: function(response, opts){",
+                            "            var obj = Ext.decode(response.responseText);",
+                            "            if(obj.success !== true){",
+                            "                //console.log(obj);",
+                            "                //console.log(obj.errorMessage);",
+                            "                Ext.Msg.alert(\"Informació\", obj.errorMessage);",
+                            "            }else{",
+                            "                //Enviam la paraula obtinguda al carrusel de l'exercici",
+                            "                //console.log(\"*** SEGÜENT PARAULA ***\");",
+                            "                //console.log(obj.koncept);",
+                            "                //console.log(record);",
+                            "                ",
+                            "                //Construïm una plantilla (template) pel contenidor de l'exercici",
+                            "                var tplPregunta = new Ext.XTemplate(",
+                            "                    '<div>',",
+                            "                        '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',",
+                            "                        '<h1>' + obj.koncept.textcat + '</h1>',",
+                            "                        '<p>(Desplaça la targeta per veure la resposta)</p>',",
+                            "                    '</div>'",
+                            "                );",
+                            "                var tplResposta = new Ext.XTemplate(",
+                            "                    '<div>',",
+                            "                        '<h2>' + obj.koncept.textjap + '</h2>',",
+                            "                        '<p>' + obj.koncept.pronjap + '</p>',",
+                            "                    '</div>'",
+                            "                );",
+                            "                //console.log(tplPregunta);",
+                            "                //console.log(tplResposta);",
+                            "                Ext.getCmp('pregunta').setTpl(tplPregunta);",
+                            "                Ext.getCmp('resposta').setTpl(tplResposta);",
+                            "                Ext.getCmp('pregunta').setRecord(IdiomesApp.registre);",
+                            "                Ext.getCmp('resposta').setRecord(IdiomesApp.registre);",
+                            "            }",
+                            "        },",
+                            "        failure: function(response){",
+                            "            console.log('server-side failure with status code: ' + response.status);",
+                            "            Ext.Msg.alert(\"No és possible obtenir una paraula de la llista\");",
+                            "        }",
+                            "    });",
+                            "    //Mostram la pregunta nova de la targeta",
+                            "    Ext.getCmp('carruselParaules').previous();",
+                            "}"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "b45c2186-f94e-4742-b3c3-d2704217b43f"
+                }
+            ]
+        }
+    ]
+}

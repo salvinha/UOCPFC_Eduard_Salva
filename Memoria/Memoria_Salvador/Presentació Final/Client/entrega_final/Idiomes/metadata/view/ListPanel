@@ -1,0 +1,114 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ListPanel",
+        "designer|userAlias": "listpanel",
+        "id": "listPanel",
+        "layout": "fit"
+    },
+    "id": "ExtBox1-ext-gen16364",
+    "designerId": "e3647606-2a7f-4270-ac4e-9f676467951a",
+    "cn": [
+        {
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "paraulesList",
+                "designer|userAlias": "parauleslist",
+                "id": "paraulesList",
+                "itemId": "mylist",
+                "style": null,
+                "emptyText": "<h1>Diccionari buit</h1>",
+                "loadingText": "Carregant...",
+                "store": "paraulaJson",
+                "grouped": true,
+                "onItemDisclosure": false
+            },
+            "designerId": "ff6a60e3-a47f-4a1b-991b-9a8b89e789b8",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div style=\"height:60px;\">",
+                            "    <h3>{textcat}</h3>",
+                            "    <h4>{textjap}</h4>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "3218ee03-b0a7-4709-9f3a-e56828fab768"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onParaulesListItemTap",
+                        "fn": "onParaulesListItemTap",
+                        "implHandler": [
+                            "Ext.getCmp('listPanel').setHidden(true);",
+                            "Ext.getCmp('enrere').setHidden(false);",
+                            "Ext.getCmp('novaParaula').setHidden(true);",
+                            "Ext.getCmp('editarParaula').setHidden(false);",
+                            "IdiomesApp.titol=\"Paraula\";",
+                            "IdiomesApp.titolAux=\"Paraula\";",
+                            "",
+                            "var tarjeta = Ext.getCmp('DetallParaula');",
+                            "",
+                            "if (tarjeta) {",
+                            "    Ext.getCmp('DetallParaula').destroy();",
+                            "}",
+                            "",
+                            "Ext.getCmp('diccionari').setActiveItem({",
+                            "    xclass: 'IdiomesApp.view.DetallParaula'",
+                            "});",
+                            "",
+                            "Ext.getCmp('paraulaTarjeta').setRecord(record);",
+                            "",
+                            "//Atributs per a la posterior càrrega de dades en el formulari d'edició",
+                            "IdiomesApp.paraula=record.get(\"id\");",
+                            "IdiomesApp.paraulaTextCat=record.get(\"textcat\");",
+                            "IdiomesApp.paraulaTextJap=record.get(\"textjap\");",
+                            "IdiomesApp.paraulaPronJap=record.get(\"pronjap\");",
+                            "IdiomesApp.paraulaLlista=record.get(\"idLlista\");",
+                            "//console.log(record);"
+                        ],
+                        "name": "itemtap"
+                    },
+                    "designerId": "7d093eb6-da0b-44a6-9420-a593f35dc59b"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "8a23b775-9c4f-4197-8b39-0a886bf6b931"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+﻿{
+    data: [{
+        id: 1,
+		nom: 'General'
+    }, {
+        id: 2,
+		nom: 'Colors'
+    }, {
+        id: 3,
+		nom: 'Animals'
+    }, {
+        id: 4,
+		nom: 'Naturalesa'
+    }, {
+        id: 5,
+		nom: 'Números'
+    }, {
+        id: 6,
+		nom: 'Mesos'
+    }]
+}
+

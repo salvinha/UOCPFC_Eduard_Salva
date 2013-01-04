@@ -1,0 +1,69 @@
+{
+    "type": "container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DetallParaula",
+        "id": "DetallParaula",
+        "itemId": "DetallParaula",
+        "minHeight": null,
+        "style": "background-color: #ccc;",
+        "ui": "light",
+        "width": "100%",
+        "layout": "fit",
+        "scrollable": false
+    },
+    "id": "ExtBox1-ext-gen5352",
+    "designerId": "a5e5c805-e0dc-4586-949a-8393349519dd",
+    "cn": [
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyContainer4",
+                "designer|displayName": "ParaulaTarjeta",
+                "cls": [
+                    "card1"
+                ],
+                "docked": "top",
+                "height": null,
+                "id": "paraulaTarjeta",
+                "minHeight": 500,
+                "ui": "light",
+                "width": "100%",
+                "layout": "fit",
+                "scrollable": "vertical"
+            },
+            "designerId": "5210aaa6-0254-4b79-83c8-026a1a63583b",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "tpl",
+                        "implHandler": [
+                            "<div>",
+                            "    <h1>{textcat}</h1>",
+                            "    <h2>{textjap}</h2>",
+                            "    <p>{pronjap}</p>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "tpl"
+                    },
+                    "designerId": "c4cbb84e-6c67-4782-aa97-5513357978ea"
+                }
+            ]
+        }
+    ]
+}

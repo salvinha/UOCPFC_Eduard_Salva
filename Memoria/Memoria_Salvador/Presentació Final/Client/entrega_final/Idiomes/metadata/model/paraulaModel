@@ -1,0 +1,147 @@
+{
+    "type": "datamodel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "paraulaModel"
+    },
+    "id": "ExtBox1-ext-gen9985",
+    "designerId": "7764777c-43e3-411a-a898-e4d7986454fb",
+    "cn": [
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field",
+                "name": "id",
+                "allowNull": false,
+                "type": "auto"
+            },
+            "designerId": "46bef29e-8456-4ade-8711-7e219b1131ae"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field1",
+                "name": "textcat",
+                "allowNull": false,
+                "type": "string"
+            },
+            "designerId": "23ad08ee-eaec-4f5f-9e29-d35ae08eed76"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field2",
+                "name": "textjap",
+                "allowNull": false,
+                "type": "string"
+            },
+            "designerId": "64c37d51-5186-4fce-b8fe-52d1c491a897"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field3",
+                "name": "pronjap",
+                "allowNull": false,
+                "type": "string"
+            },
+            "designerId": "54cb6177-d14b-4b1f-8c22-cf53a2769533"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field4",
+                "name": "idLlista",
+                "allowNull": false,
+                "defaultValue": null,
+                "type": "int"
+            },
+            "designerId": "a2fe1e81-0ad8-41cc-98fe-bc03033817cf"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation",
+                "designer|displayName": "PresenceValidationId",
+                "field": "id"
+            },
+            "designerId": "a647ef8f-1731-40d4-9e44-0df611550a1b"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation1",
+                "designer|displayName": "PresenceValidationTextCat",
+                "field": "textcat"
+            },
+            "designerId": "e6a83307-9084-4054-9e3d-4f9cdb56d3d7"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation2",
+                "designer|displayName": "PresenceValidationTextJap",
+                "field": "textjap"
+            },
+            "designerId": "a5fc2ab5-f197-4efc-a4eb-87c47e50aee7"
+        },
+        {
+            "type": "presencevalidation",
+            "reference": {
+                "name": "validations",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPresenceValidation3",
+                "designer|displayName": "PresenceValidationPronJap",
+                "field": "pronjap"
+            },
+            "designerId": "244a5289-c821-4a57-b6be-444ceeaff694"
+        }
+    ]
+}

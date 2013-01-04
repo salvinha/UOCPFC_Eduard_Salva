@@ -1,0 +1,189 @@
+{
+    "type": "actionsheet",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "OpcionsParaula",
+        "designer|userAlias": "opcionsParaula"
+    },
+    "id": "ExtBox1-ext-gen9680",
+    "designerId": "a76a2506-c550-4116-8f1b-a4b955d30347",
+    "cn": [
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton4",
+                "designer|displayName": "Esborrar",
+                "id": "btnEsborrarParaula",
+                "itemId": "btnEsborrarParaula",
+                "ui": "decline-round",
+                "iconCls": "trash",
+                "iconMask": true,
+                "text": "Esborrar"
+            },
+            "designerId": "af1a26eb-7467-4852-a1be-0ffb0078a486",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onBtnEsborrarParaulaTap",
+                        "fn": "onBtnEsborrarParaulaTap",
+                        "implHandler": [
+                            "this.hide();",
+                            "",
+                            "Ext.Msg.confirm(\"Alerta\", \"Estàs segur que vols esborrar aquesta paraula?\", ",
+                            "function ( answer ) { ",
+                            "    if ( answer == 'yes') {",
+                            "",
+                            "        //Esborrem la instrucció del JSON",
+                            "        //Ext.getStore('paraulaJson').removeAt(Ext.getStore('paraulaJson').find('id',IdiomesApp.paraula)); ",
+                            "",
+                            "        Ext.Ajax.request({",
+                            "            url: 'http://eduardcapell.com/pfc2012/delete_word',",
+                            "            params: {",
+                            "                id: IdiomesApp.paraula",
+                            "            },",
+                            "            success: function(response, opts){",
+                            "                var obj = Ext.decode(response.responseText);",
+                            "                if(obj.success !== true){",
+                            "                    //console.log(obj);",
+                            "                    //console.log(obj.errorMessage);",
+                            "                    Ext.Msg.alert(\"Informació\", obj.errorMessage);",
+                            "                }",
+                            "            },",
+                            "            failure: function(response){",
+                            "                console.log('server-side failure with status code: ' + response.status);",
+                            "                Ext.Msg.alert(\"No és possible esborrar la paraula del diccionari\");",
+                            "            }",
+                            "        });",
+                            "",
+                            "        Ext.getCmp('paraulesList').deselectAll();",
+                            "        IdiomesApp.titol=IdiomesApp.titolAux;",
+                            "        Ext.getCmp('enrere').setHidden(true);",
+                            "        Ext.getCmp('listPanel').setHidden(false);",
+                            "        Ext.getCmp('diccionari').remove(Ext.getCmp('DetallParaula'),true);",
+                            "        //Carrega de nou la petició de la llista per refrescar els elements",
+                            "        Ext.getStore('paraulaJson').load();",
+                            "        Ext.getCmp('novaParaula').setHidden(false);",
+                            "        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "        Ext.getCmp('diccionari').removeAt(1);",
+                            "    }",
+                            "}",
+                            ");"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "c3ccf21a-fe80-4bb3-8b35-aca7ec2fa1a1"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton5",
+                "designer|displayName": "Editar",
+                "id": "btnEditarParaula",
+                "itemId": "btnEditarParaula",
+                "ui": "action-round",
+                "iconCls": "compose",
+                "iconMask": true,
+                "text": "Editar"
+            },
+            "designerId": "39d0a4eb-1a09-40f9-b285-7c71e2121ddd",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onBtnEditarParaulaTap",
+                        "fn": "onBtnEditarParaulaTap",
+                        "implHandler": [
+                            "this.hide();",
+                            "",
+                            "Ext.getCmp('listPanel').setHidden(true);",
+                            "Ext.getCmp('enrere').setHidden(false);",
+                            "Ext.getCmp('novaParaula').setHidden(true);",
+                            "Ext.getCmp('editarParaula').setHidden(true);",
+                            "IdiomesApp.titol=\"Edició de paraula\";",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "",
+                            "var formedita = Ext.getCmp('editParaula');",
+                            "",
+                            "if (formedita) {",
+                            "    Ext.getCmp('editParaula').destroy();",
+                            "}",
+                            "",
+                            "Ext.getCmp('diccionari').setActiveItem({",
+                            "    xclass: 'IdiomesApp.view.editParaula'",
+                            "});",
+                            "",
+                            "//console.log(IdiomesApp.paraulaTextCat);"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "98a238fe-e9c6-41f9-875f-94d4a6d07877"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyButton6",
+                "designer|displayName": "Cancelar",
+                "id": "btnCancelarParaula",
+                "itemId": "btnCancelarParaula",
+                "ui": "round",
+                "iconCls": null,
+                "iconMask": true,
+                "text": "Cancelar"
+            },
+            "designerId": "11343c32-846b-4a14-a591-168f76bcb448",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onBtnCancelarParaulaTap",
+                        "fn": "onBtnCancelarParaulaTap",
+                        "implHandler": [
+                            "this.hide();"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "6e244e69-8770-4477-a6bc-517b95a016de"
+                }
+            ]
+        }
+    ]
+}

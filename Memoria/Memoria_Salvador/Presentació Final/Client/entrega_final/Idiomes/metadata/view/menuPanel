@@ -1,0 +1,494 @@
+{
+    "type": "tabpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "menuPanel",
+        "designer|userAlias": "menupanel",
+        "designer|initialView": true,
+        "id": "menuPanel",
+        "ui": "light",
+        "defaults": null,
+        "modal": false
+    },
+    "id": "ExtBox1-ext-gen1920",
+    "designerId": "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09",
+    "cn": [
+        {
+            "type": "tabbar",
+            "reference": {
+                "name": "tabBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "center",
+                "designer|userClassName": "MyTabBar",
+                "docked": "bottom",
+                "itemId": "mytabbar",
+                "ui": "light",
+                "activeTab": null
+            },
+            "designerId": "98e4d524-c319-45a7-ba17-edb02f277393"
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Diccionari",
+                "badgeText": null,
+                "iconCls": "bookmarks",
+                "designer|userClassName": "MyContainer1",
+                "designer|displayName": "Diccionari",
+                "html": null,
+                "id": "diccionari",
+                "width": "100%",
+                "layout": "fit"
+            },
+            "designerId": "6c82f06e-5b7e-419a-95c6-5e966f8d21ae",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "listPanel",
+                        "width": "100%",
+                        "autoDestroy": null
+                    },
+                    "designerId": "5e895623-f3b9-4bb5-b0af-54e132be8065",
+                    "masterInstanceId": "ExtBox1-ext-gen16364"
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel3",
+                        "hidden": true,
+                        "html": "Comenci per donar d'alta noves paraules",
+                        "id": "avisDiccionariBuit",
+                        "left": null,
+                        "padding": 10,
+                        "right": 0,
+                        "top": 15
+                    },
+                    "designerId": "855818e7-32df-4471-96d9-7ebcb1424315"
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Llistes d'estudi",
+                "badgeText": null,
+                "iconCls": "favorites",
+                "designer|userClassName": "MyContainer2",
+                "designer|displayName": "Llistes d'estudi",
+                "html": null,
+                "id": "llistesdestudi",
+                "width": "100%",
+                "layout": "fit"
+            },
+            "designerId": "c0c351b2-9a3f-46d8-aa92-949999e51278",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "listPanel2",
+                        "width": "100%",
+                        "autoDestroy": null
+                    },
+                    "designerId": "e58474df-111c-4c85-8bd5-6cff0110cf77",
+                    "masterInstanceId": "ExtBox1-ext-gen3887"
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Flashcards",
+                "iconCls": "organize",
+                "designer|userClassName": "MyContainer3",
+                "designer|displayName": "Flashcards",
+                "html": null,
+                "id": "flashcards",
+                "width": "100%",
+                "layout": "fit"
+            },
+            "designerId": "b5bfa93b-d470-4f1e-bcfb-cc531df639d7",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "autoDestroy": null
+                    },
+                    "designerId": "c96a0e81-f89e-4a53-ae52-114d7ae9d320",
+                    "masterInstanceId": "ExtBox1-ext-gen7897"
+                }
+            ]
+        },
+        {
+            "type": "toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyToolbar",
+                "docked": "top",
+                "height": 35,
+                "id": "myToolBar",
+                "itemId": "myToolBar",
+                "style": "font-size:10px;",
+                "ui": "light",
+                "scrollable": false,
+                "title": "Diccionari"
+            },
+            "designerId": "7027edff-1539-418f-83e1-aba1c42527d1",
+            "cn": [
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton",
+                        "designer|displayName": "Enrere",
+                        "hidden": true,
+                        "id": "enrere",
+                        "itemId": "enrere",
+                        "style": "font-size:16px;",
+                        "ui": "back",
+                        "text": "Enrere"
+                    },
+                    "designerId": "f6e089ad-de1f-4909-91c6-1a6b8dc2267a"
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton1",
+                        "designer|displayName": "NovaLlista",
+                        "docked": "right",
+                        "hidden": true,
+                        "id": "novaLlista",
+                        "itemId": "mybutton1",
+                        "right": "5px",
+                        "style": "",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconAlign": "center",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "c621ce40-3257-498a-8da1-3fcc19261848",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaLlista",
+                                "fn": "onNovaLlista",
+                                "implHandler": [
+                                    "Ext.getCmp('novaLlista').setHidden(true);",
+                                    "Ext.getCmp('listPanel2').setHidden(true);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
+                                    "IdiomesApp.titol=\"Nova llista d'estudi\";",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "",
+                                    "Ext.getCmp('llistesdestudi').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addLlista'",
+                                    "});"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "5d9a5307-a821-496b-8dad-3da8a8e3bdae"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton7",
+                        "designer|displayName": "Edita",
+                        "docked": "right",
+                        "height": 22,
+                        "hidden": true,
+                        "id": "editarParaula",
+                        "itemId": "editarParaula",
+                        "right": "5px",
+                        "top": "5px",
+                        "ui": "action-round",
+                        "iconCls": "more",
+                        "iconMask": true,
+                        "text": ""
+                    },
+                    "designerId": "0efedb58-8797-47ed-b1bf-c0746d15cc34",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onEditarParaulaTap",
+                                "fn": "onEditarParaulaTap",
+                                "implHandler": [
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "Ext.getCmp('editarParaula').setHidden(false);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "",
+                                    "var sheet = button.actionSheet;",
+                                    "if (!sheet) {",
+                                    "    sheet = button.actionSheet = Ext.Viewport.add(Ext.widget('opcionsParaula'));",
+                                    "}",
+                                    "sheet.show();"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "50047ede-a301-4402-932e-eba9dd5c4115"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton10",
+                        "hidden": true,
+                        "id": "nouJoc",
+                        "itemId": "mybutton10",
+                        "style": [
+                            "font-size:12px"
+                        ],
+                        "ui": "confirm-round",
+                        "text": "Nou joc"
+                    },
+                    "configAlternates": {
+                        "style": "object"
+                    },
+                    "designerId": "99087cac-3de8-4da2-a9a3-0ac5d383aeee",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNouJocTap",
+                                "fn": "onNouJocTap",
+                                "implHandler": [
+                                    "//Ext.getCmp('carruselParaules').destroy();",
+                                    "",
+                                    "//Posam a 0 el comptador del servidor de les paraules que hagin aparegut a l'exercici de Flashcards",
+                                    "Ext.Ajax.request({",
+                                    "    method: 'POST',",
+                                    "    url: 'http://eduardcapell.com/pfc2012/reset_game',",
+                                    "    success: function(response, opts){",
+                                    "        var obj = Ext.decode(response.responseText);",
+                                    "        if(obj.success !== true){",
+                                    "            console.log(obj);",
+                                    "            console.log(obj.errorMessage);",
+                                    "        }",
+                                    "    },",
+                                    "    failure: function(response){",
+                                    "        console.log('server-side failure with status code: ' + response.status);",
+                                    "    }",
+                                    "});",
+                                    "",
+                                    "//Mostram el llistat de Llistes d'Estudi a l'usuari per a una nova selecció",
+                                    "Ext.getCmp('game').destroy();",
+                                    "IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                                    "Ext.getCmp('listPanel3').setHidden(false);",
+                                    "Ext.getCmp('novaLlista').setHidden(true);",
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "",
+                                    "Ext.getCmp('enrere').setHidden(true);",
+                                    "Ext.getCmp('nouJoc').setHidden(true);",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "729190e6-6cf0-425c-8212-b77205571ab4"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyButton9",
+                        "designer|displayName": "Nova paraula",
+                        "id": "novaParaula",
+                        "itemId": "novaParaula",
+                        "right": 5,
+                        "top": 5,
+                        "ui": "confirm-round",
+                        "iconCls": "add",
+                        "iconMask": true,
+                        "text": null
+                    },
+                    "designerId": "29470b2e-9107-4251-85c8-72c4e88047ac",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "onNovaParaulaTap",
+                                "fn": "onNovaParaulaTap",
+                                "implHandler": [
+                                    "Ext.getCmp('novaParaula').setHidden(true);",
+                                    "Ext.getCmp('listPanel').setHidden(true);",
+                                    "Ext.getCmp('enrere').setHidden(false);",
+                                    "IdiomesApp.titolAux=IdiomesApp.titol;",
+                                    "IdiomesApp.titol=\"Nova paraula\";",
+                                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                                    "",
+                                    "var formadd = Ext.getCmp('addParaula');",
+                                    "",
+                                    "if (formadd) {",
+                                    "    Ext.getCmp('addParaula').destroy();",
+                                    "}",
+                                    "",
+                                    "Ext.getCmp('diccionari').setActiveItem({",
+                                    "    xclass: 'IdiomesApp.view.addParaula'",
+                                    "});"
+                                ],
+                                "name": "tap"
+                            },
+                            "designerId": "bbf46aca-439f-4b1d-bd7e-316babf064f2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onMenuPanelActiveItemChange",
+                "fn": "onMenuPanelActiveItemChange",
+                "implHandler": [
+                    "//Ext.Msg.alert('activeitemchange', 'Current tab: ' + value.config.id);",
+                    "IdiomesApp.titol=value.config.title;",
+                    "IdiomesApp.titolAux=value.config.title;",
+                    "",
+                    "//Secció nova",
+                    "if (value.config.id == 'diccionari'){",
+                    "    if (Ext.getCmp('DetallParaula')){",
+                    "        Ext.getCmp('DetallParaula').setHidden(true);",
+                    "    }",
+                    "    if (Ext.getCmp('addParaula')){",
+                    "        Ext.getCmp('addParaula').setHidden(true);",
+                    "    }",
+                    "    if (Ext.getCmp('editParaula')){",
+                    "        Ext.getCmp('editParaula').setHidden(true);",
+                    "    }",
+                    "    Ext.getCmp('listPanel').setHidden(false);",
+                    "    //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local",
+                    "    //Ext.getCmp('novaLlista').setHidden(true);",
+                    "    Ext.getCmp('novaParaula').setHidden(false);",
+                    "    //Carrega de nou la petició de la llista per refrescar els elements",
+                    "    Ext.getStore('paraulaJson').load();",
+                    "}",
+                    "if (value.config.id == 'llistesdestudi'){",
+                    "    Ext.getCmp('editarParaula').setHidden(true);",
+                    "    Ext.getCmp('listPanel2').setHidden(false);",
+                    "    Ext.getCmp('novaParaula').setHidden(true);",
+                    "    //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local",
+                    "    //Ext.getCmp('novaLlista').setHidden(false);",
+                    "}",
+                    "if (value.config.id == 'flashcards'){ ",
+                    "    if (Ext.getCmp('game')){",
+                    "        Ext.getCmp('game').setHidden(true);",
+                    "    }",
+                    "    Ext.getCmp('editarParaula').setHidden(true);",
+                    "    IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                    "    Ext.getCmp('listPanel3').setHidden(false);",
+                    "    //No es permeten donar d'alta noves llistes perquè van en funció d'un fitxer json local",
+                    "    //Ext.getCmp('novaLlista').setHidden(true);",
+                    "    Ext.getCmp('novaParaula').setHidden(true);",
+                    "}",
+                    "",
+                    "Ext.getCmp('enrere').setHidden(true);",
+                    "Ext.getCmp('nouJoc').setHidden(true);",
+                    "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);"
+                ],
+                "name": "activeitemchange"
+            },
+            "designerId": "dde49b7b-7915-4464-8a36-961878b0427b"
+        }
+    ]
+}

@@ -1,0 +1,167 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "paraulaJson",
+        "autoLoad": true,
+        "autoSync": false,
+        "groupDir": "ASC",
+        "groupField": "textcat",
+        "model": "paraulaModel",
+        "storeId": "paraulaJson"
+    },
+    "id": "ExtBox1-ext-gen9422",
+    "designerId": "9d7a005d-4d28-44ec-95f7-d4bebf9d8342",
+    "cn": [
+        {
+            "type": "sorter",
+            "reference": {
+                "name": "sorters",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MySorter",
+                "id": "ordenaParaula",
+                "property": "textcat"
+            },
+            "designerId": "d345bafd-fdf1-4de0-bbc7-cf57bb0186fa"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreAddrecords",
+                "fn": "onJsonstoreAddrecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules+1);"
+                ],
+                "name": "addrecords"
+            },
+            "designerId": "152d4a70-a4a6-4ba4-a4c3-05bc3b306aaf"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreRemoverecords",
+                "fn": "onJsonstoreRemoverecords",
+                "implHandler": [
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = Ext.getCmp('menuPanel').getTabBar().getComponent(0)._badgeText; ",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules-1);"
+                ],
+                "name": "removerecords"
+            },
+            "designerId": "7249a6be-5a9a-4cce-9fda-9b8510846cff"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onJsonstoreLoad",
+                "fn": "onJsonstoreLoad",
+                "implHandler": [
+                    "/*if (this.getCount() === 0){",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(false);",
+                    "Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));",
+                    "}else{",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(true);",
+                    "}*/",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
+                    "",
+                    "var comptadorParaules = this.getCount();",
+                    "",
+                    "Ext.getCmp('menuPanel').getTabBar().getComponent(0).setBadgeText(comptadorParaules);"
+                ],
+                "name": "load"
+            },
+            "designerId": "865e44dc-338d-4775-a023-2a0e56d66148"
+        },
+        {
+            "type": "grouper",
+            "reference": {
+                "name": "grouper",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyGrouper"
+            },
+            "designerId": "ed4f34f8-bb96-41c8-822b-1f4f34a67869",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "groupFn",
+                        "fn": "groupFn",
+                        "designer|params": [
+                            "record"
+                        ],
+                        "implHandler": [
+                            "return record.get('textcat')[0];"
+                        ]
+                    },
+                    "designerId": "03784e2e-a609-4346-9d43-5e7b123039e4"
+                }
+            ]
+        },
+        {
+            "type": "ajaxproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyAjaxProxy1",
+                "enablePagingParams": false,
+                "url": "http://eduardcapell.com/pfc2012/get_words"
+            },
+            "designerId": "82572bb0-ace0-468b-9acb-bdb91085c093",
+            "cn": [
+                {
+                    "type": "jsonreader",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonReader",
+                        "rootProperty": "list"
+                    },
+                    "designerId": "abd1fbcf-079f-433d-878d-3d80e506d648"
+                }
+            ]
+        }
+    ]
+}
