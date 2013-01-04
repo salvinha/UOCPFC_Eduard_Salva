@@ -37,7 +37,8 @@ Ext.define('IdiomesApp.view.addLlista', {
                         label: 'Nom',
                         name: 'nom',
                         required: true,
-                        autoCapitalize: true
+                        autoCapitalize: true,
+                        placeHolder: 'Introdueixi el nom de la nova Llista d\'Estudi'
                     }
                 ]
             },
@@ -64,31 +65,39 @@ Ext.define('IdiomesApp.view.addLlista', {
             store = Ext.getCmp('llistesestudiList').getStore(),
             llistaRecord = form.getValues();
 
-        if (!IdiomesApp.idNovaLlista){
-            IdiomesApp.idNovaLlista=Ext.getStore('llistaJson').max('id')+1;
+        if (llistaRecord.nom!==""){
+
+            if (!IdiomesApp.idNovaLlista){
+                IdiomesApp.idNovaLlista=Ext.getStore('llistaJson').max('id')+1;
+            }else{
+                IdiomesApp.idNovaLlista=IdiomesApp.idNovaLlista+1;
+            }
+
+            //Nou registre en l'emmagatzematge local
+            llistaRecord.id=IdiomesApp.idNovaLlista;
+            store.add(llistaRecord);
+
+            //Confirmation
+            form.reset();
+            Ext.getCmp('llistesestudiList').deselectAll();
+
+            IdiomesApp.titol=IdiomesApp.titolAux;
+
+            Ext.getCmp('enrere').setHidden(true);
+            Ext.getCmp('llistesdestudi').remove(form,true);
+
+            Ext.getCmp('listPanel2').setHidden(false);
+            Ext.getCmp('novaLlista').setHidden(false);
+
+            Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
+
+            Ext.getCmp('llistesdestudi').removeAt(1);
+
         }else{
-            IdiomesApp.idNovaLlista=IdiomesApp.idNovaLlista+1;
+
+            Ext.Msg.alert('Error',"El nom de la Llista d'Estudi és obligatori");
+
         }
-
-        //Nou registre en l'emmagatzematge local
-        llistaRecord.id=IdiomesApp.idNovaLlista;
-        store.add(llistaRecord);
-
-        //Confirmation
-        form.reset();
-        Ext.getCmp('llistesestudiList').deselectAll();
-
-        IdiomesApp.titol=IdiomesApp.titolAux;
-
-        Ext.getCmp('enrere').setHidden(true);
-        Ext.getCmp('llistesdestudi').remove(form,true);
-
-        Ext.getCmp('listPanel2').setHidden(false);
-        Ext.getCmp('novaLlista').setHidden(false);
-
-        Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);
-
-        Ext.getCmp('llistesdestudi').removeAt(1);
     }
 
 });

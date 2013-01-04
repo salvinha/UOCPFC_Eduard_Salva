@@ -1,0 +1,181 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ListPanel3",
+        "designer|userAlias": "listpanel3",
+        "id": "listPanel3",
+        "layout": "fit"
+    },
+    "id": "ExtBox1-ext-gen7897",
+    "designerId": "cf29c1e6-6d40-4058-ba09-13523ef0a69d",
+    "cn": [
+        {
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "paraulesList",
+                "designer|userAlias": "parauleslist",
+                "id": "llistesestudiListFlashcards",
+                "itemId": "mylist3",
+                "style": null,
+                "emptyText": "<h1>No existeixen llistes</h1>",
+                "loadingText": "Carregant...",
+                "store": "llistaJson",
+                "disableSelection": false,
+                "grouped": true,
+                "onItemDisclosure": false
+            },
+            "designerId": "d62095d2-c853-485d-b2f2-f8e6b53ddc01",
+            "cn": [
+                {
+                    "type": "template",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div>",
+                            "    <h3>{nom}</h3>",
+                            "</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "78c431de-2356-458d-a501-0250ee110ba5"
+                },
+                {
+                    "type": "listindexbar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyIndexBar"
+                    },
+                    "designerId": "749c3b2e-0afb-4a36-bd69-c819e1b4ce57"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onLlistesestudiListFlashcardsItemTap",
+                        "fn": "onLlistesestudiListFlashcardsItemTap",
+                        "implHandler": [
+                            "//Guardam en aquesta variable l'Id de la llista d'estudi cada vegada que comencem un nou joc",
+                            "IdiomesApp.llistaFlashcards = record.get('id');",
+                            "IdiomesApp.registre = record;",
+                            "IdiomesApp.numPendents = 3;",
+                            "IdiomesApp.numEncerts = 0;",
+                            "",
+                            "var carrusel = Ext.getCmp('carruselParaules');",
+                            "",
+                            "if (carrusel) {",
+                            "    Ext.getCmp('game').destroy();",
+                            "}",
+                            "",
+                            "//console.log(record.get('id'));",
+                            "Ext.getCmp('flashcards').setActiveItem({",
+                            "    xclass: 'IdiomesApp.view.Game'",
+                            "});",
+                            "",
+                            "//Posam a 0 el comptador del servidor de les paraules que hagin aparegut a l'exercici de Flashcards",
+                            "Ext.Ajax.request({",
+                            "    method: 'POST',",
+                            "    url: 'http://eduardcapell.com/pfc2012/reset_game',",
+                            "    success: function(response, opts){",
+                            "        var obj = Ext.decode(response.responseText);",
+                            "        if(obj.success !== true){",
+                            "            //console.log(obj);",
+                            "            console.log(obj.errorMessage);",
+                            "        }",
+                            "    },",
+                            "    failure: function(response){",
+                            "        console.log('server-side failure with status code: ' + response.status);",
+                            "    }",
+                            "});",
+                            "",
+                            "//Obtenim la primera paraula de l'exercici",
+                            "Ext.Ajax.request({",
+                            "    url: 'http://eduardcapell.com/pfc2012/get_paraula',",
+                            "    params: {",
+                            "        llista: record.get('id')",
+                            "    },",
+                            "    success: function(response, opts){",
+                            "        var obj = Ext.decode(response.responseText);",
+                            "        if(obj.success !== true){",
+                            "            //console.log(obj);",
+                            "            //console.log(obj.errorMessage);",
+                            "            Ext.Msg.alert(\"Informació\", obj.errorMessage);",
+                            "            //Mostram el llistat de Llistes d'Estudi a l'usuari per a una nova selecció",
+                            "            Ext.getCmp('game').destroy();",
+                            "            IdiomesApp.titol=\"Seleccioni una Llista d\\'Estudi\";",
+                            "            Ext.getCmp('listPanel3').setHidden(false);",
+                            "            //Ext.getCmp('novaLlista').setHidden(true);",
+                            "            Ext.getCmp('novaParaula').setHidden(true);",
+                            "            ",
+                            "            Ext.getCmp('enrere').setHidden(true);",
+                            "            Ext.getCmp('nouJoc').setHidden(true);",
+                            "            Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "        }else{",
+                            "            //Enviam la paraula obtinguda al carrusel de l'exercici",
+                            "            //console.log(obj.koncept);",
+                            "            //console.log(record);",
+                            "            ",
+                            "            //Construïm una plantilla (template) pel contenidor de l'exercici",
+                            "            var tplPregunta = new Ext.XTemplate(",
+                            "                '<div>',",
+                            "                    '<h3>Quin és el símbol Kanji de la següent paraula?</h3>',",
+                            "                    '<h1>' + obj.koncept.textcat + '</h1>',",
+                            "                    '<p>(Desplaça la targeta per veure la resposta)</p>',",
+                            "                '</div>'",
+                            "            );",
+                            "            var tplResposta = new Ext.XTemplate(",
+                            "                '<div>',",
+                            "                    '<h2>' + obj.koncept.textjap + '</h2>',",
+                            "                    '<p>' + obj.koncept.pronjap + '</p>',",
+                            "                '</div>'",
+                            "            );",
+                            "            //console.log(tplPregunta);",
+                            "            //console.log(tplResposta);",
+                            "            Ext.getCmp('pregunta').setTpl(tplPregunta);",
+                            "            Ext.getCmp('resposta').setTpl(tplResposta);",
+                            "            Ext.getCmp('pregunta').setRecord(record);",
+                            "            Ext.getCmp('resposta').setRecord(record);",
+                            "        }",
+                            "    },",
+                            "    failure: function(response){",
+                            "        console.log('server-side failure with status code: ' + response.status);",
+                            "        Ext.Msg.alert(\"No és possible obtenir una paraula de la llista\");",
+                            "    }",
+                            "});",
+                            "",
+                            "//Ocultem el llistat de selecció de Llistes d'Estudi i comença l'exercici",
+                            "Ext.getCmp('listPanel3').setHidden(true);",
+                            "IdiomesApp.titol=\"Aprenent: \" + record.get('nom');",
+                            "Ext.getCmp('myToolBar').setTitle(IdiomesApp.titol);",
+                            "Ext.getCmp('nouJoc').setHidden(false);"
+                        ],
+                        "name": "itemtap"
+                    },
+                    "designerId": "1d47658d-789c-495c-9fe5-56db09cdf459"
+                }
+            ]
+        }
+    ]
+}

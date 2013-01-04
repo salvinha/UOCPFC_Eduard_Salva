@@ -11,6 +11,12 @@
     }, {
         id: 4,
 		nom: 'Naturalesa'
+    }, {
+        id: 5,
+		nom: 'Números'
+    }, {
+        id: 6,
+		nom: 'Mesos'
     }]
 }
 

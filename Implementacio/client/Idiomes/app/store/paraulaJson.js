@@ -22,18 +22,11 @@ Ext.define('IdiomesApp.store.paraulaJson', {
 
     config: {
         autoLoad: true,
+        autoSync: false,
         groupDir: 'ASC',
         groupField: 'textcat',
         model: 'IdiomesApp.model.paraulaModel',
         storeId: 'paraulaJson',
-        proxy: {
-            type: 'ajax',
-            url: 'data/paraula.json',
-            reader: {
-                type: 'json',
-                rootProperty: 'data'
-            }
-        },
         sorters: {
             id: 'ordenaParaula',
             property: 'textcat'
@@ -56,6 +49,15 @@ Ext.define('IdiomesApp.store.paraulaJson', {
             groupFn: function(record) {
                 return record.get('textcat')[0];
             }
+        },
+        proxy: {
+            type: 'ajax',
+            enablePagingParams: false,
+            url: 'http://eduardcapell.com/pfc2012/get_words',
+            reader: {
+                type: 'json',
+                rootProperty: 'list'
+            }
         }
     },
 
@@ -76,6 +78,13 @@ Ext.define('IdiomesApp.store.paraulaJson', {
     },
 
     onJsonstoreLoad: function(store, records, successful, operation, eOpts) {
+        if (this.getCount() === 0){
+            Ext.getCmp('avisDiccionariBuit').setHidden(false);
+            Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));
+        }else{
+            Ext.getCmp('avisDiccionariBuit').setHidden(true);
+        }
+
         Ext.getCmp('menuPanel').getTabBar().getComponent(0);
 
         var comptadorParaules = this.getCount();

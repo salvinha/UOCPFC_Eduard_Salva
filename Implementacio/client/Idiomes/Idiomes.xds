@@ -136,6 +136,22 @@
                 "app/view/addLlista.js"
             ],
             "className": "addLlista"
+        },
+        "cf29c1e6-6d40-4058-ba09-13523ef0a69d": {
+            "paths": [
+                "metadata/view/ListPanel3",
+                "app/view/override/ListPanel3.js",
+                "app/view/ListPanel3.js"
+            ],
+            "className": "ListPanel3"
+        },
+        "d24b60d4-cbb7-415b-8421-a18a6983680e": {
+            "paths": [
+                "metadata/view/Game",
+                "app/view/override/Game.js",
+                "app/view/Game.js"
+            ],
+            "className": "Game"
         }
     },
     "viewOrderMap": {
@@ -143,11 +159,13 @@
             "a5e5c805-e0dc-4586-949a-8393349519dd",
             "e3647606-2a7f-4270-ac4e-9f676467951a",
             "ac4862c7-6d28-47e2-b2b9-8ea65e685f52",
+            "cf29c1e6-6d40-4058-ba09-13523ef0a69d",
             "ddedca87-ade6-4cfb-b9b5-9b14fb6c9b09",
             "ca30f2ca-fa12-4eab-a267-80dc168683f8",
             "8b17ad66-4fa9-4bc4-b450-86661c676075",
             "e92da493-31f4-45b2-9d9b-62a04cebe526",
-            "a76a2506-c550-4116-8f1b-a4b955d30347"
+            "a76a2506-c550-4116-8f1b-a4b955d30347",
+            "d24b60d4-cbb7-415b-8421-a18a6983680e"
         ],
         "store": [
             "9d7a005d-4d28-44ec-95f7-d4bebf9d8342",

@@ -27,11 +27,11 @@ Ext.define('IdiomesApp.view.ListPanel', {
                 xtype: 'list',
                 id: 'paraulesList',
                 itemId: 'mylist',
+                emptyText: '<h1>Diccionari buit</h1>',
                 itemTpl: [
-                    '<div style="height:85px;">',
-                    '    <p>{textcat}</p>',
-                    '    <p>{textjap}</p>',
-                    '    <p>{pronjap}</p>',
+                    '<div style="height:60px;">',
+                    '    <h3>{textcat}</h3>',
+                    '    <h4>{textjap}</h4>',
                     '</div>'
                 ],
                 loadingText: 'Carregant...',
@@ -58,20 +58,15 @@ Ext.define('IdiomesApp.view.ListPanel', {
         IdiomesApp.titol="Paraula";
         IdiomesApp.titolAux="Paraula";
 
-        //console.log('onParaulesListItemTap');
-
         var tarjeta = Ext.getCmp('DetallParaula');
 
         if (tarjeta) {
-            Ext.getCmp('diccionari').setActiveItem(tarjeta);
-        } else {
-            /*console.log(record.get('id'));
-            console.log(record);*/
-            Ext.getCmp('diccionari').setActiveItem({
-                xclass: 'IdiomesApp.view.DetallParaula'
-            });
-
+            Ext.getCmp('DetallParaula').destroy();
         }
+
+        Ext.getCmp('diccionari').setActiveItem({
+            xclass: 'IdiomesApp.view.DetallParaula'
+        });
 
         Ext.getCmp('paraulaTarjeta').setRecord(record);
 
@@ -80,7 +75,8 @@ Ext.define('IdiomesApp.view.ListPanel', {
         IdiomesApp.paraulaTextCat=record.get("textcat");
         IdiomesApp.paraulaTextJap=record.get("textjap");
         IdiomesApp.paraulaPronJap=record.get("pronjap");
-        IdiomesApp.paraulaLlista=record.get("llista");
+        IdiomesApp.paraulaLlista=record.get("idLlista");
+        //console.log(record);
     }
 
 });

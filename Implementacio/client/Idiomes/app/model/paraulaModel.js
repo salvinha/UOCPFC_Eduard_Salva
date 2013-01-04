@@ -20,22 +20,27 @@ Ext.define('IdiomesApp.model.paraulaModel', {
         fields: [
             {
                 name: 'id',
+                allowNull: false,
                 type: 'auto'
             },
             {
                 name: 'textcat',
+                allowNull: false,
                 type: 'string'
             },
             {
                 name: 'textjap',
+                allowNull: false,
                 type: 'string'
             },
             {
                 name: 'pronjap',
+                allowNull: false,
                 type: 'string'
             },
             {
-                name: 'llista',
+                name: 'idLlista',
+                allowNull: false,
                 type: 'int'
             }
         ],

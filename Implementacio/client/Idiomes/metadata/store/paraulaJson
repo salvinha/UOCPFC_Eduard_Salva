@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userClassName": "paraulaJson",
         "autoLoad": true,
+        "autoSync": false,
         "groupDir": "ASC",
         "groupField": "textcat",
         "model": "paraulaModel",
@@ -16,34 +17,6 @@
     "id": "ExtBox1-ext-gen9422",
     "designerId": "9d7a005d-4d28-44ec-95f7-d4bebf9d8342",
     "cn": [
-        {
-            "type": "ajaxproxy",
-            "reference": {
-                "name": "proxy",
-                "type": "object"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|userClassName": "MyAjaxProxy",
-                "url": "data/paraula.json"
-            },
-            "designerId": "f03efc79-80b7-4315-981e-8b7a3b68b309",
-            "cn": [
-                {
-                    "type": "jsonreader",
-                    "reference": {
-                        "name": "reader",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|userClassName": "MyJsonReader",
-                        "rootProperty": "data"
-                    },
-                    "designerId": "afc879a6-027a-4058-a5ab-fb1300be8da0"
-                }
-            ]
-        },
         {
             "type": "sorter",
             "reference": {
@@ -111,6 +84,13 @@
                 "designer|userClassName": "onJsonstoreLoad",
                 "fn": "onJsonstoreLoad",
                 "implHandler": [
+                    "/*if (this.getCount() === 0){",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(false);",
+                    "Ext.getCmp('avisDiccionariBuit').showBy(Ext.getCmp('novaParaula'));",
+                    "}else{",
+                    "Ext.getCmp('avisDiccionariBuit').setHidden(true);",
+                    "}*/",
+                    "",
                     "Ext.getCmp('menuPanel').getTabBar().getComponent(0);",
                     "",
                     "var comptadorParaules = this.getCount();",
@@ -151,6 +131,35 @@
                         ]
                     },
                     "designerId": "03784e2e-a609-4346-9d43-5e7b123039e4"
+                }
+            ]
+        },
+        {
+            "type": "ajaxproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyAjaxProxy1",
+                "enablePagingParams": false,
+                "url": "http://eduardcapell.com/pfc2012/get_words"
+            },
+            "designerId": "82572bb0-ace0-468b-9acb-bdb91085c093",
+            "cn": [
+                {
+                    "type": "jsonreader",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonReader",
+                        "rootProperty": "list"
+                    },
+                    "designerId": "abd1fbcf-079f-433d-878d-3d80e506d648"
                 }
             ]
         }
